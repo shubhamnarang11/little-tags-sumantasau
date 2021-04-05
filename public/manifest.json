@@ -1,0 +1,18 @@
+{
+  "name": "Little tags",
+  "short_name": "little tags",
+  "theme_color": "",
+  "background_color": "#ffffff",
+  "description": "An online clothing store",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "./logo.svg",
+      "sizes": "512x512",
+      "type": "image/svg"
+    }
+  ]
+}
