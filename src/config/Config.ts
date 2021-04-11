@@ -1,6 +1,7 @@
 export const CONFIG = {
     ROUTES: {
         DEFAULT:'/',
-        DASHBOARD: '/dashboard'
+        DASHBOARD: '/dashboard',
+        PROFILE: '/Profile'
     }
 }
