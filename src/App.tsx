@@ -1,15 +1,16 @@
 import './App.scss';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CONFIG } from './config/Config';
-import Profile from "./components/Profile/Profile";
+import { Navbar, Profile } from './components';
 
 function App() {
   const {
     ROUTES: { DEFAULT, DASHBOARD, PROFILE },
   } = CONFIG;
-  
+
   return (
     <div className='App'>
+      <Navbar />
       <Switch>
         <Route
           exact
