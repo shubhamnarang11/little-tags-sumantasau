@@ -7,3 +7,7 @@ export const STATIC_DATA = {
     NO_SUCH_IMAGE: 'No Image Found'
   },
 };
+
+export const SessionKeys = {
+  USERNAME: "username"
+};
