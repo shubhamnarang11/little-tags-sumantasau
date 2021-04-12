@@ -1,4 +1,3 @@
-//import logo from './logo.svg';
 import './App.scss';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CONFIG } from './config/Config';
