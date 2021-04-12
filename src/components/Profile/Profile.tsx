@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import avatar_image from "../../assets/avatar.jpg";
-import camera_image from "../../assets/camera.png";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import "./Profile.scss";
 import {
@@ -140,3 +139,4 @@ export default function Profile() {
     </div>
   );
 }
+
