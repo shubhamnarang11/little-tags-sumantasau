@@ -1,15 +1,16 @@
-import logo from './logo.svg';
 import './App.scss';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CONFIG } from './config/Config';
+import { Navbar } from './components';
 
 function App() {
   const {
     ROUTES: { DEFAULT, DASHBOARD },
   } = CONFIG;
-  
+
   return (
     <div className='App'>
+      <Navbar />
       <Switch>
         <Route
           exact
