@@ -1,6 +1,6 @@
 export const CONFIG = {
-    ROUTES: {
-        DEFAULT:'/',
-        DASHBOARD: '/dashboard'
-    }
-}
+  ROUTES: {
+    DEFAULT: '/',
+    DASHBOARD: '/dashboard',
+  },
+};
