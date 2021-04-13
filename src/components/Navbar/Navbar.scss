@@ -1,0 +1,120 @@
+#navbar-web-div {
+  padding: 1vh 0;
+  display: flex;
+  .app-logo {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    img {
+      width: 4vw;
+    }
+  }
+  .search-bar {
+    position: relative;
+    display: inline-block;
+    align-self: center;
+    margin: 0 4%;
+    input {
+      background-color: #eaeaea;
+      border: none;
+      outline: none;
+      border-radius: 15px;
+      width: 30vw;
+      padding: 1.5vh;
+    }
+    &::after {
+      font-family: 'FontAwesome';
+      content: '\f002';
+      position: absolute;
+      right: 10px;
+      margin-top: 1.5vh;
+    }
+  }
+
+  .user-div {
+    display: flex;
+    flex: 1;
+    cursor: pointer;
+    i,
+    p {
+      align-self: center;
+    }
+    p {
+      font-size: 1vw;
+    }
+    i {
+      font-size: 1.2rem;
+      margin-right: 3%;
+    }
+  }
+
+  i.shopping-cart {
+    display: flex;
+    flex: 1;
+    font-size: 1.2rem;
+    align-self: center;
+    justify-content: flex-end;
+    margin-right: 5%;
+    cursor: pointer;
+  }
+}
+@media only screen and (min-width: 769px) {
+  #navbar-mobile-div {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #navbar-web-div {
+    display: none;
+  }
+
+  #navbar-mobile-div {
+    padding: 1vh 0;
+    display: flex;
+    .app-logo {
+      display: flex;
+      img {
+        width: 10vw;
+      }
+    }
+
+    .search-bar {
+      flex: 1;
+      align-self: center;
+      div {
+        position: relative;
+        display: inline-block;
+        margin: 0 4%;
+        input {
+          background-color: #eaeaea;
+          border: none;
+          outline: none;
+          border-radius: 15px;
+          padding: 1vh;
+        }
+        &::after {
+          font-family: 'FontAwesome';
+          content: '\f002';
+          position: absolute;
+          right: 10px;
+          margin-top: 1vh;
+        }
+      }
+    }
+    i {
+      align-self: center;
+      margin-right: 3%;
+      cursor: pointer;
+      font-size: 5vw;
+      &.bars {
+        margin-left: 3%;
+      }
+      &.search-bar {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+      }
+    }
+  }
+}
