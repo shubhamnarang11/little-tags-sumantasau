@@ -1,72 +1,67 @@
 import React, { useState, useRef } from "react";
 import avatar_image from "../../assets/avatar.jpg";
-import camera_image from "../../assets/camera.png";
 import useLocalStorage from "../../hooks/useLocalStorage";
-import "./Profile.css";
+import "./Profile.scss";
 import {
   SessionKeys
-} from "../../config/StaticData.ts";
+} from "../../config/StaticData";
 
 
 //AFTER LOGIN, SESSION NEEDS TO SET
 sessionStorage.setItem(SessionKeys.USERNAME, "XXXXXX XXXXX");
 
-const initLocalStorage = (userName, userEmail, userMobile) => {
+const initLocalStorage = (userName:string, userEmail:string, userMobile:string) => {
   window.localStorage.setItem("NAME", userName);
   window.localStorage.setItem("EMAIL", userEmail);
   window.localStorage.setItem("MOBILE", userMobile);
 };
 
-
 export default function Profile() {
-  const [userName, setuserName] = useLocalStorage("NAME", "XXXXXX XXXXX");
- 
+  const [userName, setuserName] = useLocalStorage("NAME", "XXXXXX XXXXX"); 
   const [userMobile, setuserMobile] = useLocalStorage("MOBILE", "");
   const [userEmail, setuserEmail] = useLocalStorage("EMAIL", "");
 
-  const inputFile = useRef(null) 
+
+  const inputFile = useRef<HTMLInputElement>(null)
 
   const [isInputForData, setisInputForData] = useState("");
-  const logUserName =  sessionStorage.getItem(SessionKeys.USERNAME) ?? "";
-
- // const x = [{ label: "UserName", value: { userName } }];
+  const logUserName =  sessionStorage.getItem(SessionKeys.USERNAME) ?? ""; 
 
   const onSaveProfileClick = () => {
     initLocalStorage(userName, userEmail, userMobile);
   };
-  const makeDataEditable = (inputValue) => {    
+  const makeDataEditable = (inputValue:string) => {    
     if (logUserName === userName) {
       setisInputForData(inputValue);
     }
   };
 
   const onImageClick = () => {
-    // `current` points to the mounted file input element
-   inputFile.current.click();
+    
+    if (inputFile.current !== null) {
+        inputFile.current.click();
+    }
   };
 
   return (
-    <div className="container">
-      <div className="left">
+    <div className="profile-container">
+      <div className="profile-left">
         <img src={avatar_image} className="profile-image" alt="user profile" onClick={onImageClick} />
-        <img src={camera_image} className="small-camera" alt="small camera" onClick={onImageClick} />
-        
-        <input type='file' id='file' ref={inputFile} style={{display: 'none'}}/>
+                
+        <input type='file' id='file' ref={inputFile} className="profile-input-file"/>
       </div>
 
 
-      <div className="main">
+      <div className="profile-main">
         <ul>
-          {/*{x.map((data) => (
-            <li>{data.label}</li>
-          ))}*/}
+          
           <li>
             {((isInputForData && isInputForData === "username") || !userName) ? (
-              <div className="input-container">
+              <div className="profile-input-container">
                 <input
                   type="text"
                   value={userName}
-                  className="form-field-textbox"
+                  className="profile-form-field-textbox"
                   placeholder="Enter your name"
                   onChange={(event) => {
                     setuserName(event.target.value);
@@ -76,7 +71,7 @@ export default function Profile() {
               </div>
             ) : (
               <div
-                className="form-field-name"
+                className="profile-form-field-name"
                 onClick={() => makeDataEditable("username")}
               >
                 {userName}
@@ -85,11 +80,11 @@ export default function Profile() {
           </li>
           <li>
             {((isInputForData && isInputForData === "useremail") || !userEmail )? (
-              <div className="input-container">
+              <div className="profile-input-container">
                 <input
                   type="text"
                   value={userEmail}
-                  className="form-field-textbox"
+                  className="profile-form-field-textbox"
                   placeholder="Enter your email"
                   onChange={(event) => {
                     setuserEmail(event.target.value);
@@ -99,7 +94,7 @@ export default function Profile() {
               </div>
             ) : (
               <div
-                className="form-field-name"
+                className="profile-form-field-name"
                 onClick={() => makeDataEditable("useremail")}
               >
                 {userEmail}
@@ -108,11 +103,11 @@ export default function Profile() {
           </li>
           <li>
             {((isInputForData && isInputForData === "usermobile") || !userMobile) ? (
-              <div className="input-container">
+              <div className="profile-input-container">
                 <input
                   type="text"
                   value={userMobile}
-                  className="form-field-textbox"
+                  className="profile-form-field-textbox"
                   placeholder="Enter your mobile"
                   onChange={(event) => {
                     setuserMobile(event.target.value);
@@ -122,7 +117,7 @@ export default function Profile() {
               </div>
             ) : (
               <div
-                className="form-field-name"
+                className="profile-form-field-name"
                 onClick={() => makeDataEditable("usermobile")}
               >
                 {userMobile}
@@ -132,10 +127,10 @@ export default function Profile() {
         </ul>
       </div>
 
-      <div className="right">
+      <div className="profile-right">
         <input
           type="button"
-          className="form-field-button form-field-button-disable"
+          className="profile-form-field-button profile-form-field-button-disable"
           onClick={onSaveProfileClick}
           value="Save Profile"
           disabled={!logUserName}
@@ -144,3 +139,4 @@ export default function Profile() {
     </div>
   );
 }
+
