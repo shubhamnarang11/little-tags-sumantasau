@@ -1,20 +1,25 @@
 import "./Footer.scss";
+import { STATIC_DATA } from "../../config/StaticData";
+  
 
 export default function Footer() {
+    const {
+        ENGLISH: {
+            Footer: { FOOTER_CONTACT_INFO_HEADING, FOOTER_CONTACT_INFO, FOOTER_CATEGORY_HEADING, FOOTER_SUBSCRIPTION_HEADING, FOOTER_SUBSCRIPTION_INFO },      
+        },
+      } = STATIC_DATA;
+
     return(
         <div>
         <div id="footer-container">
             <div className="left">
-                <h2>Contact Info</h2>
+                <h2>{FOOTER_CONTACT_INFO_HEADING}</h2>
                 <p>
-                    Phone : (+91) 134567890
-                    Address : 80A MG Road,
-                    Udayan Building, Kolkata
-                    West Bengal - 700415, India
+                    {FOOTER_CONTACT_INFO}
                 </p>
             </div>
             <div className="middle">
-                <h2>Categories</h2>
+                <h2>{FOOTER_CATEGORY_HEADING}</h2>
                 <ul>
                     <li>Accesories (25)</li>
                     <li>Jeans (32) </li>
@@ -23,19 +28,16 @@ export default function Footer() {
                 </ul>
             </div>
             <div className="rigth">
-            <h2>Let's stay in touch</h2>
-            <span><input type="text" className="subscriptio-textbox"/> </span>
-            <span><input type="button" value="Subscribe" className="subscription-button" /> 
-            </span>
-            <p>Keep up to date with our latest news and special offer</p>
+                <h2>{FOOTER_SUBSCRIPTION_HEADING}</h2>
+                <span><input type="text" className="subscriptio-textbox"/> </span>
+                <span><input type="button" value="Subscribe" className="subscription-button" /></span>
+                <p>{FOOTER_SUBSCRIPTION_INFO}</p>
             </div>
-            </div>
-            
-            
+            </div>  
         </div>
-        
     );
 }
+
 
 
 

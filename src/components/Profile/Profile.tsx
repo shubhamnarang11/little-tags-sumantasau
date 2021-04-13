@@ -3,6 +3,7 @@ import AVATAR_IMAGE from "../../assets/avatar.jpg";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import "./Profile.scss";
 import {
+  STATIC_DATA,
   SessionKeys
 } from "../../config/StaticData";
 
@@ -20,6 +21,12 @@ export default function Profile() {
   const [userName, setuserName] = useLocalStorage("NAME", "XXXXXX XXXXX"); 
   const [userMobile, setuserMobile] = useLocalStorage("MOBILE", "");
   const [userEmail, setuserEmail] = useLocalStorage("EMAIL", "");
+
+  const {
+    ENGLISH: {
+      UserProfile: { USERNAME_PLACEHOLDER, USEREMAIL_PLACEHOLDER, USERMOBILE_PLACEHOLDER, AVATAR_ALT_TAG },      
+    },
+  } = STATIC_DATA;
 
 
   const inputFile = useRef<HTMLInputElement>(null)
@@ -46,15 +53,11 @@ export default function Profile() {
   return (
     <div className="profile-container">
       <div className="profile-left">
-        <img src={AVATAR_IMAGE} className="profile-image" alt="user profile" onClick={onImageClick} />
-                
+        <img src={AVATAR_IMAGE} className="profile-image" alt={AVATAR_ALT_TAG} onClick={onImageClick} />                
         <input type='file' id='file' ref={inputFile} className="profile-input-file"/>
       </div>
-
-
       <div className="profile-main">
-        <ul>
-          
+        <ul>          
           <li>
             {((isInputForData && isInputForData === "username") || !userName) ? (
               <div className="profile-input-container">
@@ -62,7 +65,7 @@ export default function Profile() {
                   type="text"
                   value={userName}
                   className="profile-form-field-textbox"
-                  placeholder="Enter your name"
+                  placeholder={USERNAME_PLACEHOLDER}
                   onChange={(event) => {
                     setuserName(event.target.value);
                   }}
@@ -85,7 +88,7 @@ export default function Profile() {
                   type="text"
                   value={userEmail}
                   className="profile-form-field-textbox"
-                  placeholder="Enter your email"
+                  placeholder={USEREMAIL_PLACEHOLDER}
                   onChange={(event) => {
                     setuserEmail(event.target.value);
                   }}
@@ -108,7 +111,7 @@ export default function Profile() {
                   type="text"
                   value={userMobile}
                   className="profile-form-field-textbox"
-                  placeholder="Enter your mobile"
+                  placeholder={USERMOBILE_PLACEHOLDER}
                   onChange={(event) => {
                     setuserMobile(event.target.value);
                   }}
@@ -126,7 +129,6 @@ export default function Profile() {
           </li>
         </ul>
       </div>
-
       <div className="profile-right">
         <input
           type="button"
@@ -139,4 +141,3 @@ export default function Profile() {
     </div>
   );
 }
-

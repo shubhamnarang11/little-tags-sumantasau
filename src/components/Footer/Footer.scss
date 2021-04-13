@@ -7,24 +7,21 @@ $fontsize: 0.625rem;
   #footer-container{
     background-color: $bgcolor;   
     color:$textcolor;        
-    min-height:17.188rem;
-    
+    min-height:17.188rem;    
       .left{
         padding: 1.25rem;
         float: left;
         text-align: left;
         width: 30%; /* The width is 30%, by default */    
         //border: 0.0625rem solid;
-        background-color: $bgcolor;   
-        
+        background-color: $bgcolor;           
       }
       .middle{
         padding: 1.25rem;
         float: left;
-        width: 40%; /* The width is 50%, by default */
+        width: 40%; /* The width is 40%, by default */
         text-align: left;        
-        background-color: $bgcolor;          
-        
+        background-color: $bgcolor;   
         ul {
           margin-left: 0;
           text-align: left;   
@@ -34,7 +31,7 @@ $fontsize: 0.625rem;
         padding: 1.25rem;
         float: left;
         text-align: left;
-        width: 30%; /* The width is 20%, by default */   
+        width: 30%; /* The width is 30%, by default */   
         background-color: $bgcolor;    
 
           span {            
@@ -62,8 +59,8 @@ $fontsize: 0.625rem;
       }
     }
   }
-  /* Use a media query to add a break point at 800px: */
-  @media screen and (max-width: 650px) {
+  /* Use a media query to add a break point at 768px: */
+  @media screen and (max-width: 768px) {
     #footer-container{
         .left{
             width: 100%;
@@ -75,6 +72,4 @@ $fontsize: 0.625rem;
             width: 100%;
         }        
     }    
-  }
-
-
+  }    
