@@ -1,4 +1,4 @@
 import APP_LOGO from './APP_LOGO.png';
-import avatar_image from "./avatar.jpg";
+import AVATAR_IMAGE from "./avatar.jpg";
 
-export { APP_LOGO,  avatar_image};
+export { APP_LOGO,  AVATAR_IMAGE};

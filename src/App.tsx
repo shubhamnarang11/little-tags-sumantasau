@@ -1,7 +1,7 @@
 import './App.scss';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CONFIG } from './config/Config';
-import { Navbar, Profile } from './components';
+import { Navbar, Profile, Footer } from './components';
 
 function App() {
   const {
@@ -20,9 +20,9 @@ function App() {
         <Route path={DASHBOARD}></Route>
         <Route path={PROFILE}>
           <Profile />
-        </Route>
-
+        </Route>        
       </Switch>
+      <Footer />
     </div>
   );
 }

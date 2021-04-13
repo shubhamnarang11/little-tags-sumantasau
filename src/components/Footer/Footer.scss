@@ -1,0 +1,80 @@
+$bgcolor: #6e59ce;
+$textcolor: #fff;
+$fontsize: 0.625rem;
+* {
+    box-sizing: border-box;    
+  }
+  #footer-container{
+    background-color: $bgcolor;   
+    color:$textcolor;        
+    min-height:17.188rem;
+    
+      .left{
+        padding: 1.25rem;
+        float: left;
+        text-align: left;
+        width: 30%; /* The width is 30%, by default */    
+        //border: 0.0625rem solid;
+        background-color: $bgcolor;   
+        
+      }
+      .middle{
+        padding: 1.25rem;
+        float: left;
+        width: 40%; /* The width is 50%, by default */
+        text-align: left;        
+        background-color: $bgcolor;          
+        
+        ul {
+          margin-left: 0;
+          text-align: left;   
+        }
+      }
+      .rigth{
+        padding: 1.25rem;
+        float: left;
+        text-align: left;
+        width: 30%; /* The width is 20%, by default */   
+        background-color: $bgcolor;    
+
+          span {            
+            input{
+              &.subscriptio-textbox{
+                padding: 0.3125rem;
+                border-radius:  0.3125rem;
+                border: solid 0.0625rem #e4e8ee;
+                font-size: 1rem;
+              }
+              &.subscription-button {
+                padding: 0.625rem;
+                border-radius: 0.3125rem;
+                box-shadow: 0 1.25rem 1.25rem -1rem rgba(208, 204, 243, 0.5);
+                background-color: #3a1db9;
+                font-size: 1rem;
+                font-weight: normal;
+                color: #fff;
+                cursor: pointer;
+                opacity: 0.6;
+                transition: 0.3s;
+                border:  #fff; 
+            }
+        }
+      }
+    }
+  }
+  /* Use a media query to add a break point at 800px: */
+  @media screen and (max-width: 650px) {
+    #footer-container{
+        .left{
+            width: 100%;
+        }
+        .middle{
+            width: 100%;
+        }
+        .rigth{
+            width: 100%;
+        }        
+    }    
+  }
+
+

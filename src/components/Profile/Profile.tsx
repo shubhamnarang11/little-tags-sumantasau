@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import avatar_image from "../../assets/avatar.jpg";
+import AVATAR_IMAGE from "../../assets/avatar.jpg";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import "./Profile.scss";
 import {
@@ -46,7 +46,7 @@ export default function Profile() {
   return (
     <div className="profile-container">
       <div className="profile-left">
-        <img src={avatar_image} className="profile-image" alt="user profile" onClick={onImageClick} />
+        <img src={AVATAR_IMAGE} className="profile-image" alt="user profile" onClick={onImageClick} />
                 
         <input type='file' id='file' ref={inputFile} className="profile-input-file"/>
       </div>
