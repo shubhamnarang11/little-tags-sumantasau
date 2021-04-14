@@ -1,16 +1,27 @@
 import './App.scss';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CONFIG } from './config/Config';
-import { Navbar, Profile, Footer } from './components';
+import { CategoryHeader, Navbar, Profile, Footer } from './components';
+import { STATIC_DATA } from './config/StaticData';
 
 function App() {
   const {
     ROUTES: { DEFAULT, DASHBOARD, PROFILE },
   } = CONFIG;
+  const {
+    ENGLISH: {
+      App: { CATEGORIES },
+    },
+  } = STATIC_DATA;
+
+  const getCategories = () => {
+    return Object.keys(CATEGORIES);
+  };
 
   return (
     <div className='App'>
       <Navbar />
+      <CategoryHeader categories={getCategories()} />
       <Switch>
         <Route
           exact
@@ -20,7 +31,7 @@ function App() {
         <Route path={DASHBOARD}></Route>
         <Route path={PROFILE}>
           <Profile />
-        </Route>        
+        </Route>               
       </Switch>
       <Footer />
     </div>

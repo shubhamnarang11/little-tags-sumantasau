@@ -1,0 +1,28 @@
+#category-header-div {
+  background-color: #4e4ab5;
+  color: #ffffff;
+  padding: 0.5vh 0;
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    li {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      cursor: pointer;
+      img {
+          height: 10vh;
+          width: 4vw;
+          margin-bottom: 1vh;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #category-header-div {
+    display: none;
+  }
+}
