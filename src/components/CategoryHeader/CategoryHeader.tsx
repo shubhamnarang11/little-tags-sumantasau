@@ -8,6 +8,7 @@ const CategoryHeader: FC<CategoryHeaderModel.IProps> = () => {
   const {
     ENGLISH: {
       App: { CATEGORIES },
+      NO_SUCH_IMAGE,
     },
   } = STATIC_DATA;
 
@@ -22,6 +23,7 @@ const CategoryHeader: FC<CategoryHeaderModel.IProps> = () => {
                   (CATEGORIES as { [key: string]: string })[category]
                 ]
               }
+              alt={NO_SUCH_IMAGE}
             ></img>
             {category}
           </li>

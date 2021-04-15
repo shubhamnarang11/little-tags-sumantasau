@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { CONFIG } from './config/Config';
 import { CategoryHeader, Navbar, Profile, ShoppingCart, Footer } from './components';
 //import { AppModel } from './models/App.model';
+
 import { STATIC_DATA } from './config/StaticData';
 
 function App() {
