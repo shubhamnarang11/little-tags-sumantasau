@@ -7,9 +7,8 @@ const Carousel: FC<CarouselModel.IProps> = ({
   show,
   infiniteLoop,
 }) => {
-  const [currentIndex, setCurrentIndex] = useState( 0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [length, setLength] = useState(children.length);
-  console.log(length, currentIndex, show);
   
   const [isRepeating, setIsRepeating] = useState(
     infiniteLoop && children.length > show

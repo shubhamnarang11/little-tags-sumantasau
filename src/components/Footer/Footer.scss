@@ -1,0 +1,93 @@
+$bgcolor: #282828;
+$textcolor: #fff;
+$fontsize-h2: 1rem;
+$fontsize-p: 0.7rem;
+* {
+  box-sizing: border-box;
+}
+#footer-container {
+  background-color: $bgcolor;
+  color: $textcolor;
+  overflow: hidden;
+  .left {
+    padding: 1.25rem 1.25rem 1.25rem 3.75rem;
+    float: left;
+    text-align: left;
+    width: 30%; /* The width is 30%, by default */
+    background-color: $bgcolor;
+    h2 {
+      font-size: $fontsize-h2;
+    }
+    p {
+      width: 13.125rem;
+      font-size: $fontsize-p;
+    }
+  }
+  .middle {
+    padding: 1.25rem;
+    float: left;
+    width: 30%; /* The width is 30%, by default */
+    text-align: left;
+    background-color: $bgcolor;
+    h2 {
+      padding: 0 0 0 2.5rem;
+      font-size: $fontsize-h2;
+    }
+    ul {
+      text-align: left;
+      list-style: none;
+      li {
+        cursor: pointer;
+        font-size: $fontsize-p;
+      }
+    }
+  }
+  .rigth {
+    padding: 1.25rem 1.25rem 1.25rem 3.75rem;
+    float: left;
+    text-align: left;
+    width: 40%; /* The width is 40%, by default */
+    background-color: $bgcolor;
+    h2 {
+      font-size: $fontsize-h2;
+    }
+    p {
+      font-size: $fontsize-p;
+    }
+    span {
+      input {
+        &.subscriptio-textbox {
+          padding: 0.3rem;
+          border-radius: 0.3125rem;
+          border: solid 0.0625rem #e4e8ee;
+          font-size: 1rem;
+        }
+        &.subscription-button {
+          padding: 0.3rem;
+          border-radius: 0.3125rem;
+          box-shadow: 0 1.25rem 1.25rem -1rem rgba(224, 148, 134, 0.651);
+          background-color: #db4315;
+          font-size: 1rem;
+          font-weight: normal;
+          color: #fff;
+          cursor: pointer;
+          border: #fff;
+        }
+      }
+    }
+  }
+}
+/* Use a media query to add a break point at 768px: */
+@media screen and (max-width: 768px) {
+  #footer-container {
+    .left {
+      width: 100%;
+    }
+    .middle {
+      width: 100%;
+    }
+    .rigth {
+      width: 100%;
+    }
+  }
+}

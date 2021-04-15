@@ -9,6 +9,7 @@ export default function Dashboard() {
     <div id='dashboard-div'>
       {CATEGORIES_DATA.map((category) => (
         <CategoryContainer
+          key={category.id}
           categoryId={category.id}
           categoryName={category.name}
         ></CategoryContainer>

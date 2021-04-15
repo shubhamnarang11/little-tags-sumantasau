@@ -4,7 +4,7 @@ import { CategoryContainerModel } from '../../models/CategoryContainer.model';
 import { Carousel } from '../';
 import './CategoryContainer.scss';
 
-const Category: FC<CategoryContainerModel.IProps> = ({
+const CategoryContainer: FC<CategoryContainerModel.IProps> = ({
   categoryId,
   categoryName,
 }) => {
@@ -25,7 +25,7 @@ const Category: FC<CategoryContainerModel.IProps> = ({
       <ul className='products'>
         <Carousel show={6} infiniteLoop={false}>
           {getCategoryProducts().map((product) => (
-            <li>
+            <li key={product.id}>
               <img src={product.image} alt={NO_SUCH_IMAGE}></img>
               <p className='product-name'>{product.name}</p>
               <p>Rs. {product.price}</p>
@@ -37,4 +37,4 @@ const Category: FC<CategoryContainerModel.IProps> = ({
   );
 };
 
-export default Category;
+export default CategoryContainer;

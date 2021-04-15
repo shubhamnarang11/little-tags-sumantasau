@@ -4,6 +4,7 @@ import CategoryHeader from './CategoryHeader/CategoryHeader';
 import Dashboard from './Dashboard/Dashboard';
 import CategoryContainer from './CategoryContainer/CategoryContainer';
 import Carousel from './Carousel/Carousel';
+import Footer from './Footer/Footer';
 
 export {
   Navbar,
@@ -12,4 +13,5 @@ export {
   Dashboard,
   CategoryContainer,
   Carousel,
+  Footer,
 };

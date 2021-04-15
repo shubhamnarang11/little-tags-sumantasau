@@ -4,4 +4,5 @@ export const CONFIG = {
     DASHBOARD: '/dashboard',
     PROFILE: '/profile',
   },
+  CATEGORY_HEADER_NOT_AVAILABLE_ROUTES: ['/profile'],
 };
