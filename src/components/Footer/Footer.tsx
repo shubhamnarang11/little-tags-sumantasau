@@ -11,11 +11,6 @@ export default function Footer() {
 
       const { CATEGORIES_DATA } = TEST_DATA; 
 
-      const getCategoryProductsCount = (CategoryId:number) => {
-        const { PRODUCTS_DATA } = TEST_DATA;
-        return PRODUCTS_DATA.filter((data) => data.categoryId === CategoryId).length;
-      };
-
     return(
        
         <div id="footer-container">
@@ -26,12 +21,12 @@ export default function Footer() {
                 </p>
             </div>
             <div className="middle">
-                <h2>{FOOTER_CATEGORY_HEADING}</h2>
+                <h2>{FOOTER_CATEGORY_HEADING}</h2>               
                 <ul>
                 { CATEGORIES_DATA.map((Category) => (
-                    <li>{Category.name} ({getCategoryProductsCount(Category.id)})</li>                  
+                    <li>{Category.name} </li>                  
                 ))}
-                </ul>
+                </ul>                
             </div>
             <div className="rigth">
                 <h2>{FOOTER_SUBSCRIPTION_HEADING}</h2>

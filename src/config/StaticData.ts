@@ -27,6 +27,9 @@ export const STATIC_DATA = {
       SHOPPINGCART_ORDER_TOTAL : "Order Total",
       SHOPPINGCART_CHECKOUT_BUTTON : "Proceed to Checkout",
     },   
+    DeliveryAddress:{
+      DELIVERYADDRESS_HEADING : "SELECT DELIVERY ADDRESS",
+    },
     App: {
       CATEGORIES: {
         'T-Shirts': 'tshirt',
@@ -37,6 +40,9 @@ export const STATIC_DATA = {
       },
     },
     NO_SUCH_IMAGE: 'No Image Found',    
+    TAX_PERCENTAGE: 12.5,
+    DELIVERY_AMOUNT: 40,
+    DELIVERY_AMOUNT_LIMIT : 500,
   },
 };
 

@@ -4,5 +4,6 @@ export const CONFIG = {
     DASHBOARD: '/dashboard',
     PROFILE: '/profile',
     SHOPPINGCART: '/shoppingcart',
+    DELIVERYADDRESS: '/deliveryaddress',
   },
 };

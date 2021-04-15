@@ -8,8 +8,10 @@ export default function ShoppingCart() {
             ShoppingCart: { SHOPPINGCART_HEADING, SHOPPINGCART_ITEM_HEADING, 
                 SHOPPINGCART_PRICE_HEADING, SHOPPINGCART_SUMMERY_HEADING, SHOPPINGCART_ITEM_TAX, 
                 SHOPPINGCART_ITEM_DELIVERY, SHOPPINGCART_ORDER_TOTAL, SHOPPINGCART_CHECKOUT_BUTTON },  
-              
+                
+            TAX_PERCENTAGE, DELIVERY_AMOUNT, DELIVERY_AMOUNT_LIMIT
         },
+        
       } = STATIC_DATA;
 
     const { CART_DATA } = TEST_DATA; 
@@ -18,9 +20,9 @@ export default function ShoppingCart() {
 
     const TotalProductPrice = CART_DATA.reduce((ProductPrice, CartProduct) => ProductPrice + CartProduct.price, 0);
      
-    const ProductTax = (TotalProductPrice *  12.5)/100;
+    const ProductTax = (TotalProductPrice *  TAX_PERCENTAGE)/100;
 
-    const DeliveryCost = (TotalProductPrice + ProductTax) > 500 ? 0 : 40;
+    const DeliveryCost = (TotalProductPrice + ProductTax) > DELIVERY_AMOUNT_LIMIT ? 0 : DELIVERY_AMOUNT;
 
     const OrderTotalCost = TotalProductPrice + ProductTax + DeliveryCost;
     
