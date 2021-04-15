@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "./ShoppingCart.scss";
 import { STATIC_DATA, TEST_DATA } from "../../config/StaticData";
-//import { ShoppingCartModel } from '../../models/ShoppingCart.model';
-
-  
 
 export default function ShoppingCart() {
     const {

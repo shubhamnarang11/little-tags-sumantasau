@@ -1,12 +1,10 @@
 $bgcolor: #7B7777;
 $fontsize: 0.525rem;
 $textcolor: #fff;
-//$bgcolor-selection: green;
 $bgcolor-selection:#DEDEDE;
 * {
     box-sizing: border-box;    
   }
-
   #cart-container{   
     min-height:35.75rem; 
       .heading-bar{
@@ -179,7 +177,6 @@ $bgcolor-selection:#DEDEDE;
         }
       }
     }
-
 /* Use a media query to add a break point at 768px: */
   @media screen and (max-width: 768px) {
     #footer-container{

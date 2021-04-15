@@ -9,14 +9,12 @@ $fontsize: 0.625rem;
     color:$textcolor;        
    overflow:hidden;
    display: flex;
-   flex-direction: row;
-    //min-height:17.188rem;    
+   flex-direction: row;    
       .left{
         padding: 1.25rem;
         float: left;
         text-align: left;
-        width: 30%; /* The width is 30%, by default */    
-        //border: 0.0625rem solid;
+        width: 30%; /* The width is 30%, by default */   
         background-color: $bgcolor;           
       }
       .middle{
