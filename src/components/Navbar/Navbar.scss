@@ -1,6 +1,7 @@
 #navbar-web-div {
   padding: 1vh 0;
   display: flex;
+  background-color: #ffffff;
   .app-logo {
     display: flex;
     justify-content: flex-end;
@@ -72,6 +73,7 @@
   #navbar-mobile-div {
     padding: 1vh 0;
     display: flex;
+    background-color: #ffffff;
     .app-logo {
       display: flex;
       img {
