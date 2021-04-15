@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { APP_LOGO } from '../../assets';
+import { CONFIG } from '../../config/Config';
 import { STATIC_DATA } from '../../config/StaticData';
 import './Navbar.scss';
 
@@ -10,6 +12,9 @@ export default function Navbar() {
       NO_SUCH_IMAGE,
     },
   } = STATIC_DATA;
+  const {
+    ROUTES: { DASHBOARD },
+  } = CONFIG;
 
   const [isSearchBarForMobileOpen, setIsSearchBarForMobileOpen] = useState(
     false
@@ -23,7 +28,9 @@ export default function Navbar() {
     <>
       <div id='navbar-web-div'>
         <div className='app-logo'>
-          <img src={APP_LOGO} alt={NO_SUCH_IMAGE}></img>
+          <Link to={DASHBOARD}>
+            <img src={APP_LOGO} alt={NO_SUCH_IMAGE}></img>
+          </Link>
         </div>
         <div className='search-bar'>
           <input type='text' placeholder={SEARCH_PLACEHOLDER}></input>

@@ -1,14 +1,19 @@
 import './App.scss';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CONFIG } from './config/Config';
-import { CategoryHeader, Navbar, Profile, Footer } from './components';
-import { AppModel } from './models/App.model';
-import { STATIC_DATA, TEST_DATA } from './config/StaticData';
-
+import {
+  CategoryHeader,
+  Dashboard,
+  Navbar,
+  Profile,
+  Footer,
+} from './components';
+import { STATIC_DATA } from './config/StaticData';
 
 function App() {
   const {
     ROUTES: { DEFAULT, DASHBOARD, PROFILE },
+    CATEGORY_HEADER_NOT_AVAILABLE_ROUTES,
   } = CONFIG;
   const {
     ENGLISH: {
@@ -20,19 +25,27 @@ function App() {
     return Object.keys(CATEGORIES);
   };
 
+  const isCategoryHeaderAvailable = () => {
+    return !CATEGORY_HEADER_NOT_AVAILABLE_ROUTES.includes(
+      window.location.pathname
+    );
+  };
+
   return (
     <div className='App'>
       <Navbar />
-      <CategoryHeader categories={getCategories()} />
+      {isCategoryHeaderAvailable() ? (
+        <CategoryHeader categories={getCategories()} />
+      ) : null}
       <Switch>
         <Route
           exact
           path={DEFAULT}
           render={() => <Redirect to={DASHBOARD}></Redirect>}
         ></Route>
-        <Route path={DASHBOARD}></Route>
+        <Route path={DASHBOARD} component={Dashboard}></Route>
         <Route path={PROFILE}>
-          <Profile />   
+          <Profile />
         </Route>
       </Switch>
       <Footer />
