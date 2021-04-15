@@ -85,4 +85,11 @@ export const TEST_DATA = {
       quantity: 6,
     },
   ],
+  CATEGORIES_DATA: [
+    { id: 1, name: 'T-Shirts' },
+    { id: 2, name: 'Shoes' },
+    { id: 3, name: 'Shirts' },
+    { id: 4, name: 'Trousers' },
+    { id: 5, name: 'Other Accessories' },
+  ],
 };

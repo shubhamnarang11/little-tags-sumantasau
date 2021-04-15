@@ -1,4 +1,4 @@
-$bgcolor: #6e59ce;
+$bgcolor: #282828;
 $textcolor: #fff;
 $fontsize: 0.625rem;
 * {
@@ -7,34 +7,38 @@ $fontsize: 0.625rem;
   #footer-container{
     background-color: $bgcolor;   
     color:$textcolor;        
-    min-height:17.188rem;    
+    overflow:hidden;  
       .left{
-        padding: 1.25rem;
+        padding: 1.25rem 1.25rem 1.25rem 3.75rem;
         float: left;
         text-align: left;
-        width: 30%; /* The width is 30%, by default */    
-        //border: 0.0625rem solid;
-        background-color: $bgcolor;           
+        width: 30%; /* The width is 30%, by default */   
+        background-color: $bgcolor;       
+        p{
+          width:13.125rem;
+        }    
       }
       .middle{
         padding: 1.25rem;
         float: left;
-        width: 40%; /* The width is 40%, by default */
+        width: 30%; /* The width is 30%, by default */
         text-align: left;        
-        background-color: $bgcolor;   
-        ul {
-          margin-left: 0;
-          text-align: left;   
+        background-color: $bgcolor;         
+        h2{
+          padding: 0 0 0 2.5rem;
+        }
+        ul {         
+          text-align: left;
+          list-style: none;  
         }
       }
       .rigth{
-        padding: 1.25rem;
+        padding: 1.25rem 1.25rem 1.25rem 3.75rem;
         float: left;
         text-align: left;
-        width: 30%; /* The width is 30%, by default */   
+        width: 40%; /* The width is 40%, by default */   
         background-color: $bgcolor;    
-
-          span {            
+          span {              
             input{
               &.subscriptio-textbox{
                 padding: 0.3125rem;
@@ -45,14 +49,12 @@ $fontsize: 0.625rem;
               &.subscription-button {
                 padding: 0.625rem;
                 border-radius: 0.3125rem;
-                box-shadow: 0 1.25rem 1.25rem -1rem rgba(208, 204, 243, 0.5);
-                background-color: #3a1db9;
+                box-shadow: 0 1.25rem 1.25rem -1rem rgba(224, 148, 134, 0.651);
+                background-color: #db4315;
                 font-size: 1rem;
                 font-weight: normal;
                 color: #fff;
-                cursor: pointer;
-                opacity: 0.6;
-                transition: 0.3s;
+                cursor: pointer;     
                 border:  #fff; 
             }
         }
