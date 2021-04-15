@@ -13,8 +13,7 @@
     padding: 1.25rem;
     float: left;
     text-align: center;
-    width: 30%; /* The width is 30%, by default */    
-    
+    width: 30%; /* The width is 30%, by default */   
   }  
   .profile-image {
     width: 12.5rem;
@@ -22,41 +21,34 @@
     border: 0.0625rem solid;
     box-shadow: 0.3125rem 0.3125rem 0.5rem 0.3125rem #888888;
     position: relative;     
-  }
-  
+  }  
   .profile-main {
     padding: 1.563rem 0 0.625rem 0;
     float: left;
-    width: 50%; /* The width is 50%, by default */
-    
-  }
-  
+    width: 50%; /* The width is 50%, by default */    
+  }  
   .profile-form-field-name {
     font-size: 1rem;
     color: #151e42;
     padding: 0.625rem;
     text-align: left;
-   
   }
   .profile-input-container {
     padding: 0.625rem;
     text-align: left;
-   
   }
   .profile-form-field-textbox {
     padding: 0.3125rem;
     border-radius:  0.3125rem;
     border: solid 0.0625rem #e4e8ee;
     font-size: 1rem;
-  }
-  
+  }  
   .profile-right {
     padding: 1.25rem;
     float: left;
     text-align: center;
     width: 20%; /* The width is 20%, by default */    
-  }
-  
+  }  
   .profile-form-field-button {
     padding: 0.625rem;
     border-radius: 0.3125rem;
@@ -69,8 +61,7 @@
     opacity: 0.6;
     transition: 0.3s;
     border: none;
-  }
-  
+  }  
   .profile-form-field-button:hover {opacity: 1}
 
   .profile-form-field-button[disabled]{
@@ -80,22 +71,19 @@
   }
   .profile-input-file{
     display: none;
-  }
-  
+  }  
   ul {
     list-style-type: none; /* Remove bullets */
-  }
-  
-  /* Use a media query to add a break point at 800px: */
-  @media screen and (max-width: 650px) {
+  }  
+  /* Use a media query to add a break point at 768px: */
+  @media screen and (max-width: 768px) {
     .profile-left,
     .profile-main,
     .profile-right {
-      width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+      width: 100%; /* The width is 100%, when the viewport is 768px or smaller */
     }
     .profile-container {
       min-height: 580px;
     }
   }
-
   

@@ -2,8 +2,21 @@ export const STATIC_DATA = {
   ENGLISH: {
     Navbar: {
       SEARCH_PLACEHOLDER: 'Search for products...',
-      SIGN_IN_CREATE_ACCOUNT: 'Sign In or Create Account',
+      SIGN_IN_CREATE_ACCOUNT: 'Sign In or Create Account', 
     },
+    UserProfile: {
+      USERNAME_PLACEHOLDER : 'Enter your name',
+      USEREMAIL_PLACEHOLDER : 'Enter your email',
+      USERMOBILE_PLACEHOLDER : 'Enter your mobile',
+      AVATAR_ALT_TAG: 'User Profile',      
+    },
+    Footer:{
+      FOOTER_CONTACT_INFO_HEADING : "Contact Info",
+      FOOTER_CONTACT_INFO : " Phone : (+91) 134567890 Address : 80A MG Road, Udayan Building, Kolkata West Bengal - 700415, India",
+      FOOTER_CATEGORY_HEADING : "Categories",
+      FOOTER_SUBSCRIPTION_HEADING : "Let's stay in touch",
+      FOOTER_SUBSCRIPTION_INFO : "Keep up to date with our latest news and special offer",
+    },    
     App: {
       CATEGORIES: {
         'T-Shirts': 'tshirt',
@@ -71,5 +84,12 @@ export const TEST_DATA = {
       rating: 4.2,
       quantity: 6,
     },
+  ],
+  CATEGORIES_DATA: [
+    { id: 1, name: 'T-Shirts' },
+    { id: 2, name: 'Shoes' },
+    { id: 3, name: 'Shirts' },
+    { id: 4, name: 'Trousers' },
+    { id: 5, name: 'Other Accessories' },
   ],
 };

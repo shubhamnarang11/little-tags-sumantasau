@@ -1,7 +1,7 @@
 import './App.scss';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CONFIG } from './config/Config';
-import { CategoryHeader, Navbar, Profile } from './components';
+import { CategoryHeader, Navbar, Profile, Footer } from './components';
 import { STATIC_DATA } from './config/StaticData';
 
 function App() {
@@ -33,6 +33,7 @@ function App() {
           <Profile />
         </Route>
       </Switch>
+      <Footer />
     </div>
   );
 }
