@@ -1,9 +1,10 @@
 import './App.scss';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CONFIG } from './config/Config';
-import { CategoryHeader, Navbar, Profile } from './components';
+import { CategoryHeader, Navbar, Profile, Footer } from './components';
 import { AppModel } from './models/App.model';
 import { STATIC_DATA, TEST_DATA } from './config/StaticData';
+
 
 function App() {
   const {
@@ -31,9 +32,10 @@ function App() {
         ></Route>
         <Route path={DASHBOARD}></Route>
         <Route path={PROFILE}>
-          <Profile />
+          <Profile />   
         </Route>
       </Switch>
+      <Footer />
     </div>
   );
 }
