@@ -7,7 +7,10 @@ $fontsize: 0.625rem;
   #footer-container{
     background-color: $bgcolor;   
     color:$textcolor;        
-    min-height:17.188rem;    
+   overflow:hidden;
+   display: flex;
+   flex-direction: row;
+    //min-height:17.188rem;    
       .left{
         padding: 1.25rem;
         float: left;

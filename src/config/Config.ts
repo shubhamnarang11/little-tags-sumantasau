@@ -3,5 +3,6 @@ export const CONFIG = {
     DEFAULT: '/',
     DASHBOARD: '/dashboard',
     PROFILE: '/profile',
+    SHOPPINGCART: '/shoppingcart',
   },
 };

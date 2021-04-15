@@ -1,5 +1,5 @@
 import "./Footer.scss";
-import { STATIC_DATA } from "../../config/StaticData";
+import { STATIC_DATA, TEST_DATA } from "../../config/StaticData";
   
 
 export default function Footer() {
@@ -9,8 +9,15 @@ export default function Footer() {
         },
       } = STATIC_DATA;
 
+      const { CATEGORIES_DATA } = TEST_DATA; 
+
+      const getCategoryProductsCount = (CategoryId:number) => {
+        const { PRODUCTS_DATA } = TEST_DATA;
+        return PRODUCTS_DATA.filter((data) => data.categoryId === CategoryId).length;
+      };
+
     return(
-        <div>
+       
         <div id="footer-container">
             <div className="left">
                 <h2>{FOOTER_CONTACT_INFO_HEADING}</h2>
@@ -21,10 +28,9 @@ export default function Footer() {
             <div className="middle">
                 <h2>{FOOTER_CATEGORY_HEADING}</h2>
                 <ul>
-                    <li>Accesories (25)</li>
-                    <li>Jeans (32) </li>
-                    <li>Tops (18) </li>
-                    <li>Jackets (4) </li>
+                { CATEGORIES_DATA.map((Category) => (
+                    <li>{Category.name} ({getCategoryProductsCount(Category.id)})</li>                  
+                ))}
                 </ul>
             </div>
             <div className="rigth">
@@ -34,7 +40,7 @@ export default function Footer() {
                 <p>{FOOTER_SUBSCRIPTION_INFO}</p>
             </div>
             </div>  
-        </div>
+        
     );
 }
 

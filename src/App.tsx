@@ -1,14 +1,13 @@
 import './App.scss';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CONFIG } from './config/Config';
-import { CategoryHeader, Navbar, Profile, Footer } from './components';
-import { AppModel } from './models/App.model';
-import { STATIC_DATA, TEST_DATA } from './config/StaticData';
-
+import { CategoryHeader, Navbar, Profile, ShoppingCart, Footer } from './components';
+//import { AppModel } from './models/App.model';
+import { STATIC_DATA } from './config/StaticData';
 
 function App() {
   const {
-    ROUTES: { DEFAULT, DASHBOARD, PROFILE },
+    ROUTES: { DEFAULT, DASHBOARD, PROFILE, SHOPPINGCART },
   } = CONFIG;
   const {
     ENGLISH: {
@@ -32,7 +31,10 @@ function App() {
         ></Route>
         <Route path={DASHBOARD}></Route>
         <Route path={PROFILE}>
-          <Profile />   
+          <Profile />       
+        </Route>
+        <Route path={SHOPPINGCART}>
+          <ShoppingCart />       
         </Route>
       </Switch>
       <Footer />

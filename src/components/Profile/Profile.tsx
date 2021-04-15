@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import AVATAR_IMAGE from "../../assets/avatar.jpg";
+import {AVATAR_IMAGE} from '../../assets';
 import useLocalStorage from "../../hooks/useLocalStorage";
 import "./Profile.scss";
 import {
