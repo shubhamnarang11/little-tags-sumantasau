@@ -1,14 +1,8 @@
+import { ShoppingCartModel } from './ShoppingCart.model';
+
 export namespace ProductDetailsModel {
   export interface IProps {
-    addItemsToCart: (arg: CartItem) => void;
-    buyItem: (arg: CartItem) => void;
-  }
-  export interface CartItem {
-    productId: number;
-    productName: string;
-    quantity: number;
-    totalQuantity: number;
-    price: number;
-    image: string;
+    addItemsToCart: (arg: ShoppingCartModel.CartItem) => void;
+    buyItem: (arg: ShoppingCartModel.CartItem) => void;
   }
 }

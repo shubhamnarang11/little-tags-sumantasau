@@ -3,7 +3,17 @@ export const CONFIG = {
     DEFAULT: '/',
     DASHBOARD: '/dashboard',
     PROFILE: '/profile',
+    SHOPPING_CART: '/shopping-cart',
+    SHOPPING_CART_ITEMS: '/shopping-cart/cart-items',
+    DELIVERY_ADDRESS: '/shopping-cart/delivery-address',
+    ADD_DELIVERY_ADDRESS: '/add-delivery-address',
     PRODUCT_DETAILS: '/product-details',
   },
-  CATEGORY_HEADER_NOT_AVAILABLE_ROUTES: ['/profile'],
+  CATEGORY_HEADER_NOT_AVAILABLE_ROUTES: [
+    '/profile',
+    '/shopping-cart/cart-items',
+    '/profile',
+    '/shopping-cart/delivery-address',
+    '/add-delivery-address',
+  ],
 };

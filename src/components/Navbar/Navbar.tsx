@@ -15,7 +15,7 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize }) => {
     },
   } = STATIC_DATA;
   const {
-    ROUTES: { DASHBOARD },
+    ROUTES: { DASHBOARD, SHOPPING_CART },
   } = CONFIG;
 
   const [isSearchBarForMobileOpen, setIsSearchBarForMobileOpen] = useState(
@@ -42,7 +42,9 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize }) => {
           <p>{SIGN_IN_CREATE_ACCOUNT}</p>
         </div>
         <div className='shopping-cart'>
-          <i className='fa fa-shopping-cart'></i>
+          <Link to={`${SHOPPING_CART}/cart-items`}>
+            <i className='fa fa-shopping-cart'></i>
+          </Link>
           {cartSize > 0 && <div id='cart-total'>{cartSize}</div>}
         </div>
       </div>

@@ -3,17 +3,28 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { CONFIG } from './config/Config';
 import {
   CategoryHeader,
-  Dashboard,
   Navbar,
   Profile,
+  ShoppingCart,
+  DeliveryAddress,
+  AddDeliveryAddress,
   Footer,
   ProductDetails,
+  Dashboard,
 } from './components';
 import { STATIC_DATA } from './config/StaticData';
 
 function App() {
   const {
-    ROUTES: { DEFAULT, DASHBOARD, PROFILE, PRODUCT_DETAILS },
+    ROUTES: {
+      DEFAULT,
+      DASHBOARD,
+      PROFILE,
+      PRODUCT_DETAILS,
+      SHOPPING_CART,
+      DELIVERY_ADDRESS,
+      ADD_DELIVERY_ADDRESS,
+    },
     CATEGORY_HEADER_NOT_AVAILABLE_ROUTES,
   } = CONFIG;
   const {
@@ -47,6 +58,12 @@ function App() {
         <Route path={DASHBOARD} component={Dashboard}></Route>
         <Route path={PROFILE}>
           <Profile />
+        </Route>
+        <Route path={SHOPPING_CART}>
+          <ShoppingCart />
+        </Route>
+        <Route path={ADD_DELIVERY_ADDRESS}>
+          <AddDeliveryAddress />
         </Route>
         <Route path={PRODUCT_DETAILS}>
           <ProductDetails></ProductDetails>

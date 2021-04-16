@@ -57,6 +57,21 @@
     justify-content: flex-end;
     margin-right: 5%;
     cursor: pointer;
+    a{
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+
+  #cart-total {
+    font-size: 12px;
+    background: #ff0000;
+    color: #fff;
+    padding: 1px 4px;
+    border-radius: 50%;
+    position: absolute;
+    margin-right: -0.6rem;
+    margin-top: -0.3rem;
   }
 
   #cart-total {

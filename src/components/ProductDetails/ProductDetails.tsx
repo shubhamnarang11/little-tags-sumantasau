@@ -5,6 +5,9 @@ import { STATIC_DATA, TEST_DATA } from '../../config/StaticData';
 import { addItemsToCart, buyItem } from '../../actions/ProductDetails.action';
 import './ProductDetails.scss';
 import { ProductDetailsModel } from '../../models/ProductDetails.model';
+import { ShoppingCartModel } from '../../models/ShoppingCart.model';
+import { useHistory } from 'react-router';
+import { CONFIG } from '../../config/Config';
 
 const ProductDetails: FC<ProductDetailsModel.IProps> = ({
   addItemsToCart,
@@ -22,6 +25,9 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
       NO_SUCH_IMAGE,
     },
   } = STATIC_DATA;
+  const {
+    ROUTES: { SHOPPING_CART_ITEMS },
+  } = CONFIG;
 
   useEffect(() => {
     const productId = parseInt(
@@ -48,8 +54,10 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
     }
   };
 
+  const history = useHistory();
+
   const addOrBuyItem = (buyNow: boolean = false) => {
-    const item: ProductDetailsModel.CartItem = {
+    const item: ShoppingCartModel.CartItem = {
       productId: selectedProduct.id,
       productName: selectedProduct.name,
       quantity: selectedQuantity,
@@ -59,9 +67,16 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
     };
     if (buyNow) {
       buyItem(item);
+      history.push(SHOPPING_CART_ITEMS);
     } else {
       addItemsToCart(item);
     }
+  };
+
+  const getAvailableProductSizes = () => {
+    return (CATEGORY_PRODUCT_SIZES as { [key: number]: string[] })[
+      selectedProduct.categoryId
+    ];
   };
 
   return selectedProduct ? (
@@ -106,22 +121,24 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
           </p>
         ) : null}
         <p className='price'>Rs. {selectedProduct.price}</p>
-        <p>Select Size</p>
-        <div className='sizes-div'>
-          {(CATEGORY_PRODUCT_SIZES as { [key: number]: string[] })[
-            selectedProduct.categoryId
-          ].map((size: string) => (
-            <div
-              onClick={() => {
-                selectSize(size);
-              }}
-              className={selectedSize === size ? 'selected' : ''}
-              key={size}
-            >
-              {size}
-            </div>
-          ))}
-        </div>
+        {getAvailableProductSizes.length > 0 ? (
+          <>
+            <p>Select Size</p>
+            <div className='sizes-div'>
+              {getAvailableProductSizes().map((size: string) => (
+                <div
+                  onClick={() => {
+                    selectSize(size);
+                  }}
+                  className={selectedSize === size ? 'selected' : ''}
+                  key={size}
+                >
+                  {size}
+                </div>
+              ))}
+            </div>{' '}
+          </>
+        ) : null}
         <p>Select Quantity</p>
         <button
           className='minus'

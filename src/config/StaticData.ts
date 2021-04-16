@@ -19,6 +19,39 @@ export const STATIC_DATA = {
       FOOTER_SUBSCRIPTION_INFO:
         'Keep up to date with our latest news and special offer',
     },
+    ShoppingCart: {
+      SHOPPINGCART_HEADING: 'SHOPPING CART',
+      SHOPPINGCART_ITEM_HEADING: 'Item',
+      SHOPPINGCART_ITEM_COST: 'Item Cost',
+      SHOPPINGCART_PRICE_HEADING: 'Price',
+      SHOPPINGCART_SUMMERY_HEADING: 'Summary',
+      SHOPPINGCART_ITEM_TAX: 'Tax @12.5%',
+      SHOPPINGCART_ITEM_DELIVERY: 'Delivery',
+      SHOPPINGCART_ORDER_TOTAL: 'Order Total',
+      SHOPPINGCART_CHECKOUT_BUTTON: 'Proceed to Checkout',
+    },
+    DeliveryAddress: {
+      DELIVERYADDRESS_HEADING: 'SELECT DELIVERY ADDRESS',
+      DELIVERYADDRESS_PAYMENT_BUTTON: 'Proceed to Payment',
+      DELIVERYADDRESS_Add: 'Add New Address',
+      ADD_DELIVERYADDRESS_HEADING: 'ADD DELIVERY ADDRESS',
+      FIRSTNAME_TEXT: 'First Name',
+      FIRSTNAME_PLACEHOLDER: 'Enter first name',
+      LASTNAME_TEXT: 'Last Name',
+      LASTNAME_PLACEHOLDER: 'Enter last name',
+      EMAIL_TEXT: 'Email',
+      EMAIL_PLACEHOLDER: 'Enter email address',
+      MOBILE_TEXT: 'Mobile Number',
+      MOBILE_PLACEHOLDER: 'Enter mobile number',
+      ADDRESS_LINE1_TEXT: 'Address Line 1',
+      ADDRESS_LINE1_PLACEHOLDER: 'Enter address line 1',
+      ADDRESS_LINE2_TEXT: 'Address Line 2',
+      ADDRESS_LINE2_PLACEHOLDER: 'Enter address line 2',
+      STATE_TEXT: 'State',
+      STATE_PLACEHOLDER: 'Select State',
+      PINCODE_TEXT: 'Pin Code',
+      PINCODE_PLACEHOLDER: 'Enter pin code',
+    },
     App: {
       CATEGORIES: {
         'T-Shirts': 'tshirt',
@@ -31,9 +64,16 @@ export const STATIC_DATA = {
     ProductDetails: {
       CATEGORY_PRODUCT_SIZES: {
         1: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+        2: ['7', '8', '9', '10'],
+        3: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+        4: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+        5: [],
       },
     },
     NO_SUCH_IMAGE: 'No Image Found',
+    TAX_PERCENTAGE: 12.5,
+    DELIVERY_AMOUNT: 40,
+    DELIVERY_AMOUNT_LIMIT: 500,
     STAR_RATING: [1, 2, 3, 4, 5],
   },
 };
@@ -533,5 +573,24 @@ export const TEST_DATA = {
     { id: 3, name: 'Shirts' },
     { id: 4, name: 'Trousers' },
     { id: 5, name: 'Other Accessories' },
+  ],
+  DELIVERY_ADDRESS_DATA: [
+    {
+      name: 'Pitam Saha',
+      address: '78 MG ROAD, KOLKATA - 722056',
+      isDefault: true,
+    },
+    {
+      name: 'Sa Saha',
+      address: '78 MG ROAD, KOLKATA - 722056',
+      isDefault: false,
+    },
+  ],
+  STATE_DATA: [
+    { id: 1, name: 'Assam' },
+    { id: 2, name: 'Andrapadesh' },
+    { id: 3, name: 'Bihar' },
+    { id: 4, name: 'Delhi' },
+    { id: 5, name: 'Gujrat' },
   ],
 };
