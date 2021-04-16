@@ -1,0 +1,118 @@
+.product-details-div {
+  background-color: #ffffff;
+  padding: 2%;
+  display: flex;
+  .images-div {
+    flex-direction: column;
+    .carousel-images {
+      display: flex;
+      justify-content: center;
+    }
+
+    .all-images {
+      img {
+        width: 5rem;
+        margin: 1rem;
+        cursor: pointer;
+      }
+    }
+  }
+  .content-div {
+    .product-name {
+      font-size: 1.5rem;
+      margin-bottom: 0;
+    }
+    .rating {
+      background-color: #388e3c;
+      color: #fff;
+      width: 16%;
+      padding: 3%;
+      border-radius: 3px;
+      font-size: 0.7rem;
+      i {
+        margin-left: 7%;
+      }
+    }
+    .horizontal-line {
+      position: absolute;
+      border-top: 2px solid #eaeaea;
+      width: 30%;
+      margin-top: 2vh;
+    }
+    
+    .price {
+      margin-top: 3vh;
+      font-size: 1.5rem;
+    }
+
+    .sizes-div {
+      display: flex;
+      div {
+        border: 1px solid #282828;
+        padding: 3% 10%;
+        border-radius: 15px;
+        margin-right: 1vw;
+        cursor: pointer;
+        &:hover {
+          background-color: #282828;
+          color: #fff;
+        }
+      }
+    }
+    .items-left {
+      color: #ff0000;
+      font-size: 0.6rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0;
+    }
+    .quantity-input {
+      max-width: 2rem;
+      text-align: center;
+      background-color: #eaeaea;
+      border-width: 0.5px;
+      padding: 2px 0;
+      margin: 0 -1px;
+      &:focus {
+        outline: none;
+        color: transparent;
+        text-shadow: 0px 0px 0px #282828;
+      }
+    }
+    .plus,
+    .minus {
+      cursor: pointer;
+    }
+    .purchase-buttons {
+      margin-top: 2rem;
+      button {
+        border: none;
+        padding: 0.7rem 1.5rem;
+        color: #fff;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+
+        margin-right: 1rem;
+        &.add-to-cart {
+          background-color: #ff9f00;
+        }
+        &.buy-now {
+          background-color: #388e3c;
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}
+
+.selected {
+  background-color: #282828;
+  color: #fff;
+}
+
+.selected-image {
+  border: 1px solid #282828;
+  padding: 1rem;
+}

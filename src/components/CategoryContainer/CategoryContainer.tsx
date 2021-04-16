@@ -1,8 +1,10 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { STATIC_DATA, TEST_DATA } from '../../config/StaticData';
 import { CategoryContainerModel } from '../../models/CategoryContainer.model';
 import { Carousel } from '../';
 import './CategoryContainer.scss';
+import { Link } from 'react-router-dom';
+import { CONFIG } from '../../config/Config';
 
 const CategoryContainer: FC<CategoryContainerModel.IProps> = ({
   categoryId,
@@ -11,6 +13,10 @@ const CategoryContainer: FC<CategoryContainerModel.IProps> = ({
   const {
     ENGLISH: { NO_SUCH_IMAGE },
   } = STATIC_DATA;
+  const {
+    ROUTES: { PRODUCT_DETAILS },
+  } = CONFIG;
+
   const getCategoryProducts = () => {
     const { PRODUCTS_DATA } = TEST_DATA;
     return PRODUCTS_DATA.filter((data) => data.categoryId === categoryId);
@@ -23,13 +29,19 @@ const CategoryContainer: FC<CategoryContainerModel.IProps> = ({
       </div>
       <span className='bottom-border'></span>
       <ul className='products'>
-        <Carousel show={6} infiniteLoop={false}>
+        <Carousel
+          show={6}
+          infiniteLoop={false}
+          carouselContainerClass='category-container'
+        >
           {getCategoryProducts().map((product) => (
-            <li key={product.id}>
-              <img src={product.image} alt={NO_SUCH_IMAGE}></img>
-              <p className='product-name'>{product.name}</p>
-              <p>Rs. {product.price}</p>
-            </li>
+            <Link to={`${PRODUCT_DETAILS}?pid=${product.id}`} key={product.id}>
+              <li>
+                <img src={product.images[0]} alt={NO_SUCH_IMAGE}></img>
+                <p className='product-name'>{product.name}</p>
+                <p>Rs. {product.price}</p>
+              </li>
+            </Link>
           ))}
         </Carousel>
       </ul>

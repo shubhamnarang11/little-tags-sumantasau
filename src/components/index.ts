@@ -5,6 +5,7 @@ import Dashboard from './Dashboard/Dashboard';
 import CategoryContainer from './CategoryContainer/CategoryContainer';
 import Carousel from './Carousel/Carousel';
 import Footer from './Footer/Footer';
+import ProductDetails from './ProductDetails/ProductDetails';
 
 export {
   Navbar,
@@ -14,4 +15,5 @@ export {
   CategoryContainer,
   Carousel,
   Footer,
+  ProductDetails,
 };

@@ -6,10 +6,14 @@ const Carousel: FC<CarouselModel.IProps> = ({
   children,
   show,
   infiniteLoop,
+  carouselContainerClass,
+  selectedImage,
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(
+    infiniteLoop ? show : selectedImage ? selectedImage : 0
+  );
   const [length, setLength] = useState(children.length);
-  
+
   const [isRepeating, setIsRepeating] = useState(
     infiniteLoop && children.length > show
   );
@@ -17,6 +21,12 @@ const Carousel: FC<CarouselModel.IProps> = ({
 
   const [touchPosition, setTouchPosition] = useState(null);
 
+  useEffect(() => {
+    if (selectedImage || selectedImage === 0) {
+      setCurrentIndex(selectedImage!);
+    }
+  }, [selectedImage]);
+  
   // Set the length to match current children from props
   useEffect(() => {
     setLength(children.length);
@@ -82,7 +92,7 @@ const Carousel: FC<CarouselModel.IProps> = ({
   };
 
   const renderExtraPrev = () => {
-    let output = [];
+    const output = [];
     for (let index = 0; index < show; index++) {
       output.push(children[length - 1 - index]);
     }
@@ -91,7 +101,7 @@ const Carousel: FC<CarouselModel.IProps> = ({
   };
 
   const renderExtraNext = () => {
-    let output = [];
+    const output = [];
     for (let index = 0; index < show; index++) {
       output.push(children[index]);
     }
@@ -99,7 +109,7 @@ const Carousel: FC<CarouselModel.IProps> = ({
   };
 
   return (
-    <div className='carousel-container'>
+    <div className={`carousel-container ${carouselContainerClass}`}>
       <div className='carousel-wrapper'>
         {/* You can alwas change the content of the button to other things */}
         {(isRepeating || currentIndex > 0) && (
