@@ -1,6 +1,7 @@
 export namespace ShoppingCartModel {
   export interface IProps {
     cartItems: CartItem[];
+    resetBuyNowFlag: () => void;
   }
 
   export interface CartItem {

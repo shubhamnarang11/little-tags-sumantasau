@@ -1,4 +1,4 @@
-import { ADD_TO_CART, BUY_NOW } from '../actions/Actions';
+import { ADD_TO_CART, BUY_NOW, RESET_BUY_NOW_FLAG } from '../actions/Actions';
 
 const initialState = {
   cartItems: [],
@@ -18,6 +18,8 @@ const shoppingCartState = (
         cartItems: [...state.cartItems, action.payload],
         isBuyItem: true,
       };
+    case RESET_BUY_NOW_FLAG:
+      return { ...state, isBuyItem: false };
     default:
       return state;
   }

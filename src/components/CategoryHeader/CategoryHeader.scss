@@ -6,16 +6,20 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    li {
+    a {
+      color: inherit;
+      text-decoration: none;
+      li {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-      cursor: pointer;
-      img {
+        cursor: pointer;
+        img {
           height: 10vh;
           width: 4vw;
           margin-bottom: 1vh;
+        }
       }
     }
   }
