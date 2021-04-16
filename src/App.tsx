@@ -62,9 +62,6 @@ function App() {
         <Route path={SHOPPING_CART}>
           <ShoppingCart />
         </Route>
-        <Route path={DELIVERY_ADDRESS}>
-          <DeliveryAddress />
-        </Route>
         <Route path={ADD_DELIVERY_ADDRESS}>
           <AddDeliveryAddress />
         </Route>

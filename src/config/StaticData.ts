@@ -14,7 +14,7 @@ export const STATIC_DATA = {
       FOOTER_CONTACT_INFO_HEADING: 'Contact Info',
       FOOTER_CONTACT_INFO:
         ' Phone : (+91) 134567890 Address : 80A MG Road, Udayan Building, Kolkata West Bengal - 700415, India',
-      FOOTER_CATEGORY_HEADING: 'Categories',
+      FOOTER_CATEGORY_HEADING: 'ONLINE SHOPPING',
       FOOTER_SUBSCRIPTION_HEADING: "Let's stay in touch",
       FOOTER_SUBSCRIPTION_INFO:
         'Keep up to date with our latest news and special offer',
