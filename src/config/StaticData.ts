@@ -20,8 +20,9 @@ export const STATIC_DATA = {
     ShoppingCart:{
       SHOPPINGCART_HEADING : "SHOPPING CART",
       SHOPPINGCART_ITEM_HEADING : "Item",
+      SHOPPINGCART_ITEM_COST : "Item Cost",
       SHOPPINGCART_PRICE_HEADING : "Price",
-      SHOPPINGCART_SUMMERY_HEADING : "Summery",
+      SHOPPINGCART_SUMMERY_HEADING : "Summary",
       SHOPPINGCART_ITEM_TAX : "Tax @12.5%",
       SHOPPINGCART_ITEM_DELIVERY : "Delivery",
       SHOPPINGCART_ORDER_TOTAL : "Order Total",
@@ -29,6 +30,25 @@ export const STATIC_DATA = {
     },   
     DeliveryAddress:{
       DELIVERYADDRESS_HEADING : "SELECT DELIVERY ADDRESS",
+      DELIVERYADDRESS_PAYMENT_BUTTON : "Proceed to Payment",
+      DELIVERYADDRESS_Add : "Add New Address",
+      ADD_DELIVERYADDRESS_HEADING : "ADD DELIVERY ADDRESS",
+      FIRSTNAME_TEXT : "First Name",
+      FIRSTNAME_PLACEHOLDER : "Enter first name",
+      LASTNAME_TEXT : "Last Name",
+      LASTNAME_PLACEHOLDER : "Enter last name",
+      EMAIL_TEXT : "Email",
+      EMAIL_PLACEHOLDER : "Enter email address",
+      MOBILE_TEXT : "Mobile Number",
+      MOBILE_PLACEHOLDER : "Enter mobile number",
+      ADDRESS_LINE1_TEXT : "Address Line 1",
+      ADDRESS_LINE1_PLACEHOLDER : "Enter address line 1",
+      ADDRESS_LINE2_TEXT : "Address Line 2",
+      ADDRESS_LINE2_PLACEHOLDER : "Enter address line 2",
+      STATE_TEXT : "State",
+      STATE_PLACEHOLDER : "Select State",
+      PINCODE_TEXT : "Pin Code",
+      PINCODE_PLACEHOLDER : "Enter pin code",
     },
     App: {
       CATEGORIES: {
@@ -127,7 +147,7 @@ export const TEST_DATA = {
       categoryId: 1,
       price: 531,
       rating: 4.2,
-      quantity: 6,
+      quantity: 1,
       image:
         'https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/2521204/2018/2/26/11519626464547-na-8991519626464330-1.jpg',
     },
@@ -136,12 +156,23 @@ export const TEST_DATA = {
       name: 'Printed Round Neck T-shirt',
       category: 'T-Shirts',
       categoryId: 1,
-      price: 319,
-      rating: 4.2,
-      quantity: 6,
+      price: 319,     
+      quantity: 2,
       image:
         'https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/2388031/2020/2/26/b8563035-e4fb-4814-ba4a-1b371133f6901582699904522-Kook-N-Keech-Men-Peach-Coloured-Printed-Round-Neck-T-shirt-4-1.jpg',
-    }    
+    },   
+  ],
+  DELIVERY_ADDRESS_DATA: [
+    {      
+      name: 'Pitam Saha',
+      address: '78 MG ROAD, KOLKATA - 722056',  
+      isDefault: true,
+    },
+    {      
+      name: 'Sa Saha',
+      address: '78 MG ROAD, KOLKATA - 722056',  
+      isDefault: false,
+    },       
   ],
   CATEGORIES_DATA: [
     { id: 1, name: 'T-Shirts' },
@@ -149,5 +180,13 @@ export const TEST_DATA = {
     { id: 3, name: 'Shirts' },
     { id: 4, name: 'Trousers' },
     { id: 5, name: 'Other Accessories' },
+  ],
+
+  STATE_DATA: [
+    { id: 1, name: 'Assam' },
+    { id: 2, name: 'Andrapadesh' },
+    { id: 3, name: 'Bhihar' },
+    { id: 4, name: 'Delhi' },
+    { id: 5, name: 'Gujrat' },
   ],
 };

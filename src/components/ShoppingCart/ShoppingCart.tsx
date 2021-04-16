@@ -1,11 +1,12 @@
 import React from "react";
+import { useHistory } from 'react-router-dom'
 import "./ShoppingCart.scss";
 import { STATIC_DATA, TEST_DATA } from "../../config/StaticData";
 
 export default function ShoppingCart() {
     const {
         ENGLISH: {
-            ShoppingCart: { SHOPPINGCART_HEADING, SHOPPINGCART_ITEM_HEADING, 
+            ShoppingCart: { SHOPPINGCART_HEADING, SHOPPINGCART_ITEM_HEADING, SHOPPINGCART_ITEM_COST,
                 SHOPPINGCART_PRICE_HEADING, SHOPPINGCART_SUMMERY_HEADING, SHOPPINGCART_ITEM_TAX, 
                 SHOPPINGCART_ITEM_DELIVERY, SHOPPINGCART_ORDER_TOTAL, SHOPPINGCART_CHECKOUT_BUTTON },  
                 
@@ -14,9 +15,9 @@ export default function ShoppingCart() {
         
       } = STATIC_DATA;
 
-    const { CART_DATA } = TEST_DATA; 
+    const { CART_DATA } = TEST_DATA;  
     
-    const QuantityNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    let QuantityNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
     const TotalProductPrice = CART_DATA.reduce((ProductPrice, CartProduct) => ProductPrice + CartProduct.price, 0);
      
@@ -25,6 +26,11 @@ export default function ShoppingCart() {
     const DeliveryCost = (TotalProductPrice + ProductTax) > DELIVERY_AMOUNT_LIMIT ? 0 : DELIVERY_AMOUNT;
 
     const OrderTotalCost = TotalProductPrice + ProductTax + DeliveryCost;
+
+    const history = useHistory();
+    const onCheckoutClick = () => {    
+        history.push(`/deliveryaddress`);
+      };
     
       return(         
               <div id="cart-container">
@@ -44,8 +50,10 @@ export default function ShoppingCart() {
                                     <h3>{CartProduct.name}({CartProduct.category})</h3>
                                     <p>In Stock</p>
                                     <span className="quantity-selection">
+                                   
                                         Qty : <select>
-                                                { QuantityNumber.map((Quantity) => (
+                                                {                                                 
+                                                QuantityNumber.map((Quantity) => (
                                                         <option>{Quantity}</option>                                              
                                                 ))}
                                             </select>
@@ -63,7 +71,7 @@ export default function ShoppingCart() {
                         </div>
                         <div className="summery-info"> 
                             <div>
-                                <div className="item-total">{SHOPPINGCART_ITEM_HEADING} :</div>
+                                <div className="item-total">{SHOPPINGCART_ITEM_COST} :</div>
                                 <div className="item-price">&#8377; {TotalProductPrice}</div>
                             </div>   
                             <div>
@@ -82,7 +90,7 @@ export default function ShoppingCart() {
                             </div>    
                         </div>
                         <div className="button-container">
-                            <input type="button" value={SHOPPINGCART_CHECKOUT_BUTTON} />
+                            <input type="button" value={SHOPPINGCART_CHECKOUT_BUTTON} onClick={onCheckoutClick} />
                         </div>
                     </div>
               </div>             

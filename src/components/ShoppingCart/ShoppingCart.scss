@@ -82,8 +82,7 @@ $bgcolor-selection:#DEDEDE;
               padding : 0.938rem 1.563rem ;  
               min-height: 11rem;
             }
-          }
-        //}
+          }        
         }
       }
       .right {
@@ -166,13 +165,11 @@ $bgcolor-selection:#DEDEDE;
                 font-size: 1rem;
                 font-weight: normal;
                 color: #fff;
-                cursor: pointer;
-                opacity: 0.6;
+                cursor: pointer;              
                 transition: 0.3s;
                 border:  #fff; 
                 width:100%;               
-            }
-            :hover {opacity: 1};            
+            }                        
           }
         }
       }
