@@ -1,0 +1,15 @@
+.products-div {
+  .header {
+    margin-left: 2rem;
+    font-size: 1.5rem;
+  }
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem;
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}

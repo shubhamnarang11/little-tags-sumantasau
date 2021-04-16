@@ -10,6 +10,7 @@ import DeliveryAddress from './DeliveryAddress/DeliveryAddress';
 import AddDeliveryAddress from './AddDeliveryAddress/AddDeliveryAddress';
 import ProductDetails from './ProductDetails/ProductDetails';
 import ShoppingCartItems from './ShoppingCartItems/ShoppingCartItems';
+import ProductCard from './ProductCard/ProductCard';
 
 export {
   Navbar,
@@ -24,4 +25,5 @@ export {
   DeliveryAddress,
   AddDeliveryAddress,
   ShoppingCartItems,
+  ProductCard,
 };

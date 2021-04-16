@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import './ShoppingCart.scss';
 import { STATIC_DATA } from '../../config/StaticData';
@@ -7,8 +7,12 @@ import { connect } from 'react-redux';
 import { ShoppingCartItems } from '..';
 import { CONFIG } from '../../config/Config';
 import DeliveryAddress from '../DeliveryAddress/DeliveryAddress';
+import { resetBuyNowFlag } from '../../actions/ProductDetails.action';
 
-const ShoppingCart: FC<ShoppingCartModel.IProps> = ({ cartItems }) => {
+const ShoppingCart: FC<ShoppingCartModel.IProps> = ({
+  cartItems,
+  resetBuyNowFlag,
+}) => {
   const {
     ENGLISH: {
       ShoppingCart: {
@@ -47,6 +51,12 @@ const ShoppingCart: FC<ShoppingCartModel.IProps> = ({ cartItems }) => {
   const onCheckoutClick = () => {
     history.push(DELIVERY_ADDRESS);
   };
+
+  useEffect(() => {
+    return () => {
+      resetBuyNowFlag();
+    };
+  });
 
   return (
     <div id='cart-container'>
@@ -112,4 +122,4 @@ const mapStateToProps = (state: any) => ({
       ]
     : state.shoppingCartState.cartItems,
 });
-export default connect(mapStateToProps)(ShoppingCart);
+export default connect(mapStateToProps, { resetBuyNowFlag })(ShoppingCart);

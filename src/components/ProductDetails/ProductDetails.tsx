@@ -121,7 +121,7 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
           </p>
         ) : null}
         <p className='price'>Rs. {selectedProduct.price}</p>
-        {getAvailableProductSizes.length > 0 ? (
+        {getAvailableProductSizes().length > 0 ? (
           <>
             <p>Select Size</p>
             <div className='sizes-div'>

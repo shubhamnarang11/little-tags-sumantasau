@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { STATIC_DATA } from '../../config/StaticData';
-import { ShoppingCartModel } from '../../models/ShoppingCart.model';
+import { ShoppingCartItemsModel } from '../../models/ShoppingCartItems.model';
 
-const ShoppingCartItems: FC<ShoppingCartModel.IProps> = ({ cartItems }) => {
+const ShoppingCartItems: FC<ShoppingCartItemsModel.IProps> = ({ cartItems }) => {
   const {
     ENGLISH: {
       ShoppingCart: {

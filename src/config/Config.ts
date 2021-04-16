@@ -8,11 +8,11 @@ export const CONFIG = {
     DELIVERY_ADDRESS: '/shopping-cart/delivery-address',
     ADD_DELIVERY_ADDRESS: '/add-delivery-address',
     PRODUCT_DETAILS: '/product-details',
+    PRODUCTS: '/products'
   },
   CATEGORY_HEADER_NOT_AVAILABLE_ROUTES: [
     '/profile',
     '/shopping-cart/cart-items',
-    '/profile',
     '/shopping-cart/delivery-address',
     '/add-delivery-address',
   ],

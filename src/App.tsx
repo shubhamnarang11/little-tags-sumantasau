@@ -6,13 +6,13 @@ import {
   Navbar,
   Profile,
   ShoppingCart,
-  DeliveryAddress,
   AddDeliveryAddress,
   Footer,
   ProductDetails,
   Dashboard,
 } from './components';
 import { STATIC_DATA } from './config/StaticData';
+import Products from './components/Products/Products';
 
 function App() {
   const {
@@ -22,8 +22,8 @@ function App() {
       PROFILE,
       PRODUCT_DETAILS,
       SHOPPING_CART,
-      DELIVERY_ADDRESS,
       ADD_DELIVERY_ADDRESS,
+      PRODUCTS,
     },
     CATEGORY_HEADER_NOT_AVAILABLE_ROUTES,
   } = CONFIG;
@@ -68,6 +68,7 @@ function App() {
         <Route path={PRODUCT_DETAILS}>
           <ProductDetails></ProductDetails>
         </Route>
+        <Route path={PRODUCTS} component={Products}></Route>
       </Switch>
       <Footer />
     </div>
