@@ -7,12 +7,13 @@ import {
   Navbar,
   Profile,
   Footer,
+  ProductDetails,
 } from './components';
 import { STATIC_DATA } from './config/StaticData';
 
 function App() {
   const {
-    ROUTES: { DEFAULT, DASHBOARD, PROFILE },
+    ROUTES: { DEFAULT, DASHBOARD, PROFILE, PRODUCT_DETAILS },
     CATEGORY_HEADER_NOT_AVAILABLE_ROUTES,
   } = CONFIG;
   const {
@@ -46,6 +47,9 @@ function App() {
         <Route path={DASHBOARD} component={Dashboard}></Route>
         <Route path={PROFILE}>
           <Profile />
+        </Route>
+        <Route path={PRODUCT_DETAILS}>
+          <ProductDetails></ProductDetails>
         </Route>
       </Switch>
       <Footer />

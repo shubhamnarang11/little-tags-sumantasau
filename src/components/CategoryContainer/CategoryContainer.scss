@@ -13,18 +13,22 @@
 
   .products {
     display: flex;
-    li {
-      text-align: center;
-      margin-right: 1.5%;
-      cursor: pointer;
-      img {
-        height: 20vh;
-      }
-      .product-name {
-        font-size: 0.8rem;
-        // max-width: 7rem;
-        height: 3vh;
+    a {
+      color: inherit;
+      text-decoration: none;
+      li {
         text-align: center;
+        margin-right: 1.5%;
+        cursor: pointer;
+        img {
+          height: 20vh;
+        }
+        .product-name {
+          font-size: 0.8rem;
+          // max-width: 7rem;
+          height: 3vh;
+          text-align: center;
+        }
       }
     }
   }
