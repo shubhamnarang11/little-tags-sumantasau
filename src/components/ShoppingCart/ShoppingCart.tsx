@@ -59,18 +59,14 @@ export default function ShoppingCart() {
                                 </div>
                                 <div className="item-info">
                                     <h3>{CartProduct.name}({CartProduct.category})</h3>
-                                    <p>In Stock</p>
-                                    <span className="quantity-selection">
+                                    {getProductQuantity(CartProduct.id)> 0 ? <p>In Stock</p> 
+                                    : <p className="out-stock">Out of Stock</p>}                                    <span className="quantity-selection">
                                    
                                         Qty : <select value={getCartQuantity(CartProduct.id)}>
-                                                {                                                 
-                                                /*QuantityNumber.map((Quantity) => (
-                                                        <option>{Quantity}</option>                                              
-                                                ))*/
+                                                {       
                                                [...Array(getProductQuantity(CartProduct.id))].map((e:any, Quantity:number) => {                                                    
                                                     return <option>{Quantity+1}</option>
-                                                  })
-                                                
+                                                  })                                                
                                                 }
                                             </select>
                                     </span>

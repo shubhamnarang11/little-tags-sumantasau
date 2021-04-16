@@ -79,7 +79,7 @@ export const TEST_DATA = {
       categoryId: 1,
       price: 531,
       rating: 4.2,
-      quantity: 6,
+      quantity: 1,
       image:
         'https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/2521204/2018/2/26/11519626464547-na-8991519626464330-1.jpg',
     },
@@ -162,12 +162,14 @@ export const TEST_DATA = {
     },   
   ],
   DELIVERY_ADDRESS_DATA: [
-    {      
+    {    
+      id: 1,  
       name: 'Pitam Saha',
       address: '78 MG ROAD, KOLKATA - 722056',  
       isDefault: true,
     },
     {      
+      id: 2,
       name: 'Sa Saha',
       address: '78 MG ROAD, KOLKATA - 722056',  
       isDefault: false,

@@ -1,9 +1,18 @@
+import React, { useState} from "react";
 import "./DeliveryAddress.scss";
 import { STATIC_DATA, TEST_DATA } from "../../config/StaticData";
 
 export default function DeliveryAddress() {
-
+   
     const { CART_DATA, DELIVERY_ADDRESS_DATA } = TEST_DATA; 
+
+    const getDefaultDeliveryAddress = () => {
+        const { DELIVERY_ADDRESS_DATA } = TEST_DATA;
+        const DeliveryAddress =  DELIVERY_ADDRESS_DATA.filter((data) => data.isDefault === true);        
+        return DeliveryAddress[0].id;
+      };   
+
+      const [DeliveryAddress, setDeliveryAddress] = useState(getDefaultDeliveryAddress); 
   
 
     const {
@@ -40,7 +49,10 @@ export default function DeliveryAddress() {
                         <span>{AddressData.address}</span>
                     </div>
                     <div className="radio-button-container">
-                        <input type="radio" name="radio-default-selection" checked={AddressData.isDefault}></input>
+                        <input type="radio" name="radio-default-selection"
+                        value={AddressData.id}
+                        onClick={() => setDeliveryAddress(AddressData.id)}
+                        checked={DeliveryAddress === AddressData.id}></input>
                     </div>
                 </li>
                 ))}
