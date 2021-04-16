@@ -15,9 +15,20 @@ export default function ShoppingCart() {
         
       } = STATIC_DATA;
 
-    const { CART_DATA } = TEST_DATA;  
-    
-    let QuantityNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const { CART_DATA } = TEST_DATA; 
+
+    const getProductQuantity = (ProductId:number) => {
+        const { PRODUCTS_DATA } = TEST_DATA;
+        const Product =  PRODUCTS_DATA.filter((data) => data.id === ProductId);
+        return Product[0].quantity;
+      };   
+
+      const getCartQuantity = (ProductId:number) => {
+        const { CART_DATA } = TEST_DATA;
+        const Product =  CART_DATA.filter((data) => data.id === ProductId);
+        return Product[0].quantity;
+      };   
+  
 
     const TotalProductPrice = CART_DATA.reduce((ProductPrice, CartProduct) => ProductPrice + CartProduct.price, 0);
      
@@ -51,11 +62,16 @@ export default function ShoppingCart() {
                                     <p>In Stock</p>
                                     <span className="quantity-selection">
                                    
-                                        Qty : <select>
+                                        Qty : <select value={getCartQuantity(CartProduct.id)}>
                                                 {                                                 
-                                                QuantityNumber.map((Quantity) => (
+                                                /*QuantityNumber.map((Quantity) => (
                                                         <option>{Quantity}</option>                                              
-                                                ))}
+                                                ))*/
+                                               [...Array(getProductQuantity(CartProduct.id))].map((e:any, Quantity:number) => {                                                    
+                                                    return <option>{Quantity+1}</option>
+                                                  })
+                                                
+                                                }
                                             </select>
                                     </span>
                                 </div>

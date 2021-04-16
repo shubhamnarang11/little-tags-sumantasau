@@ -145,8 +145,7 @@ export const TEST_DATA = {
       name: 'Printed Polo Collar T-shirt',
       category: 'T-Shirts',
       categoryId: 1,
-      price: 531,
-      rating: 4.2,
+      price: 531,     
       quantity: 1,
       image:
         'https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/2521204/2018/2/26/11519626464547-na-8991519626464330-1.jpg',
