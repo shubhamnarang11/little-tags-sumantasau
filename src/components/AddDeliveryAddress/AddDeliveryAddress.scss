@@ -64,3 +64,14 @@ $fontsize: 0.525rem;
       }
     }
   }
+  /* Use a media query to add a break point at 768px: */
+@media screen and (max-width: 768px) {
+  #delivery-address-container{
+      .left{
+          width: 100%;
+      }        
+      .rigth{
+          width: 100%;
+      }        
+  }    
+}    
