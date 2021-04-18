@@ -1,1 +1,5 @@
-export namespace LoginModel {}
+export namespace LoginModel {
+    export interface IProps {
+        LoginModalOpen: boolean;
+     }
+}

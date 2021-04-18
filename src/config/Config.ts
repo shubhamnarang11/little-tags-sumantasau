@@ -8,7 +8,7 @@ export const CONFIG = {
     DELIVERY_ADDRESS: '/shopping-cart/delivery-address',
     ADD_DELIVERY_ADDRESS: '/add-delivery-address',
     PRODUCT_DETAILS: '/product-details',
-    PRODUCTS: '/products'
+    PRODUCTS: '/products',
   },
   CATEGORY_HEADER_NOT_AVAILABLE_ROUTES: [
     '/profile',

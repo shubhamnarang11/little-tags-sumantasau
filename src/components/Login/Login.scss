@@ -1,0 +1,56 @@
+$fontsize: 0.525rem;
+$textcolor: #fff;
+$bgcolor:  #eaeaea;
+* {
+  box-sizing: border-box;
+}
+#login-container-overlay{       
+    position: absolute;
+    z-index: 9;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+  .login-container {         
+    padding: 0.75rem 1rem;
+    .header-section{
+      width:28.125rem;
+      background-color:$bgcolor;
+      border-radius: 0.625rem ;     
+      box-shadow: 0 1.25rem 1.25rem -1rem rgba(73, 73, 73, 0.651);  
+      display: flex;
+      img{
+        height:4.25rem;
+        width: 4.25rem;     
+      }
+      i{       
+        margin: 0;
+        padding: 0.438rem 0 0 20.75rem;
+        cursor: pointer;
+      }
+    }
+    .login-section{
+      width: 28.125rem;
+      text-align: center;    
+      .round-container{         
+        width: 25rem;
+        display:inline-block;
+        margin: 0 auto;
+        border: 0.188rem solid $bgcolor;  
+        border-top: 0;  
+        border-radius:  0 0 0.625rem 0.625rem;  
+        box-shadow: 0 1.25rem 1.25rem -1rem rgba(73, 73, 73, 0.651); 
+        padding: .625rem 0 0 0;
+        background-color: #FFF;
+        img{
+          height:3.125rem;
+          width:18.75rem;
+        }
+      }
+    }
+  }
+}

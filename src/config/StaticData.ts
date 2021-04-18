@@ -576,11 +576,13 @@ export const TEST_DATA = {
   ],
   DELIVERY_ADDRESS_DATA: [
     {
+      id: 1,
       name: 'Pitam Saha',
       address: '78 MG ROAD, KOLKATA - 722056',
       isDefault: true,
     },
     {
+      id: 2,
       name: 'Sa Saha',
       address: '78 MG ROAD, KOLKATA - 722056',
       isDefault: false,

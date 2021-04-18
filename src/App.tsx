@@ -1,4 +1,5 @@
 import './App.scss';
+import {useState} from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CONFIG } from './config/Config';
 import {
@@ -10,9 +11,11 @@ import {
   Footer,
   ProductDetails,
   Dashboard,
+  Login
 } from './components';
 import { STATIC_DATA } from './config/StaticData';
 import Products from './components/Products/Products';
+import React from 'react';
 
 function App() {
   const {
@@ -23,7 +26,7 @@ function App() {
       PRODUCT_DETAILS,
       SHOPPING_CART,
       ADD_DELIVERY_ADDRESS,
-      PRODUCTS,
+      PRODUCTS,      
     },
     CATEGORY_HEADER_NOT_AVAILABLE_ROUTES,
   } = CONFIG;
@@ -43,12 +46,30 @@ function App() {
     );
   };
 
+  
+
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
   return (
     <div className='App'>
       <Navbar />
       {isCategoryHeaderAvailable() ? (
         <CategoryHeader categories={getCategories()} />
       ) : null}
+
+{showLoginModal && (
+        <Login onCloseLoginModalClick={() => {
+          setShowLoginModal(false);
+        }}/>
+      )}
+
+<button
+            onClick={() => {
+              setShowLoginModal(true);
+            }}
+          >
+            Show Modal
+          </button>
       <Switch>
         <Route
           exact
@@ -68,8 +89,10 @@ function App() {
         <Route path={PRODUCT_DETAILS}>
           <ProductDetails></ProductDetails>
         </Route>
-        <Route path={PRODUCTS} component={Products}></Route>
+        <Route path={PRODUCTS} component={Products}></Route>    
       </Switch>
+      
+      
       <Footer />
     </div>
   );

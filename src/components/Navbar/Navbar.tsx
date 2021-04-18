@@ -26,6 +26,12 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize }) => {
     setIsSearchBarForMobileOpen(!isSearchBarForMobileOpen);
   };
 
+  const OpenLoginModal = () => {
+    //const ModalOpen: NavbarModel.LoginModalOpen = IsModalOpen;    
+    console.log('2');
+    
+  };
+
   return (
     <>
       <div id='navbar-web-div'>
@@ -39,7 +45,7 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize }) => {
         </div>
         <div className='user-div'>
           <i className='fa fa-user-circle'></i>
-          <p>{SIGN_IN_CREATE_ACCOUNT}</p>
+          <p onClick={() => OpenLoginModal()}>{SIGN_IN_CREATE_ACCOUNT}</p>
         </div>
         <div className='shopping-cart'>
           <Link to={`${SHOPPING_CART}/cart-items`}>
@@ -70,6 +76,7 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize }) => {
 
 const mapStateToProps = (state: any) => ({
   cartSize: state.shoppingCartState.cartItems.length,
+  //IsLoginModalOpen: state.loginState.isLoginModalOpen
 });
 
 export default connect(mapStateToProps)(Navbar);
