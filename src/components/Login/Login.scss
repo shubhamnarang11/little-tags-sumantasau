@@ -49,6 +49,9 @@ $bgcolor:  #eaeaea;
         img{
           height:3.125rem;
           width:18.75rem;
+          cursor: pointer;
+          border-radius: 0.625rem ;  
+          box-shadow: 0 1.25rem 1.25rem -1rem rgba(73, 73, 73, 0.651); 
         }
       }
     }

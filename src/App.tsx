@@ -17,6 +17,7 @@ import { STATIC_DATA } from './config/StaticData';
 import Products from './components/Products/Products';
 import React from 'react';
 
+
 function App() {
   const {
     ROUTES: {
