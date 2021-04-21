@@ -1,6 +1,6 @@
 $fontsize: 0.525rem;
-$textcolor: #fff;
-$bgcolor:  #eaeaea;
+$textcolor: #4724C0;
+$bgcolor:  #fff;
 * {
   box-sizing: border-box;
 }
@@ -15,44 +15,88 @@ $bgcolor:  #eaeaea;
     display: flex;
     justify-content: center;
     align-items: center; 
-  .login-container {         
-    padding: 0.75rem 1rem;
-    .header-section{
-      width:28.125rem;
-      background-color:$bgcolor;
-      border-radius: 0.625rem ;     
-      box-shadow: 0 1.25rem 1.25rem -1rem rgba(73, 73, 73, 0.651);  
-      display: flex;
+  .login-container {   
+    display: flex;
+    flex-direction: row;     
+    .left-section{
+      width:100%;    
+      background-image: linear-gradient(#4A29C1, #A4E0FE 98%);
       img{
-        height:4.25rem;
-        width: 4.25rem;     
-      }
-      i{       
-        margin: 0;
-        padding: 0.438rem 0 0 20.75rem;
-        cursor: pointer;
-      }
+        height:27rem;
+        width: 16rem;    
+      }      
     }
     .login-section{
-      width: 28.125rem;
-      text-align: center;    
-      .round-container{         
-        width: 25rem;
-        display:inline-block;
-        margin: 0 auto;
-        border: 0.188rem solid $bgcolor;  
-        border-top: 0;  
-        border-radius:  0 0 0.625rem 0.625rem;  
-        box-shadow: 0 1.25rem 1.25rem -1rem rgba(73, 73, 73, 0.651); 
-        padding: .625rem 0 0 0;
-        background-color: #FFF;
-        img{
-          height:3.125rem;
-          width:18.75rem;
-          cursor: pointer;
-          border-radius: 0.625rem ;  
-          box-shadow: 0 1.25rem 1.25rem -1rem rgba(73, 73, 73, 0.651); 
+      width:100%;
+      text-align: center;  
+      background-color:$bgcolor;       
+      i{       
+        margin: 0;
+        padding: 0.438rem 1rem 0 20.75rem;
+        cursor: pointer;
+      }
+      h2{
+        color:$textcolor
+      }
+      .input-section{     
+        height: 12rem;
+        color:$textcolor;
+        p{
+          margin: 0;
+          padding: 0.6rem 0 0 5.7rem;  
+          font-size: 0.8rem;   
+          text-align: left;        
         }
+        h4{          
+            padding:30px;           
+            font-size: 0.8rem;  
+            font-weight:normal; 
+            color: $textcolor;                
+        }
+        .input-button{          
+          border-radius:0.188rem;                  
+          width: 6.25rem;          
+          margin: 0.625rem 0 0;
+          height: 1.8rem;
+          background-color: #0f99df;
+          border:0;
+          font-weight: 700;
+          color: $bgcolor;
+          box-shadow: 0 1.25rem 1.25rem -.5rem rgba(73, 73, 73, 0.651); 
+          cursor: pointer;
+        }
+        .profile-input-file {
+          display: none;
+        }
+        .profile-image {
+          width: 3rem;
+          height: 3rem;
+          border: 0.0625rem solid;
+          box-shadow: 0 1.25rem 1.25rem -.5rem rgba(73, 73, 73, 0.651);         
+        }        
+      }
+      .division{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;        
+        font-size: 0.8rem;   
+        color:$textcolor;
+        hr{
+          margin: 1.375rem 0.438rem 0 0.438rem;
+          width:3.125rem;
+          height: 0.125rem;
+          border-width: 0;
+          background-color: #282828;
+        }
+      }
+      .social-login{
+        img{
+          margin: 0.625rem;
+          height:3rem;
+          width:3rem;
+          cursor: pointer;          
+        }
+
       }
     }
   }
