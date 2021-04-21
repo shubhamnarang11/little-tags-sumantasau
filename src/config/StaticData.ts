@@ -42,6 +42,7 @@ export const STATIC_DATA = {
       LOGIN_NAME_TEXT: 'Name',
       LOGIN_NAME_PLACEHOLDER: 'Enter the Name',
       LOGIN_PROFILE_BUTTON_TEXT: 'Submit',
+      LOGIN_SIGN_WITH_TEXT: 'Or sign in with',
     },
     DeliveryAddress: {
       DELIVERYADDRESS_HEADING: 'SELECT DELIVERY ADDRESS',

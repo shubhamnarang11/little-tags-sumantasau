@@ -33,6 +33,7 @@ export default function Login(props: ModalProps) {
         LOGIN_NAME_TEXT,
         LOGIN_NAME_PLACEHOLDER,
         LOGIN_PROFILE_BUTTON_TEXT,
+        LOGIN_SIGN_WITH_TEXT,
 
       },
       NO_SUCH_IMAGE,
@@ -158,7 +159,7 @@ export default function Login(props: ModalProps) {
 
             <div className="division">
               <hr></hr>
-              <p>Or sign in with</p>
+              <p>{LOGIN_SIGN_WITH_TEXT}</p>
               <hr></hr>
             </div>
             <div className="social-login">
