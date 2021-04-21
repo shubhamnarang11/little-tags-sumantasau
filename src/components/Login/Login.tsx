@@ -40,7 +40,7 @@ export default function Login(props: ModalProps) {
       })*/
       .catch((error:any) => {        
         setErrorMessage(error.message);
-        console.log(error.message);
+        console.log(errorMessage);
       });
   };
 
@@ -63,7 +63,7 @@ export default function Login(props: ModalProps) {
       })*/
       .catch((error:any) => {        
         setErrorMessage(error.message);
-        console.log(error.message);
+        console.log(errorMessage);
       });
   };
 
