@@ -1,26 +1,26 @@
-import React, { useState, useRef } from 'react';
-import { AVATAR_IMAGE } from '../../assets';
-import useLocalStorage from '../../hooks/useLocalStorage';
-import './Profile.scss';
-import { STATIC_DATA, SessionKeys } from '../../config/StaticData';
+import React, { useState, useRef } from "react";
+import { AVATAR_IMAGE } from "../../assets";
+import useLocalStorage from "../../hooks/useLocalStorage";
+import "./Profile.scss";
+import { STATIC_DATA, SessionKeys } from "../../config/StaticData";
 
 //AFTER LOGIN, SESSION NEEDS TO SET
-sessionStorage.setItem(SessionKeys.USERNAME, 'XXXXXX XXXXX');
+sessionStorage.setItem(SessionKeys.USERNAME, "XXXXXX XXXXX");
 
 const initLocalStorage = (
   userName: string,
   userEmail: string,
   userMobile: string
 ) => {
-  window.localStorage.setItem('NAME', userName);
-  window.localStorage.setItem('EMAIL', userEmail);
-  window.localStorage.setItem('MOBILE', userMobile);
+  window.localStorage.setItem("NAME", userName);
+  window.localStorage.setItem("EMAIL", userEmail);
+  window.localStorage.setItem("MOBILE", userMobile);
 };
 
 export default function Profile() {
-  const [userName, setuserName] = useLocalStorage('NAME', 'XXXXXX XXXXX');
-  const [userMobile, setuserMobile] = useLocalStorage('MOBILE', '');
-  const [userEmail, setuserEmail] = useLocalStorage('EMAIL', '');
+  const [userName, setuserName] = useLocalStorage("NAME", "XXXXXX XXXXX");
+  const [userMobile, setuserMobile] = useLocalStorage("MOBILE", "");
+  const [userEmail, setuserEmail] = useLocalStorage("EMAIL", "");
 
   const {
     ENGLISH: {
@@ -35,8 +35,8 @@ export default function Profile() {
 
   const inputFile = useRef<HTMLInputElement>(null);
 
-  const [isInputForData, setisInputForData] = useState('');
-  const logUserName = sessionStorage.getItem(SessionKeys.USERNAME) ?? '';
+  const [isInputForData, setisInputForData] = useState("");
+  const logUserName = sessionStorage.getItem(SessionKeys.USERNAME) ?? "";
 
   const onSaveProfileClick = () => {
     initLocalStorage(userName, userEmail, userMobile);
@@ -54,30 +54,30 @@ export default function Profile() {
   };
 
   return (
-    <div className='profile-container'>
-      <div className='profile-left'>
+    <div className="profile-container">
+      <div className="profile-left">
         <img
           src={AVATAR_IMAGE}
-          className='profile-image'
+          className="profile-image"
           alt={AVATAR_ALT_TAG}
           onClick={onImageClick}
         />
         <input
-          type='file'
-          id='file'
+          type="file"
+          id="file"
           ref={inputFile}
-          className='profile-input-file'
+          className="profile-input-file"
         />
       </div>
-      <div className='profile-main'>
+      <div className="profile-main">
         <ul>
           <li>
-            {(isInputForData && isInputForData === 'username') || !userName ? (
-              <div className='profile-input-container'>
+            {(isInputForData && isInputForData === "username") || !userName ? (
+              <div className="profile-input-container">
                 <input
-                  type='text'
+                  type="text"
                   value={userName}
-                  className='profile-form-field-textbox'
+                  className="profile-form-field-textbox"
                   placeholder={USERNAME_PLACEHOLDER}
                   onChange={(event) => {
                     setuserName(event.target.value);
@@ -87,21 +87,21 @@ export default function Profile() {
               </div>
             ) : (
               <div
-                className='profile-form-field-name'
-                onClick={() => makeDataEditable('username')}
+                className="profile-form-field-name"
+                onClick={() => makeDataEditable("username")}
               >
                 {userName}
               </div>
             )}
           </li>
           <li>
-            {(isInputForData && isInputForData === 'useremail') ||
+            {(isInputForData && isInputForData === "useremail") ||
             !userEmail ? (
-              <div className='profile-input-container'>
+              <div className="profile-input-container">
                 <input
-                  type='text'
+                  type="text"
                   value={userEmail}
-                  className='profile-form-field-textbox'
+                  className="profile-form-field-textbox"
                   placeholder={USEREMAIL_PLACEHOLDER}
                   onChange={(event) => {
                     setuserEmail(event.target.value);
@@ -111,21 +111,21 @@ export default function Profile() {
               </div>
             ) : (
               <div
-                className='profile-form-field-name'
-                onClick={() => makeDataEditable('useremail')}
+                className="profile-form-field-name"
+                onClick={() => makeDataEditable("useremail")}
               >
                 {userEmail}
               </div>
             )}
           </li>
           <li>
-            {(isInputForData && isInputForData === 'usermobile') ||
+            {(isInputForData && isInputForData === "usermobile") ||
             !userMobile ? (
-              <div className='profile-input-container'>
+              <div className="profile-input-container">
                 <input
-                  type='text'
+                  type="text"
                   value={userMobile}
-                  className='profile-form-field-textbox'
+                  className="profile-form-field-textbox"
                   placeholder={USERMOBILE_PLACEHOLDER}
                   onChange={(event) => {
                     setuserMobile(event.target.value);
@@ -135,8 +135,8 @@ export default function Profile() {
               </div>
             ) : (
               <div
-                className='profile-form-field-name'
-                onClick={() => makeDataEditable('usermobile')}
+                className="profile-form-field-name"
+                onClick={() => makeDataEditable("usermobile")}
               >
                 {userMobile}
               </div>
@@ -144,12 +144,12 @@ export default function Profile() {
           </li>
         </ul>
       </div>
-      <div className='profile-right'>
+      <div className="profile-right">
         <input
-          type='button'
-          className='profile-form-field-button profile-form-field-button-disable'
+          type="button"
+          className="profile-form-field-button profile-form-field-button-disable"
           onClick={onSaveProfileClick}
-          value='Save Profile'
+          value="Save Profile"
           disabled={!logUserName}
         />
       </div>

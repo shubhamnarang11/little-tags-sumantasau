@@ -1,19 +1,40 @@
 import React, { useState, useContext, useRef } from "react";
 import "./Login.scss";
-import { google_login, facebook_login, loginleft } from "../../assets";
+import {
+  AVATAR_IMAGE,
+  google_login,
+  facebook_login,
+  loginleft,
+} from "../../assets";
 import { STATIC_DATA } from "../../config/StaticData";
 import FirebaseContext from "../Firebase/Context";
-import { AVATAR_IMAGE } from "../../assets";
 
-type ModalProps = {
+type LoginModalProps = {
   onCloseLoginModalClick: () => void;
 };
 
-export default function Login(props: ModalProps) {
+const initLocalStorage = (
+  userMobile: string,
+  userName: string,
+  userImage: string
+) => {
+  window.localStorage.setItem("MOBILE", userMobile);
+  window.localStorage.setItem("NAME", userName);
+  window.localStorage.setItem("IMAGE", userImage);
+};
+
+export default function Login(props: LoginModalProps) {
   const firebase = useContext(FirebaseContext);
   const [errorMessage, setErrorMessage] = useState("");
   const [displayMobile, setdisplayMobile] = useState(true);
   const [displayProfile, setdisplayProfile] = useState(false);
+  const [mobileNo, setmobileNo] = useState("");
+  const [requiredMobileNo, setrequiredMobileNo] = useState(false);
+  const [mobileOTP, setmobileOTP] = useState("");
+  const [requiredMobileOTP, setrequiredMobileOTP] = useState(false);
+  const [userName, setuserName] = useState("");
+  const [requireduserName, setrequireduserName] = useState(false);
+  const [userImage, setuserImage] = useState(AVATAR_IMAGE);
 
   const {
     ENGLISH: {
@@ -21,16 +42,16 @@ export default function Login(props: ModalProps) {
       Login: {
         LOGIN_HEADING,
         LOGIN_MOBILE_TEXT,
-        LOGIN_MOBILE_PLACEHOLDER,
         LOGIN_SENDOTP_BUTTON_TEXT,
         LOGIN_INFO_TEXT,
         LOGIN_OTP_TEXT,
-        LOGIN_OTP_PLACEHOLDER,
         LOGIN_BUTTON_TEXT,
         LOGIN_NAME_TEXT,
-        LOGIN_NAME_PLACEHOLDER,
         LOGIN_PROFILE_BUTTON_TEXT,
         LOGIN_SIGN_WITH_TEXT,
+        LOGIN_MOBILE_VALIDATION_TEXT,
+        LOGIN_OTP_VALIDATION_TEXT,
+        LOGIN_NAME_VALIDATION_TEXT,
       },
       NO_SUCH_IMAGE,
     },
@@ -41,10 +62,34 @@ export default function Login(props: ModalProps) {
   const { onCloseLoginModalClick } = props;
 
   const handleSendOTP = () => {
-    setdisplayMobile(false);
+    if (mobileNo) {
+      setrequiredMobileNo(false);
+      setdisplayMobile(false);
+    } else {
+      setErrorMessage(LOGIN_MOBILE_VALIDATION_TEXT);
+      setrequiredMobileNo(true);
+    }
   };
   const handleLogin = () => {
-    setdisplayProfile(true);
+    if (mobileOTP) {
+      setrequiredMobileOTP(false);
+      setdisplayProfile(true);
+    } else {
+      setErrorMessage(LOGIN_OTP_VALIDATION_TEXT);
+      setrequiredMobileOTP(true);
+    }
+  };
+
+  const handleProfileSubmit = () => {
+    if (userName) {
+      setrequireduserName(false);
+      setuserImage(AVATAR_IMAGE);
+      initLocalStorage(userName, mobileNo, userImage);
+      props.onCloseLoginModalClick();
+    } else {
+      setErrorMessage(LOGIN_NAME_VALIDATION_TEXT);
+      setrequireduserName(true);
+    }
   };
 
   const onImageClick = () => {
@@ -57,18 +102,20 @@ export default function Login(props: ModalProps) {
     firebase
       .doGoogleSignIn()
       .then((authUser: any) => {
-        console.log({ email: authUser.email, username: authUser.displayName });
-        console.log(authUser);
+        initLocalStorage(
+          authUser.user.displayName,
+          mobileNo,
+          authUser.user.photoURL
+        );
         return firebase.user(authUser.user.uid).set({
           email: authUser.user.email,
           username: authUser.user.displayName,
           roles: {},
         });
       })
-      /*.then(() => {
-        //props.history.push(ROUTES.HOME);
-        console.log('google login');
-      })*/
+      .then(() => {
+        props.onCloseLoginModalClick();
+      })
       .catch((error: any) => {
         setErrorMessage(error.message);
         console.log(error.message);
@@ -79,7 +126,10 @@ export default function Login(props: ModalProps) {
     firebase
       .doFacebookSignIn()
       .then((authUser: any) => {
-        console.log({ email: authUser.email, username: authUser.displayName });
+        console.log({
+          email: authUser.user.email,
+          username: authUser.user.displayName,
+        });
         console.log(authUser);
         return firebase.user(authUser.user.uid).set({
           email: authUser.user.email,
@@ -87,10 +137,9 @@ export default function Login(props: ModalProps) {
           roles: {},
         });
       })
-      /*.then(() => {
-        //props.history.push(ROUTES.HOME);
-        console.log('google login');
-      })*/
+      .then(() => {
+        props.onCloseLoginModalClick();
+      })
       .catch((error: any) => {
         setErrorMessage(error.message);
         console.log(errorMessage);
@@ -105,11 +154,9 @@ export default function Login(props: ModalProps) {
         </div>
         <div className="login-section">
           <i className="fa fa-times fa-1x" onClick={onCloseLoginModalClick}></i>
-          <h2>{LOGIN_HEADING}</h2>
+          <h1>{LOGIN_HEADING}</h1>
           {displayProfile ? (
             <div className="input-section">
-              <p>{LOGIN_NAME_TEXT}</p>
-              <input type="text" placeholder={LOGIN_NAME_PLACEHOLDER}></input>
               <p>
                 <img
                   src={AVATAR_IMAGE}
@@ -124,18 +171,45 @@ export default function Login(props: ModalProps) {
                   className="profile-input-file"
                 />
               </p>
+              <p className="input-heading">{LOGIN_NAME_TEXT}</p>
+              <input
+                type="text"
+                className="input-textbox"
+                value={userName}
+                onChange={(event) => {
+                  setuserName(event.target.value);
+                  setrequireduserName(false);
+                }}
+                required
+              ></input>
+              <p className="validation-messge">
+                {requireduserName ? errorMessage : ""}
+              </p>
               <p>
                 <input
                   type="button"
                   value={LOGIN_PROFILE_BUTTON_TEXT}
                   className="input-button"
+                  onClick={handleProfileSubmit}
                 />
               </p>
             </div>
           ) : displayMobile ? (
             <div className="input-section">
-              <p>{LOGIN_MOBILE_TEXT}</p>
-              <input type="text" placeholder={LOGIN_MOBILE_PLACEHOLDER}></input>
+              <p className="input-heading">{LOGIN_MOBILE_TEXT}</p>
+              <input
+                type="text"
+                className="input-textbox"
+                value={mobileNo}
+                onChange={(event) => {
+                  setmobileNo(event.target.value);
+                  setrequiredMobileNo(false);
+                }}
+                required
+              ></input>
+              <p className="validation-messge">
+                {requiredMobileNo ? errorMessage : ""}
+              </p>
               <p>
                 <input
                   type="button"
@@ -148,8 +222,20 @@ export default function Login(props: ModalProps) {
             </div>
           ) : (
             <div className="input-section">
-              <p>{LOGIN_OTP_TEXT}</p>
-              <input type="text" placeholder={LOGIN_OTP_PLACEHOLDER}></input>
+              <p className="input-heading">{LOGIN_OTP_TEXT}</p>
+              <input
+                type="text"
+                className="input-textbox"
+                value={mobileOTP}
+                onChange={(event) => {
+                  setmobileOTP(event.target.value);
+                  setrequiredMobileOTP(false);
+                }}
+                required
+              ></input>
+              <p className="validation-messge">
+                {requiredMobileOTP ? errorMessage : ""}
+              </p>
               <p>
                 <input
                   type="button"
