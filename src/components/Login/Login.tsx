@@ -118,19 +118,13 @@ export default function Login(props: LoginModalProps) {
       })
       .catch((error: any) => {
         setErrorMessage(error.message);
-        console.log(error.message);
       });
   };
 
   const handleFacebookSignIn = () => {
     firebase
       .doFacebookSignIn()
-      .then((authUser: any) => {
-        console.log({
-          email: authUser.user.email,
-          username: authUser.user.displayName,
-        });
-        console.log(authUser);
+      .then((authUser: any) => {        
         return firebase.user(authUser.user.uid).set({
           email: authUser.user.email,
           username: authUser.user.displayName,
@@ -142,7 +136,6 @@ export default function Login(props: LoginModalProps) {
       })
       .catch((error: any) => {
         setErrorMessage(error.message);
-        console.log(errorMessage);
       });
   };
 

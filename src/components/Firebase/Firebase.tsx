@@ -22,11 +22,8 @@ class Firebase {
 
     this.googleAuthProvider = new app.auth.GoogleAuthProvider();
 
-    this.facebookAuthProvider = new app.auth.FacebookAuthProvider();
-    this.facebookAuthProvider.addScope("user_birthday");
-    this.facebookAuthProvider.setCustomParameters({
-      display: "popup",
-    });
+    this.facebookAuthProvider = new app.auth.FacebookAuthProvider();   
+    
   }
 
   doGoogleSignIn = () => this.auth.signInWithPopup(this.googleAuthProvider);
