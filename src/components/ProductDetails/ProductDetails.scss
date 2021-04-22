@@ -7,6 +7,9 @@
     .carousel-images {
       display: flex;
       justify-content: center;
+      div {
+        cursor: crosshair;
+      }
     }
 
     .all-images {
@@ -115,4 +118,10 @@
 .selected-image {
   border: 1px solid #282828;
   padding: 1rem;
+}
+#canvas {
+  height: 500px;
+  position: fixed;
+  top: 10%;
+  left: 35%;
 }

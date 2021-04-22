@@ -8,6 +8,7 @@ const Carousel: FC<CarouselModel.IProps> = ({
   infiniteLoop,
   carouselContainerClass,
   selectedImage,
+  updateCurrentIndex,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(
     infiniteLoop ? show : selectedImage ? selectedImage : 0
@@ -26,7 +27,7 @@ const Carousel: FC<CarouselModel.IProps> = ({
       setCurrentIndex(selectedImage!);
     }
   }, [selectedImage]);
-  
+
   // Set the length to match current children from props
   useEffect(() => {
     setLength(children.length);
@@ -44,12 +45,18 @@ const Carousel: FC<CarouselModel.IProps> = ({
   const next = () => {
     if (isRepeating || currentIndex < length - show) {
       setCurrentIndex((prevState) => prevState + 1);
+      if (updateCurrentIndex) {
+        updateCurrentIndex(currentIndex + 1);
+      }
     }
   };
 
   const prev = () => {
     if (isRepeating || currentIndex > 0) {
       setCurrentIndex((prevState) => prevState - 1);
+      if (updateCurrentIndex) {
+        updateCurrentIndex(currentIndex - 1);
+      }
     }
   };
 

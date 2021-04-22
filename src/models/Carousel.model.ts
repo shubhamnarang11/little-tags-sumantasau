@@ -5,5 +5,6 @@ export namespace CarouselModel {
     infiniteLoop: boolean;
     carouselContainerClass: string;
     selectedImage?: number;
+    updateCurrentIndex?: (arg: number) => void;
   }
 }
