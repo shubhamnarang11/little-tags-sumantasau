@@ -103,8 +103,8 @@ export default function Login(props: LoginModalProps) {
       .doGoogleSignIn()
       .then((authUser: any) => {
         initLocalStorage(
-          authUser.user.displayName,
           mobileNo,
+          authUser.user.displayName,
           authUser.user.photoURL
         );
         return firebase.user(authUser.user.uid).set({
@@ -124,7 +124,12 @@ export default function Login(props: LoginModalProps) {
   const handleFacebookSignIn = () => {
     firebase
       .doFacebookSignIn()
-      .then((authUser: any) => {        
+      .then((authUser: any) => {
+        initLocalStorage(
+          mobileNo,
+          authUser.user.displayName,
+          authUser.user.photoURL
+        );
         return firebase.user(authUser.user.uid).set({
           email: authUser.user.email,
           username: authUser.user.displayName,
@@ -136,6 +141,7 @@ export default function Login(props: LoginModalProps) {
       })
       .catch((error: any) => {
         setErrorMessage(error.message);
+        console.log({ errorMessage: error });
       });
   };
 
