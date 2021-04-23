@@ -19,11 +19,10 @@
       background-color: #eaeaea;
       border: none;
       outline: none;
-      border-radius: 15px;
       width: 30vw;
       padding: 1.5vh;
     }
-    &::after {
+    &::before {
       font-family: 'FontAwesome';
       content: '\f002';
       position: absolute;
@@ -121,7 +120,7 @@
           border-radius: 15px;
           padding: 1vh;
         }
-        &::after {
+        &::before {
           font-family: 'FontAwesome';
           content: '\f002';
           position: absolute;
@@ -146,3 +145,42 @@
     }
   }
 }
+
+.search-menu {
+  background-color: #eaeaea;
+  border-radius: 0px 0px 5px 5px;
+  border-width: thin;
+  z-index: 1;
+  overflow-y: auto;
+  max-height: 200px;
+  margin-top: 0;
+  border-top: 1px solid #f2f2f2;
+  position: absolute;
+  width: 100%;
+  padding-left: 0.5rem;
+  li {
+    padding: 0.5rem 0;
+    cursor: pointer;
+    display: flex;
+    img {
+      height: 3rem;
+      margin-right: 0.5rem;
+    }
+    h4, p {
+      margin: 0;
+    }
+    &:hover {
+      background-color: #282828;
+      color: #fff;
+    }
+  }
+}
+
+.plain-border {
+  border-radius: 15px 15px 0 0;
+}
+
+.round-border {
+  border-radius: 15px;
+}
+
