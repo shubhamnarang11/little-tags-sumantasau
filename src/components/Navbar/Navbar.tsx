@@ -6,6 +6,7 @@ import { CONFIG } from '../../config/Config';
 import { STATIC_DATA, TEST_DATA } from '../../config/StaticData';
 import { NavbarModel } from '../../models/Navbar.model';
 import './Navbar.scss';
+import { Login } from "../../components/";
 
 const Navbar: FC<NavbarModel.IProps> = ({ cartSize }) => {
   const {
@@ -24,6 +25,8 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize }) => {
     false
   );
   const [searchTerm, setSearchTerm] = useState('');
+
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const handleSearchBar = () => {
     setIsSearchBarForMobileOpen(!isSearchBarForMobileOpen);
@@ -81,8 +84,8 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize }) => {
 
   return (
     <>
-      <div id='navbar-web-div'>
-        <div className='app-logo'>
+      <div id="navbar-web-div">
+        <div className="app-logo">
           <Link to={DASHBOARD}>
             <img src={APP_LOGO} alt={NO_SUCH_IMAGE}></img>
           </Link>
@@ -119,32 +122,45 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize }) => {
             </ul>
           )}
         </div>
-        <div className='user-div'>
-          <i className='fa fa-user-circle'></i>
-          <p>{SIGN_IN_CREATE_ACCOUNT}</p>
+        <div className="user-div">
+          <i className="fa fa-user-circle"></i>
+          {showLoginModal && (
+            <Login
+              onCloseLoginModalClick={() => {
+                setShowLoginModal(false);
+              }}
+            />
+          )}
+          <p
+            onClick={() => {
+              setShowLoginModal(true);
+            }}
+          >
+            {SIGN_IN_CREATE_ACCOUNT}
+          </p>
         </div>
-        <div className='shopping-cart'>
+        <div className="shopping-cart">
           <Link to={`${SHOPPING_CART}/cart-items`}>
-            <i className='fa fa-shopping-cart'></i>
+            <i className="fa fa-shopping-cart"></i>
           </Link>
-          {cartSize > 0 && <div id='cart-total'>{cartSize}</div>}
+          {cartSize > 0 && <div id="cart-total">{cartSize}</div>}
         </div>
       </div>
-      <div id='navbar-mobile-div'>
-        <i className='fa fa-bars bars'></i>
-        <div className='app-logo'>
+      <div id="navbar-mobile-div">
+        <i className="fa fa-bars bars"></i>
+        <div className="app-logo">
           <img src={APP_LOGO} alt={NO_SUCH_IMAGE}></img>
         </div>
         {isSearchBarForMobileOpen ? (
-          <div className='search-bar'>
+          <div className="search-bar">
             <div>
-              <input type='text' placeholder={SEARCH_PLACEHOLDER}></input>
+              <input type="text" placeholder={SEARCH_PLACEHOLDER}></input>
             </div>
           </div>
         ) : (
-          <i className='fa fa-search search-bar' onClick={handleSearchBar}></i>
+          <i className="fa fa-search search-bar" onClick={handleSearchBar}></i>
         )}
-        <i className='fa fa-shopping-cart shopping-cart'></i>
+        <i className="fa fa-shopping-cart shopping-cart"></i>
       </div>
     </>
   );

@@ -1,6 +1,6 @@
-import './App.scss';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { CONFIG } from './config/Config';
+import "./App.scss";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { CONFIG } from "./config/Config";
 import {
   CategoryHeader,
   Navbar,
@@ -10,9 +10,10 @@ import {
   Footer,
   ProductDetails,
   Dashboard,
-} from './components';
-import { STATIC_DATA } from './config/StaticData';
-import Products from './components/Products/Products';
+} from "./components";
+import { STATIC_DATA } from "./config/StaticData";
+import Products from "./components/Products/Products";
+import React from "react";
 
 function App() {
   const {
@@ -44,11 +45,12 @@ function App() {
   };
 
   return (
-    <div className='App'>
+    <div className="App">
       <Navbar />
       {isCategoryHeaderAvailable() ? (
         <CategoryHeader categories={getCategories()} />
       ) : null}
+
       <Switch>
         <Route
           exact
@@ -70,6 +72,7 @@ function App() {
         </Route>
         <Route path={PRODUCTS} component={Products}></Route>
       </Switch>
+
       <Footer />
     </div>
   );

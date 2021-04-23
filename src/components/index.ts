@@ -11,6 +11,7 @@ import AddDeliveryAddress from './AddDeliveryAddress/AddDeliveryAddress';
 import ProductDetails from './ProductDetails/ProductDetails';
 import ShoppingCartItems from './ShoppingCartItems/ShoppingCartItems';
 import ProductCard from './ProductCard/ProductCard';
+import Login from './Login/Login';
 
 export {
   Navbar,
@@ -26,4 +27,5 @@ export {
   AddDeliveryAddress,
   ShoppingCartItems,
   ProductCard,
+  Login
 };
