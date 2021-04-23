@@ -1,1 +1,1 @@
-export const LoginReducer = () => {};
+export {};

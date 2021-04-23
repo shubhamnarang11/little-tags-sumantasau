@@ -1,5 +1,5 @@
-import './AddDeliveryAddress.scss';
-import { STATIC_DATA, TEST_DATA } from '../../config/StaticData';
+import "./AddDeliveryAddress.scss";
+import { STATIC_DATA, TEST_DATA } from "../../config/StaticData";
 
 export default function AddDeliveryAddress() {
   const {
@@ -29,54 +29,54 @@ export default function AddDeliveryAddress() {
   const { STATE_DATA } = TEST_DATA;
 
   return (
-    <div id='add-delivery-address-container'>
+    <div id="add-delivery-address-container">
       <h3>{ADD_DELIVERYADDRESS_HEADING}</h3>
-      <div className='left'>
+      <div className="left">
         <p>{FIRSTNAME_TEXT}</p>
         <input
-          type='text'
-          className='input-box'
+          type="text"
+          className="input-box"
           placeholder={FIRSTNAME_PLACEHOLDER}
           required
         />
 
         <p>{LASTNAME_TEXT}</p>
         <input
-          type='text'
-          className='input-box'
+          type="text"
+          className="input-box"
           placeholder={LASTNAME_PLACEHOLDER}
           required
         />
 
         <p>{EMAIL_TEXT}</p>
         <input
-          type='text'
-          className='input-box'
+          type="text"
+          className="input-box"
           placeholder={EMAIL_PLACEHOLDER}
           required
         />
 
         <p>{MOBILE_TEXT}</p>
         <input
-          type='text'
-          className='input-box'
+          type="text"
+          className="input-box"
           placeholder={MOBILE_PLACEHOLDER}
           required
         />
       </div>
-      <div className='right'>
+      <div className="right">
         <p>{ADDRESS_LINE1_TEXT}</p>
         <input
-          type='text'
-          className='input-box'
+          type="text"
+          className="input-box"
           placeholder={ADDRESS_LINE1_PLACEHOLDER}
           required
         />
 
         <p>{ADDRESS_LINE2_TEXT}</p>
         <input
-          type='text'
-          className='input-box'
+          type="text"
+          className="input-box"
           placeholder={ADDRESS_LINE2_PLACEHOLDER}
           required
         />
@@ -91,14 +91,14 @@ export default function AddDeliveryAddress() {
 
         <p>{PINCODE_TEXT}</p>
         <input
-          type='text'
-          className='input-box'
+          type="text"
+          className="input-box"
           placeholder={PINCODE_PLACEHOLDER}
           required
         />
       </div>
       <span>
-        <input type='button' value='Add Address' className='input-button' />
+        <input type="button" value="Add Address" className="input-button" />
       </span>
     </div>
   );
