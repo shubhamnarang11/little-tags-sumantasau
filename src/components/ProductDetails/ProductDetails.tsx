@@ -13,10 +13,12 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
   addItemsToCart,
   buyItem,
 }) => {
+  let context: any = null;
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [isImageZoomed, setIsImageZoomed] = useState(-1);
 
   const { PRODUCTS_DATA } = TEST_DATA;
   const {
@@ -79,101 +81,138 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
     ];
   };
 
+  const showZoomedImage = (index: number) => {
+    setIsImageZoomed(index);
+  };
+
+  const drawImage = (event: any) => {
+    const image = new Image();
+    image.src = selectedProduct.images[isImageZoomed];
+
+    if (context) {
+      context.drawImage(
+        image,
+        event.pageX - 150,
+        event.pageY - 150,
+        80,
+        80,
+        0,
+        0,
+        200,
+        200
+      );
+    }
+  };
+
   return selectedProduct ? (
-    <div className='product-details-div'>
-      <div className='images-div'>
-        <div className='carousel-images'>
-          <Carousel
-            show={1}
-            infiniteLoop={false}
-            carouselContainerClass='product-details'
-            selectedImage={selectedImage}
-          >
-            {selectedProduct.images.map((image: string, i: number) => (
-              <div key={i}>
-                <img src={image} alt={NO_SUCH_IMAGE}></img>
-              </div>
-            ))}
-          </Carousel>
-        </div>
-        <div className='all-images'>
-          {selectedProduct.images.map((image: string, i: number) => (
-            <img
-              key={i}
-              src={image}
-              alt={NO_SUCH_IMAGE}
-              onClick={() => setSelectedImage(i)}
-              className={selectedImage === i ? 'selected-image' : ''}
-            ></img>
-          ))}
-        </div>
-      </div>
-      <div className='content-div'>
-        <p className='product-name'>{selectedProduct.name}</p>
-        <div className='rating'>
-          {selectedProduct.rating}
-          <i className='fa fa-star'></i>
-        </div>
-        <span className='horizontal-line' />
-        {selectedProduct.quantity < 10 ? (
-          <p className='items-left'>
-            Only {selectedProduct.quantity} Items left in stock
-          </p>
-        ) : null}
-        <p className='price'>Rs. {selectedProduct.price}</p>
-        {getAvailableProductSizes().length > 0 ? (
-          <>
-            <p>Select Size</p>
-            <div className='sizes-div'>
-              {getAvailableProductSizes().map((size: string) => (
+    <>
+      <div className='product-details-div'>
+        <div className='images-div'>
+          <div className='carousel-images'>
+            <Carousel
+              show={1}
+              infiniteLoop={false}
+              carouselContainerClass='product-details'
+              selectedImage={selectedImage}
+              updateCurrentIndex={(index) => setSelectedImage(index)}
+            >
+              {selectedProduct.images.map((image: string, i: number) => (
                 <div
-                  onClick={() => {
-                    selectSize(size);
-                  }}
-                  className={selectedSize === size ? 'selected' : ''}
-                  key={size}
+                  key={i}
+                  onMouseEnter={(e) => showZoomedImage(i)}
+                  onMouseMove={drawImage}
+                  onMouseLeave={() => showZoomedImage(-1)}
                 >
-                  {size}
+                  <img src={image} alt={NO_SUCH_IMAGE}></img>
                 </div>
               ))}
-            </div>{' '}
-          </>
-        ) : null}
-        <p>Select Quantity</p>
-        <button
-          className='minus'
-          onClick={() => changeQuantity('minus')}
-          disabled={selectedQuantity === 1}
-        >
-          -
-        </button>
-        <input
-          step='1'
-          min='1'
-          max={selectedProduct.quantity}
-          value={selectedQuantity}
-          title='Qty'
-          className='quantity-input'
-          readOnly
-        />
-        <button
-          className='plus'
-          onClick={() => changeQuantity('plus')}
-          disabled={selectedQuantity === selectedProduct.quantity}
-        >
-          +
-        </button>
+            </Carousel>
+          </div>
+          <div className='all-images'>
+            {selectedProduct.images.map((image: string, i: number) => (
+              <img
+                key={i}
+                src={image}
+                alt={NO_SUCH_IMAGE}
+                onClick={() => setSelectedImage(i)}
+                className={selectedImage === i ? 'selected-image' : ''}
+              ></img>
+            ))}
+          </div>
+        </div>
+        <div className='content-div'>
+          <p className='product-name'>{selectedProduct.name}</p>
+          <div className='rating'>
+            {selectedProduct.rating}
+            <i className='fa fa-star'></i>
+          </div>
+          <span className='horizontal-line' />
+          {selectedProduct.quantity < 10 ? (
+            <p className='items-left'>
+              Only {selectedProduct.quantity} Items left in stock
+            </p>
+          ) : null}
+          <p className='price'>Rs. {selectedProduct.price}</p>
+          {getAvailableProductSizes().length > 0 ? (
+            <>
+              <p>Select Size</p>
+              <div className='sizes-div'>
+                {getAvailableProductSizes().map((size: string) => (
+                  <div
+                    onClick={() => {
+                      selectSize(size);
+                    }}
+                    className={selectedSize === size ? 'selected' : ''}
+                    key={size}
+                  >
+                    {size}
+                  </div>
+                ))}
+              </div>{' '}
+            </>
+          ) : null}
+          <p>Select Quantity</p>
+          <button
+            className='minus'
+            onClick={() => changeQuantity('minus')}
+            disabled={selectedQuantity === 1}
+          >
+            -
+          </button>
+          <input
+            step='1'
+            min='1'
+            max={selectedProduct.quantity}
+            value={selectedQuantity}
+            title='Qty'
+            className='quantity-input'
+            readOnly
+          />
+          <button
+            className='plus'
+            onClick={() => changeQuantity('plus')}
+            disabled={selectedQuantity === selectedProduct.quantity}
+          >
+            +
+          </button>
 
-        <div className='purchase-buttons'>
-          <button className='add-to-cart' onClick={() => addOrBuyItem()}>
-            Add to Cart
-          </button>
-          <button className='buy-now' onClick={() => addOrBuyItem(true)}>
-            Buy Now
-          </button>
+          <div className='purchase-buttons'>
+            <button className='add-to-cart' onClick={() => addOrBuyItem()}>
+              Add to Cart
+            </button>
+            <button className='buy-now' onClick={() => addOrBuyItem(true)}>
+              Buy Now
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+      {isImageZoomed !== -1 && (
+        <canvas
+          id='canvas'
+          ref={(c: any) => (context = c && c.getContext('2d'))}
+        ></canvas>
+      )}
+    </>
   ) : null;
 };
 
