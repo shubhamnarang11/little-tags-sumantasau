@@ -1,10 +1,10 @@
 $fontsize: 0.525rem;
 $textcolor: #282828;
 $bgcolor: #fff;
-$hr-bgcolor:#282828;
-$input-bgcolor:#282828;
-$inputbox-border:#dedede;
-$validation-msg:red;
+$hr-bgcolor: #282828;
+$input-bgcolor: #282828;
+$inputbox-border: #dedede;
+$validation-msg: red;
 * {
   box-sizing: border-box;
 }
@@ -25,12 +25,12 @@ $validation-msg:red;
     .left-section {
       width: 100%;
       img {
-        height: 27rem;       
+        height: 27rem;
         display: block;
       }
     }
     .login-section {
-      width: 100%;      
+      width: 100%;
       text-align: center;
       background-color: $bgcolor;
       i {
@@ -59,7 +59,7 @@ $validation-msg:red;
           font-size: 0.7rem;
           text-align: left;
           height: 20px;
-          color:$validation-msg;
+          color: $validation-msg;
         }
         .input-textbox {
           width: 13.125rem;
@@ -87,7 +87,7 @@ $validation-msg:red;
           background-color: $input-bgcolor;
           border: 0;
           font-weight: 700;
-          color: $bgcolor;         
+          color: $bgcolor;
           cursor: pointer;
         }
         .profile-input-file {
@@ -97,7 +97,7 @@ $validation-msg:red;
           width: 4.5rem;
           height: 4.5rem;
           //border: 0.0625rem;
-          //box-shadow: 0 1.25rem 1.25rem -0.5rem rgba(73, 73, 73, 0.651);         
+          //box-shadow: 0 1.25rem 1.25rem -0.5rem rgba(73, 73, 73, 0.651);
           border-radius: 50%;
         }
       }
@@ -112,7 +112,7 @@ $validation-msg:red;
           width: 3.125rem;
           height: 0.125rem;
           border-width: 0;
-          background-color:$hr-bgcolor;
+          background-color: $hr-bgcolor;
         }
       }
       .social-login {

@@ -1,201 +1,198 @@
 $bgcolor: #282828;
-//$bgcolor: #7B7777;
 $fontsize: 0.525rem;
 $textcolor: #fff;
-$bgcolor-selection:#DEDEDE;
+$bgcolor-selection: #dedede;
 $bgcolor-button: #388e3c;
-$msg-color:red;
+$msg-color: red;
 * {
-    box-sizing: border-box;    
+  box-sizing: border-box;
+}
+#cart-container {
+  min-height: 35.75rem;
+  .heading-bar {
+    background-color: $bgcolor;
+    padding: 0.188rem 0.313rem;
+    overflow: hidden;
+    color: $textcolor;
   }
-  #cart-container{   
-    min-height:35.75rem; 
-      .heading-bar{
-          background-color: $bgcolor;
-          padding:0.188rem 0.313rem;
-          overflow:hidden;
-          color: $textcolor;
-        }    
-        .heading-item{
+  .heading-item {
+    float: left;
+    text-align: left;
+    width: 70%;
+    padding: 0 0.625rem;
+  }
+  .left {
+    float: left;
+    text-align: left;
+    width: 70%;
+    padding: 0.938rem;
+    hr {
+      width: 100%;
+    }
+    div {
+      div {
+        &.heading-price {
           float: left;
-          text-align: left;
-          width: 70%;  
-          padding: 0 0.625rem;
-        }
-      .left{
-        float: left;
-        text-align: left;
-        width: 70%;        
-        padding: 0.938rem;
-        hr{
-          width:100%;
-        }
-        div{         
-          div
-          {            
-            &.heading-price{
-              float: left;
-              text-align: right;
-              width: 30%;    
-              padding: 0 1.875rem;         
-            }
-          }          
-          div{
-            &.item-image{
-              float: left;
-              text-align: left;
-              width: 20%;  
-              padding: 20px 0;  
-              min-height: 11rem;              
-              img{
-                width: 8.25rem;
-                height: 8.25rem;     
-                position: relative;    
-              }            
-            }
-            &.item-info{
-              float: left;
-              text-align: left;
-              width: 60%;         
-              min-height: 11rem;              
-              p{
-                color: $bgcolor-button;
-                font-size: 0.75rem;   
-                &.out-stock{
-                  color: $msg-color;
-                }                   
-              }
-              div{       
-                display: flex;                               
-                span
-                {
-                  display: flex;
-                  background-color: $bgcolor-selection;
-                  width: 5.5rem;  
-                  padding: 0.313rem;
-                  border-radius: 0.438rem;  
-                  overflow:hidden;     
-                  font-weight: 500;  
-                  select{
-                    background-color: transparent;  
-                    border:0;
-                    outline:0;
-                    padding-left: 0.5rem;
-                  }                  
-                }
-                p{
-                  padding : 0 0 0 5rem;    
-                  color: $msg-color; 
-                  cursor: pointer;
-                }
-              }
-            }
-            &.item-price{
-              float: left;
-              text-align: right;
-              width: 20%;  
-              padding : 0.938rem 1.563rem ;  
-              min-height: 11rem;
-            }
-          }        
+          text-align: right;
+          width: 30%;
+          padding: 0 1.875rem;
         }
       }
-      .right {
-        float: left;
-        text-align: left;
-        width: 30%;        
-        padding:5.375rem 0.625rem 0 0.625rem;
-
-        div{                 
-          &.summery-info{
-            background-color: $bgcolor-selection; 
-            overflow: hidden;            
-          }          
-          &.item-total{            
-            float: left;
-            text-align: left;
-            width:50%;
-            padding: 1.25rem 1.25rem 0.125rem 1.25rem;              
+      div {
+        &.item-image {
+          float: left;
+          text-align: left;
+          width: 20%;
+          padding: 20px 0;
+          min-height: 11rem;
+          img {
+            width: 8.25rem;
+            height: 8.25rem;
+            position: relative;
           }
-          &.item-price{
-            float: left;
-            text-align: right;
-            width:50%;
-            padding: 1.25rem 1.25rem 0.125rem 1.25rem;              
+        }
+        &.item-info {
+          float: left;
+          text-align: left;
+          width: 60%;
+          min-height: 11rem;
+          p {
+            color: $bgcolor-button;
+            font-size: 0.75rem;
+            &.out-stock {
+              color: $msg-color;
+            }
           }
-          &.item-tax{            
-            float: left;
-            text-align: left;
-            width:50%;
-            padding:  0.125rem 1.25rem 0.125rem 1.25rem;              
+          div {
+            display: flex;
+            span {
+              display: flex;
+              background-color: $bgcolor-selection;
+              width: 5.5rem;
+              padding: 0.313rem;
+              border-radius: 0.438rem;
+              overflow: hidden;
+              font-weight: 500;
+              select {
+                background-color: transparent;
+                border: 0;
+                outline: 0;
+                padding-left: 0.5rem;
+              }
+            }
+            p {
+              padding: 0 0 0 5rem;
+              color: $msg-color;
+              cursor: pointer;
+            }
           }
-          &.price-tax{
-            float: left;
-            text-align: right;
-            width:50%;
-            padding:  0.125rem 1.25rem 0.125rem 1.25rem ;              
-          }
-          &.item-devlivery{            
-            float: left;
-            text-align: left;
-            width:50%;
-            padding:  0.125rem 1.25rem 1.25rem 1.25rem;              
-          }
-          &.price-item-delivery{
-            float: left;
-            text-align: right;
-            width:50%;
-            padding:  0.125rem 1.25rem 1.25rem 1.25rem ;              
-          }
-          &.order-total{            
-            float: left;
-            text-align: left;
-            width:50%;
-            padding:  0.125rem 1.25rem 1.25rem 1.25rem;     
-            font-size: 1.25rem;      
-            font-weight: bold;   
-          }
-          &.price-total{
-            float: left;
-            text-align: right;
-            width:50%;
-            padding:  0.125rem 1.25rem 1.25rem 1.25rem ;   
-            font-size: 1.25rem; 
-            font-weight: bold;              
-          }
-          hr{
-            width:92%;
-            text-align: center;
-            height:0.080rem;
-            border: none;
-            background-color: #000;            
-          }
-          &.button-container{
-            padding:1.5rem 0;            
-            input{
-                padding: 0.625rem;
-                border-radius: 0.3125rem;               
-                background-color:$bgcolor-button;
-                font-size: 1rem;
-                font-weight: normal;
-                color: $textcolor;
-                cursor: pointer;              
-                transition: 0.3s;
-                border:  $textcolor; 
-                width:100%;               
-            }                        
-          }
+        }
+        &.item-price {
+          float: left;
+          text-align: right;
+          width: 20%;
+          padding: 0.938rem 1.563rem;
+          min-height: 11rem;
         }
       }
     }
+  }
+  .right {
+    float: left;
+    text-align: left;
+    width: 30%;
+    padding: 5.375rem 0.625rem 0 0.625rem;
+
+    div {
+      &.summery-info {
+        background-color: $bgcolor-selection;
+        overflow: hidden;
+      }
+      &.item-total {
+        float: left;
+        text-align: left;
+        width: 50%;
+        padding: 1.25rem 1.25rem 0.125rem 1.25rem;
+      }
+      &.item-price {
+        float: left;
+        text-align: right;
+        width: 50%;
+        padding: 1.25rem 1.25rem 0.125rem 1.25rem;
+      }
+      &.item-tax {
+        float: left;
+        text-align: left;
+        width: 50%;
+        padding: 0.125rem 1.25rem 0.125rem 1.25rem;
+      }
+      &.price-tax {
+        float: left;
+        text-align: right;
+        width: 50%;
+        padding: 0.125rem 1.25rem 0.125rem 1.25rem;
+      }
+      &.item-devlivery {
+        float: left;
+        text-align: left;
+        width: 50%;
+        padding: 0.125rem 1.25rem 1.25rem 1.25rem;
+      }
+      &.price-item-delivery {
+        float: left;
+        text-align: right;
+        width: 50%;
+        padding: 0.125rem 1.25rem 1.25rem 1.25rem;
+      }
+      &.order-total {
+        float: left;
+        text-align: left;
+        width: 50%;
+        padding: 0.125rem 1.25rem 1.25rem 1.25rem;
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+      &.price-total {
+        float: left;
+        text-align: right;
+        width: 50%;
+        padding: 0.125rem 1.25rem 1.25rem 1.25rem;
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+      hr {
+        width: 92%;
+        text-align: center;
+        height: 0.08rem;
+        border: none;
+        background-color: #000;
+      }
+      &.button-container {
+        padding: 1.5rem 0;
+        input {
+          padding: 0.625rem;
+          border-radius: 0.3125rem;
+          background-color: $bgcolor-button;
+          font-size: 1rem;
+          font-weight: normal;
+          color: $textcolor;
+          cursor: pointer;
+          transition: 0.3s;
+          border: $textcolor;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
 /* Use a media query to add a break point at 768px: */
-  @media screen and (max-width: 768px) {
-    #cart-container{
-        .left{
-            width: 100%;
-        }        
-        .rigth{
-            width: 100%;
-        }        
-    }    
-  }    
+@media screen and (max-width: 768px) {
+  #cart-container {
+    .left {
+      width: 100%;
+    }
+    .rigth {
+      width: 100%;
+    }
+  }
+}

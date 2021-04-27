@@ -21,7 +21,7 @@ export default function HeroContainer() {
   }
 
   useEffect(() => {
-    resetTimeout();   
+    resetTimeout();
     timeoutRef.current = setTimeout(
       () =>
         setIndex((prevIndex) =>
@@ -33,7 +33,7 @@ export default function HeroContainer() {
     return () => {
       resetTimeout();
     };
-     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
   //style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
   return (

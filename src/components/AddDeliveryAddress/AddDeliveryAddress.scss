@@ -1,6 +1,6 @@
 $fontsize: 0.525rem;
-$bgcolor-button : #282828;
-$boder-color:#282828;
+$bgcolor-button: #282828;
+$boder-color: #282828;
 * {
   box-sizing: border-box;
 }
@@ -58,8 +58,8 @@ $boder-color:#282828;
       input {
         &.input-button {
           padding: 0.625rem;
-          border-radius: 0.3125rem;         
-          background-color:$bgcolor-button;
+          border-radius: 0.3125rem;
+          background-color: $bgcolor-button;
           font-size: 1rem;
           font-weight: normal;
           color: #fff;

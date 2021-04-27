@@ -36,8 +36,11 @@ export default function AddDeliveryAddress() {
     ROUTES: { DELIVERY_ADDRESS },
   } = CONFIG;
 
-  const [City, setCity] = useState<any>([]); 
-  const [DELIVERY_ADDRESS_DATA, setDELIVERY_ADDRESS_DATA] = useLocalStorage("DELIVERY_ADDRESS_DATA",[]) ;
+  const [City, setCity] = useState<any>([]);
+  const [DELIVERY_ADDRESS_DATA, setDELIVERY_ADDRESS_DATA] = useLocalStorage(
+    "DELIVERY_ADDRESS_DATA",
+    []
+  );
 
   const [userFirstName, setuserFirstName] = useState("");
   const [userLastName, setuserLastName] = useState("");
@@ -51,7 +54,6 @@ export default function AddDeliveryAddress() {
 
   const history = useHistory();
 
-
   const handleStateSelect = (event: any) => {
     const index = event.nativeEvent.target.selectedIndex;
     setuserStateName(event.nativeEvent.target[index].text);
@@ -63,30 +65,37 @@ export default function AddDeliveryAddress() {
   };
 
   const handleCitySelect = (event: any) => {
-    const index = event.nativeEvent.target.selectedIndex;   
+    const index = event.nativeEvent.target.selectedIndex;
     setuserCityName(event.nativeEvent.target[index].text);
-  }
+  };
 
-  const onSaveClick = () =>{
-    if(userFirstName && userLastName && userAddress1 && userStateName && userPincode) {
+  const onSaveClick = () => {
+    if (
+      userFirstName &&
+      userLastName &&
+      userAddress1 &&
+      userStateName &&
+      userPincode
+    ) {
       let addressId = DELIVERY_ADDRESS_DATA.length + 1;
       DELIVERY_ADDRESS_DATA.push({
-        id:addressId,
-        name : userFirstName + ' ' + userLastName,
-        address: userAddress1 + ' ' + userAddress2,
-        state : userStateName,
-        city : userCityName,
-        pincode : userPincode,
-        mobile : userMobile,
-        isDefault : userDefaultAddress
+        id: addressId,
+        name: userFirstName + " " + userLastName,
+        address: userAddress1 + " " + userAddress2,
+        state: userStateName,
+        city: userCityName,
+        pincode: userPincode,
+        mobile: userMobile,
+        isDefault: userDefaultAddress,
       });
       setDELIVERY_ADDRESS_DATA(DELIVERY_ADDRESS_DATA);
-      window.localStorage.setItem("DELIVERY_ADDRESS_DATA", JSON.stringify(JSON.stringify(DELIVERY_ADDRESS_DATA)));    
+      window.localStorage.setItem(
+        "DELIVERY_ADDRESS_DATA",
+        JSON.stringify(JSON.stringify(DELIVERY_ADDRESS_DATA))
+      );
       history.push(DELIVERY_ADDRESS);
     }
-  }
-
-  
+  };
 
   const onCancelClick = () => {
     history.push(DELIVERY_ADDRESS);
@@ -102,9 +111,9 @@ export default function AddDeliveryAddress() {
           className="input-box"
           placeholder={FIRSTNAME_PLACEHOLDER}
           value={userFirstName}
-                onChange={(event) => {
-                  setuserFirstName(event.target.value);                 
-                }}
+          onChange={(event) => {
+            setuserFirstName(event.target.value);
+          }}
           required
         />
 
@@ -115,7 +124,7 @@ export default function AddDeliveryAddress() {
           placeholder={ADDRESS_LINE1_PLACEHOLDER}
           value={userAddress1}
           onChange={(event) => {
-            setuserAddress1(event.target.value);                 
+            setuserAddress1(event.target.value);
           }}
           required
         />
@@ -137,7 +146,7 @@ export default function AddDeliveryAddress() {
           placeholder={MOBILE_PLACEHOLDER}
           value={userMobile}
           onChange={(event) => {
-            setuserMobile(event.target.value);                 
+            setuserMobile(event.target.value);
           }}
           maxLength={10}
           required
@@ -151,7 +160,7 @@ export default function AddDeliveryAddress() {
           placeholder={LASTNAME_PLACEHOLDER}
           value={userLastName}
           onChange={(event) => {
-            setuserLastName(event.target.value);                 
+            setuserLastName(event.target.value);
           }}
           required
         />
@@ -163,7 +172,7 @@ export default function AddDeliveryAddress() {
           placeholder={ADDRESS_LINE2_PLACEHOLDER}
           value={userAddress2}
           onChange={(event) => {
-            setuserAddress2(event.target.value);                 
+            setuserAddress2(event.target.value);
           }}
           required
         />
@@ -185,21 +194,29 @@ export default function AddDeliveryAddress() {
           placeholder={PINCODE_PLACEHOLDER}
           value={userPincode}
           onChange={(event) => {
-            setuserPincode(event.target.value);                 
+            setuserPincode(event.target.value);
           }}
           maxLength={6}
           required
         />
       </div>
       <section>
-        <input type="checkbox"  checked={userDefaultAddress}
+        <input
+          type="checkbox"
+          checked={userDefaultAddress}
           onChange={(event) => {
-            setuserDefaultAddress(!userDefaultAddress);                 
-          }} />
+            setuserDefaultAddress(!userDefaultAddress);
+          }}
+        />
         <label>Set as default address</label>
         <br />
         <span>
-          <input type="button" value="Save" className="input-button" onClick={onSaveClick} />
+          <input
+            type="button"
+            value="Save"
+            className="input-button"
+            onClick={onSaveClick}
+          />
           <input
             type="button"
             value="Cancel"

@@ -1,8 +1,8 @@
 $fontsize: 0.525rem;
 $textcolor: #fff;
 $bgcolor-selection: #dedede;
-$bgcolor-button : #282828;
-$msg-color:red;
+$bgcolor-button: #282828;
+$msg-color: red;
 * {
   box-sizing: border-box;
 }
@@ -18,11 +18,11 @@ $msg-color:red;
           background-color: $bgcolor-button;
           font-size: 1rem;
           font-weight: normal;
-          color:$textcolor;
+          color: $textcolor;
           cursor: pointer;
           border: $textcolor;
           width: 12.5rem;
-          border-radius: 0.3125rem;          
+          border-radius: 0.3125rem;
         }
       }
     }
@@ -31,20 +31,20 @@ $msg-color:red;
     display: flex;
     flex-wrap: wrap;
     list-style-type: none;
-    overflow: hidden;      
+    overflow: hidden;
   }
   li {
-    float: left;    
-    margin:  0.625rem;
+    float: left;
+    margin: 0.625rem;
   }
   div {
     &.address-info {
       background-color: $bgcolor-selection;
-      overflow: hidden;     
-      width:20rem; 
+      overflow: hidden;
+      width: 20rem;
       min-height: 12rem;
       padding: 0.625rem;
-      border-radius: 0.3125rem;           
+      border-radius: 0.3125rem;
       span {
         font-weight: normal;
       }
@@ -52,12 +52,12 @@ $msg-color:red;
         label {
           text-align: right;
           padding: 0 0 0 14rem;
-          color:$msg-color;
+          color: $msg-color;
         }
       }
     }
   }
-  p{
+  p {
     color: $msg-color;
   }
 }

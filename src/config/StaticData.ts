@@ -1,9 +1,4 @@
-
-import {
-  hero_tshirt,
-  hero_sneakers,
-  hero_accessories,
-} from "../assets";
+import { hero_tshirt, hero_sneakers, hero_accessories } from "../assets";
 export const STATIC_DATA = {
   ENGLISH: {
     Navbar: {
@@ -61,13 +56,13 @@ export const STATIC_DATA = {
       FIRSTNAME_TEXT: "First Name",
       FIRSTNAME_PLACEHOLDER: "Enter first name",
       LASTNAME_TEXT: "Last Name",
-      LASTNAME_PLACEHOLDER: "Enter last name",     
+      LASTNAME_PLACEHOLDER: "Enter last name",
       MOBILE_TEXT: "Mobile Number",
       MOBILE_PLACEHOLDER: "Enter mobile number",
       ADDRESS_LINE1_TEXT: "Address Line 1",
       ADDRESS_LINE1_PLACEHOLDER: "Enter address line 1",
       ADDRESS_LINE2_TEXT: "Address Line 2",
-      ADDRESS_LINE2_PLACEHOLDER: "Enter address line 2",      
+      ADDRESS_LINE2_PLACEHOLDER: "Enter address line 2",
       STATE_TEXT: "State",
       STATE_PLACEHOLDER: "Select State",
       CITY_TEXT: "City",
@@ -611,13 +606,12 @@ export const TEST_DATA = {
       isDefault: false,
     },
   ],
-  STATE_DATA: [    
+  STATE_DATA: [
     { id: 1, name: "Assam" },
     { id: 2, name: "Andrapadesh" },
     { id: 3, name: "Bihar" },
-    { id: 4, name: "Delhi" },    
+    { id: 4, name: "Delhi" },
     { id: 5, name: "Gujrat" },
-   
   ],
   CITY_DATA: [
     { id: 1, stateId: 1, name: "Dibrugarh" },
@@ -634,37 +628,39 @@ export const TEST_DATA = {
     { id: 12, stateId: 3, name: "Munger" },
     { id: 13, stateId: 3, name: "Muzaffapur" },
     { id: 14, stateId: 3, name: "Nalanda" },
-    { id: 15, stateId: 3, name: "Patna" },      
-    { id: 16, stateId: 4, name: "Gaziabad" },  
-    { id: 17, stateId: 4, name: "Gurugram" },  
-    { id: 18, stateId: 4, name: "Faridabad" },  
-    { id: 19, stateId: 4, name: "New Delhi" },  
-    { id: 20, stateId: 4, name: "Sonipat" },  
-    { id: 21, stateId: 5, name: "Ahamedabad" },  
-    { id: 22, stateId: 5, name: "Gandhinagar" },  
-    { id: 23, stateId: 5, name: "Rajkot" },  
-    { id: 24, stateId: 5, name: "Surat" },  
-    { id: 25, stateId: 5, name: "Vadodara" },    
+    { id: 15, stateId: 3, name: "Patna" },
+    { id: 16, stateId: 4, name: "Gaziabad" },
+    { id: 17, stateId: 4, name: "Gurugram" },
+    { id: 18, stateId: 4, name: "Faridabad" },
+    { id: 19, stateId: 4, name: "New Delhi" },
+    { id: 20, stateId: 4, name: "Sonipat" },
+    { id: 21, stateId: 5, name: "Ahamedabad" },
+    { id: 22, stateId: 5, name: "Gandhinagar" },
+    { id: 23, stateId: 5, name: "Rajkot" },
+    { id: 24, stateId: 5, name: "Surat" },
+    { id: 25, stateId: 5, name: "Vadodara" },
   ],
   HERO_DATA: [
-    { id: 1, 
+    {
+      id: 1,
       category: "T-Shirts",
-      categoryId: 1,    
-      photo : hero_tshirt,
-      text:"New Arrivals"
-     },
-     { id: 2, 
+      categoryId: 1,
+      photo: hero_tshirt,
+      text: "New Arrivals",
+    },
+    {
+      id: 2,
       category: "Shoes",
-      categoryId: 2,     
-      photo : hero_sneakers,
-      text:"Shoes"
-     },
-     { id: 3, 
+      categoryId: 2,
+      photo: hero_sneakers,
+      text: "Shoes",
+    },
+    {
+      id: 3,
       category: "Shirts",
-      categoryId: 3,     
-      photo : hero_accessories,
-      text:"Collections"
-     }
+      categoryId: 3,
+      photo: hero_accessories,
+      text: "Collections",
+    },
   ],
-
 };
