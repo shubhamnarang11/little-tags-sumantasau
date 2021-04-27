@@ -10,12 +10,12 @@ const ProductCard: FC<ProductCardModel.IProps> = ({
   price,
 }) => {
   const {
-    ENGLISH: { NO_SUCH_IMAGE, STAR_RATING },
+    ENGLISH: { NO_IMAGE_FOUND, STAR_RATING },
   } = STATIC_DATA;
 
   return (
     <div className='product-card-div'>
-      <img src={image} alt={NO_SUCH_IMAGE}></img>
+      <img src={image} alt={NO_IMAGE_FOUND}></img>
       <p>{name}</p>
       <p>Rs. {price}</p>
       <div>

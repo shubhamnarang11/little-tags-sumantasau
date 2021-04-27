@@ -24,7 +24,7 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
   const {
     ENGLISH: {
       ProductDetails: { CATEGORY_PRODUCT_SIZES },
-      NO_SUCH_IMAGE,
+      NO_IMAGE_FOUND,
     },
   } = STATIC_DATA;
   const {
@@ -123,7 +123,7 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
                   onMouseMove={drawImage}
                   onMouseLeave={() => showZoomedImage(-1)}
                 >
-                  <img src={image} alt={NO_SUCH_IMAGE}></img>
+                  <img src={image} alt={NO_IMAGE_FOUND}></img>
                 </div>
               ))}
             </Carousel>
@@ -133,7 +133,7 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
               <img
                 key={i}
                 src={image}
-                alt={NO_SUCH_IMAGE}
+                alt={NO_IMAGE_FOUND}
                 onClick={() => setSelectedImage(i)}
                 className={selectedImage === i ? 'selected-image' : ''}
               ></img>

@@ -1,13 +1,14 @@
-import APP_LOGO from "./APP_LOGO.png";
-import AVATAR_IMAGE from "./avatar.png";
-import tshirt from "./Tshirt.png";
-import shoe from "./Shoe.png";
-import shirt from "./Shirt.png";
-import trouser from "./Trouser.png";
-import other from "./Other.png";
-import google_login from "./google.png";
-import facebook_login from "./facebook.png";
-import loginleft from "./loginleft.png";
+import APP_LOGO from './APP_LOGO.png';
+import AVATAR_IMAGE from './avatar.png';
+import tshirt from './Tshirt.png';
+import shoe from './Shoe.png';
+import shirt from './Shirt.png';
+import trouser from './Trouser.png';
+import other from './Other.png';
+import google_login from './google.png';
+import facebook_login from './facebook.png';
+import loginleft from './loginleft.png';
+import MultiLingual from './Multilingual.png';
 
 export {
   APP_LOGO,
@@ -20,4 +21,5 @@ export {
   google_login,
   facebook_login,
   loginleft,
+  MultiLingual,
 };

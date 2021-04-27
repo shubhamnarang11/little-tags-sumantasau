@@ -1,12 +1,13 @@
 .products-div {
   .header {
-    margin-left: 2rem;
+    margin-left: 8rem;
     font-size: 1.5rem;
   }
   .products {
     display: flex;
     flex-wrap: wrap;
     margin: 1rem;
+    justify-content: center;
     a {
       text-decoration: none;
       color: inherit;

@@ -1,5 +1,6 @@
 export namespace NavbarModel {
   export interface IProps {
-    cartSize: number;    
+    cartSize: number;  
+    loggedInUser: any;  
   }
 }

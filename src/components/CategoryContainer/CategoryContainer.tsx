@@ -11,7 +11,7 @@ const CategoryContainer: FC<CategoryContainerModel.IProps> = ({
   categoryName,
 }) => {
   const {
-    ENGLISH: { NO_SUCH_IMAGE },
+    ENGLISH: { NO_IMAGE_FOUND },
   } = STATIC_DATA;
   const {
     ROUTES: { PRODUCT_DETAILS },
@@ -37,7 +37,7 @@ const CategoryContainer: FC<CategoryContainerModel.IProps> = ({
           {getCategoryProducts().map((product) => (
             <Link to={`${PRODUCT_DETAILS}?pid=${product.id}`} key={product.id}>
               <li>
-                <img src={product.images[0]} alt={NO_SUCH_IMAGE}></img>
+                <img src={product.images[0]} alt={NO_IMAGE_FOUND}></img>
                 <p className='product-name'>{product.name}</p>
                 <p>Rs. {product.price}</p>
               </li>

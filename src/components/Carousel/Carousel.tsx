@@ -116,7 +116,13 @@ const Carousel: FC<CarouselModel.IProps> = ({
   };
 
   return (
-    <div className={`carousel-container ${carouselContainerClass}`}>
+    <div
+      className={
+        children.length > 1
+          ? `carousel-container ${carouselContainerClass}`
+          : 'carousel-container single-image'
+      }
+    >
       <div className='carousel-wrapper'>
         {/* You can alwas change the content of the button to other things */}
         {(isRepeating || currentIndex > 0) && (
