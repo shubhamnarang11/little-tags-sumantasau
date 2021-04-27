@@ -1,7 +1,10 @@
-$bgcolor: #7B7777;
+$bgcolor: #282828;
+//$bgcolor: #7B7777;
 $fontsize: 0.525rem;
 $textcolor: #fff;
 $bgcolor-selection:#DEDEDE;
+$bgcolor-button: #388e3c;
+$msg-color:red;
 * {
     box-sizing: border-box;    
   }
@@ -46,8 +49,7 @@ $bgcolor-selection:#DEDEDE;
               min-height: 11rem;              
               img{
                 width: 8.25rem;
-                height: 8.25rem;                
-                box-shadow: 0.125rem 0.125rem 0.25rem 0.125rem #888888;
+                height: 8.25rem;     
                 position: relative;    
               }            
             }
@@ -57,21 +59,34 @@ $bgcolor-selection:#DEDEDE;
               width: 60%;         
               min-height: 11rem;              
               p{
-                color: #39C23E;
-                font-size: 0.75rem;                
+                color: $bgcolor-button;
+                font-size: 0.75rem;   
+                &.out-stock{
+                  color: $msg-color;
+                }                   
               }
-              span
-              {
-                background-color: $bgcolor-selection;
-                width: 3.125rem;  
-                padding: 0.313rem;
-                border-radius: 0.438rem;  
-                overflow:hidden;     
-                font-weight: 500;            
-                select{
-                  background-color: transparent;  
-                  border:0;
-                  outline:0;
+              div{       
+                display: flex;                               
+                span
+                {
+                  display: flex;
+                  background-color: $bgcolor-selection;
+                  width: 5.5rem;  
+                  padding: 0.313rem;
+                  border-radius: 0.438rem;  
+                  overflow:hidden;     
+                  font-weight: 500;  
+                  select{
+                    background-color: transparent;  
+                    border:0;
+                    outline:0;
+                    padding-left: 0.5rem;
+                  }                  
+                }
+                p{
+                  padding : 0 0 0 5rem;    
+                  color: $msg-color; 
+                  cursor: pointer;
                 }
               }
             }
@@ -159,15 +174,14 @@ $bgcolor-selection:#DEDEDE;
             padding:1.5rem 0;            
             input{
                 padding: 0.625rem;
-                border-radius: 0.3125rem;
-                box-shadow: 0 1.25rem 1.25rem -1rem rgba(55, 218, 150, 0.5);
-                background-color: #45B643;
+                border-radius: 0.3125rem;               
+                background-color:$bgcolor-button;
                 font-size: 1rem;
                 font-weight: normal;
-                color: #fff;
+                color: $textcolor;
                 cursor: pointer;              
                 transition: 0.3s;
-                border:  #fff; 
+                border:  $textcolor; 
                 width:100%;               
             }                        
           }

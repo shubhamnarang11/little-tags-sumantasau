@@ -8,6 +8,9 @@ import other from "./Other.png";
 import google_login from "./google.png";
 import facebook_login from "./facebook.png";
 import loginleft from "./loginleft.png";
+import hero_tshirt from "./hero_tshirt.jpg";
+import hero_sneakers from "./hero_sneakers.jpg";
+import hero_accessories from "./hero_accessories.jpg";
 
 export {
   APP_LOGO,
@@ -20,4 +23,7 @@ export {
   google_login,
   facebook_login,
   loginleft,
+  hero_tshirt,
+  hero_sneakers,
+  hero_accessories,
 };

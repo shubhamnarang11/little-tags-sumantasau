@@ -2,6 +2,7 @@ $bgcolor: #282828;
 $textcolor: #fff;
 $fontsize-h2: 1rem;
 $fontsize-p: 0.7rem;
+$bgcolor-button: #ff9f00;
 * {
   box-sizing: border-box;
 }
@@ -59,19 +60,18 @@ $fontsize-p: 0.7rem;
         &.subscriptio-textbox {
           padding: 0.3rem;
           border-radius: 0.3125rem;
-          border: solid 0.0625rem #e4e8ee;
+          border: solid 0.0625rem $textcolor;
           font-size: 1rem;
         }
         &.subscription-button {
           padding: 0.3rem;
-          border-radius: 0.3125rem;
-          box-shadow: 0 1.25rem 1.25rem -1rem rgba(224, 148, 134, 0.651);
-          background-color: #db4315;
-          font-size: 1rem;
+          border-radius: 0.3125rem;         
+          background-color:$bgcolor-button;
+          font-size: 0.875rem;
           font-weight: normal;
-          color: #fff;
+          color: $textcolor;
           cursor: pointer;
-          border: #fff;
+          border: $textcolor;
         }
       }
     }
