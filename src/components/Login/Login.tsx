@@ -159,7 +159,7 @@ export default function Login(props: LoginModalProps) {
               <p>
                 <img
                   src={AVATAR_IMAGE}
-                  className="profile-image"
+                  className="profile-img"
                   alt={AVATAR_ALT_TAG}
                   onClick={onImageClick}
                 />

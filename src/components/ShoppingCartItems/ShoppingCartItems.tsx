@@ -18,6 +18,10 @@ const ShoppingCartItems: FC<ShoppingCartItemsModel.IProps> = ({ cartItems }) => 
     0
   );
 
+  const handleRemoveItem = () => {
+
+  };
+
   return (
     <div>
       <h2>{SHOPPINGCART_HEADING}</h2>
@@ -35,15 +39,18 @@ const ShoppingCartItems: FC<ShoppingCartItemsModel.IProps> = ({ cartItems }) => 
           </div>
           <div className='item-info'>
             <h3>{item.productName}</h3>
-            <p>In Stock</p>
+            {item.quantity> 0 ? <p>In Stock</p> : <p className="out-stock">Out of Stock</p>} 
+            <div className="quantity-remove">     
             <span className='quantity-selection'>
               Qty :{' '}
               <select value={item.quantity}>
                 {[...Array(item.totalQuantity).keys()].map((quantity) => (
                   <option value={quantity}>{quantity}</option>
                 ))}
-              </select>
+              </select>             
             </span>
+            <p onClick={handleRemoveItem}>Remove</p>
+            </div>
           </div>
           <div className='item-price'>&#8377; {item.price}</div>
           <hr />
