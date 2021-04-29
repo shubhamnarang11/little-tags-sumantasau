@@ -54,7 +54,7 @@ export const STATIC_DATA = {
       DELIVERYADDRESS_Add: "Add New Address",
       ADD_DELIVERYADDRESS_HEADING: "ADD DELIVERY ADDRESS",
       FIRSTNAME_TEXT: "First Name",
-      FIRSTNAME_PLACEHOLDER: "Enter first name",
+      FIRSTNAME_PLACEHOLDER: "Enter first name",      
       LASTNAME_TEXT: "Last Name",
       LASTNAME_PLACEHOLDER: "Enter last name",
       MOBILE_TEXT: "Mobile Number",
@@ -69,6 +69,21 @@ export const STATIC_DATA = {
       CITY_PLACEHOLDER: "Select City",
       PINCODE_TEXT: "Pin Code",
       PINCODE_PLACEHOLDER: "Enter pin code",
+
+      FIRSTNAME_VALIDATION_TEXT: "Please enter first name",
+      ADDRESS1_VALIDATION_TEXT: "Please enter address1",
+      STATE_VALIDATION_TEXT: "Please select state",
+      MOBILE_VALIDATION_TEXT: "Please enter mobile no.",
+      MOBILE_VALID_TEXT: "Please enter valid mobile no.",
+      PINCODE_VALIDATION_TEXT: "Please enter pin code",
+      PINCODE_VALID_TEXT: "Please enter valid pin code",
+    },
+    OrderHistory : {
+      ORDER_HISTORY_HEADING : "ORDER HISTORY",
+      ORDER_QUANTITY: "Ordered Quantity",
+      TOTAL_ORDERED: "Total Ordered",
+      DEVLIVERED_ON: "Delivered on",
+      ORDERED_ON: "Ordered on",
     },
     App: {
       CATEGORIES: {
@@ -663,4 +678,34 @@ export const TEST_DATA = {
       text: "Collections",
     },
   ],
+  ORDER_HISTORY_DATA: [
+    {
+      id: 1,
+      productname: "Printed Polo Collar T-shirt",
+      category: "T-Shirts",
+      categoryId: 1,
+      productId : 2,
+      total_price: 531,      
+      quantity: 1,
+      order_date: "12-Apr-2021",
+      delivery_date: "17-Apr-2021",
+      image: 
+        "https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/2521204/2018/2/26/11519626464547-na-8991519626464330-1.jpg",        
+      
+    },
+    {
+      id: 2,
+      productname: "Women Analogue Watch",
+      category: "Other Accessories",
+      categoryId: 5,
+      productId : 41,
+      total_price: 319,      
+      quantity: 1,
+      order_date: "1-Mar-2021",
+      delivery_date: "9-Mar-2021",
+      image: 
+        "https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/2211587/2018/5/28/7d6edb63-8219-4d33-b02a-7d860a4d11711527489620300-DressBerry-Women-Brown-Analogue-Watch-8741527489620072-1.jpg",
+      
+    },
+  ]
 };

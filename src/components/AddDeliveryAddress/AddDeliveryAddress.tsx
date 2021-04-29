@@ -26,6 +26,13 @@ export default function AddDeliveryAddress() {
         CITY_PLACEHOLDER,
         PINCODE_TEXT,
         PINCODE_PLACEHOLDER,
+        FIRSTNAME_VALIDATION_TEXT,
+        ADDRESS1_VALIDATION_TEXT,
+        STATE_VALIDATION_TEXT,
+        MOBILE_VALIDATION_TEXT,
+        MOBILE_VALID_TEXT,
+        PINCODE_VALIDATION_TEXT,
+        PINCODE_VALID_TEXT,
       },
     },
   } = STATIC_DATA;
@@ -42,7 +49,7 @@ export default function AddDeliveryAddress() {
     []
   );
 
-  const [userFirstName, setuserFirstName] = useState("");
+  const [userFirstName, setuserFirstName] = useState(""); 
   const [userLastName, setuserLastName] = useState("");
   const [userAddress1, setuserAddress1] = useState("");
   const [userAddress2, setuserAddress2] = useState("");
@@ -51,6 +58,12 @@ export default function AddDeliveryAddress() {
   const [userMobile, setuserMobile] = useState("");
   const [userPincode, setuserPincode] = useState("");
   const [userDefaultAddress, setuserDefaultAddress] = useState(false);
+
+  const [requireduserFirstName, setrequireduserFirstName] = useState('');
+  const [requireduserAddress1, setrequireduserAddress1] = useState('');
+  const [requireduserState, setrequireduserState] = useState('');
+  const [requireduserMobile, setrequireduserMobile] = useState('');
+  const [requireduserPincode, setrequireduserPincode] = useState('');
 
   const history = useHistory();
 
@@ -69,14 +82,45 @@ export default function AddDeliveryAddress() {
     setuserCityName(event.nativeEvent.target[index].text);
   };
 
-  const onSaveClick = () => {
-    if (
-      userFirstName &&
-      userLastName &&
-      userAddress1 &&
-      userStateName &&
-      userPincode
-    ) {
+  const checkValidation = () =>{   
+    let flag = true;
+    if(!userFirstName){      
+      setrequireduserFirstName(FIRSTNAME_VALIDATION_TEXT)
+      flag = false;
+    }
+    if(!userAddress1){      
+      setrequireduserAddress1(ADDRESS1_VALIDATION_TEXT)
+      flag = false;
+    }
+    if(!userStateName){      
+      setrequireduserState(STATE_VALIDATION_TEXT)
+      flag = false;
+    }
+    if(!userMobile){      
+      setrequireduserMobile(MOBILE_VALIDATION_TEXT)
+      flag = false;
+    }
+    else{
+      if(userMobile.length !== 10){      
+        setrequireduserMobile(MOBILE_VALID_TEXT)
+        flag = false;
+      }
+    }
+    if(!userPincode){      
+      setrequireduserPincode(PINCODE_VALIDATION_TEXT)
+      flag = false;
+    }
+    else{
+      if(userPincode.length !== 6){      
+        setrequireduserPincode(PINCODE_VALID_TEXT)
+        flag = false;
+      }
+    }
+    return flag;
+  }
+
+  const onSaveClick = () => {   
+    if (checkValidation()) {
       let addressId = DELIVERY_ADDRESS_DATA.length + 1;
       DELIVERY_ADDRESS_DATA.push({
         id: addressId,
@@ -116,6 +160,7 @@ export default function AddDeliveryAddress() {
           }}
           required
         />
+        <p className="validation-msg-left">{requireduserFirstName ? requireduserFirstName : "" }</p>
 
         <p className="input-heading">{ADDRESS_LINE1_TEXT}</p>
         <input
@@ -128,7 +173,7 @@ export default function AddDeliveryAddress() {
           }}
           required
         />
-
+        <p className="validation-msg-left">{requireduserAddress1 ? requireduserAddress1 : "" }</p>
         <p className="input-heading">{STATE_TEXT}</p>
         <select onChange={handleStateSelect}>
           <option>{STATE_PLACEHOLDER}</option>
@@ -138,7 +183,7 @@ export default function AddDeliveryAddress() {
             )
           )}
         </select>
-
+        <p className="validation-msg-left">{requireduserState ? requireduserState : "" }</p>
         <p className="input-heading">{MOBILE_TEXT}</p>
         <input
           type="text"
@@ -151,6 +196,7 @@ export default function AddDeliveryAddress() {
           maxLength={10}
           required
         />
+        <p className="validation-msg-left">{requireduserMobile ? requireduserMobile : "" }</p>
       </div>
       <div className="right">
         <p>{LASTNAME_TEXT}</p>
@@ -164,7 +210,7 @@ export default function AddDeliveryAddress() {
           }}
           required
         />
-
+         <p className="validation-msg-right"></p>
         <p>{ADDRESS_LINE2_TEXT}</p>
         <input
           type="text"
@@ -176,7 +222,7 @@ export default function AddDeliveryAddress() {
           }}
           required
         />
-
+        <p className="validation-msg-right"></p>
         <p>{CITY_TEXT}</p>
         <select onChange={handleCitySelect}>
           <option>{CITY_PLACEHOLDER}</option>
@@ -186,7 +232,7 @@ export default function AddDeliveryAddress() {
             )
           )}
         </select>
-
+        <p className="validation-msg-right"></p>
         <p>{PINCODE_TEXT}</p>
         <input
           type="text"
@@ -199,6 +245,7 @@ export default function AddDeliveryAddress() {
           maxLength={6}
           required
         />
+         <p className="validation-msg-right">{requireduserPincode ? requireduserPincode : "" }</p>       
       </div>
       <section>
         <input
