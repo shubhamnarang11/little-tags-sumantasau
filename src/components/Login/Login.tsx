@@ -150,7 +150,7 @@ const Login: FC<LoginModel.IProps> = ({ onCloseLoginModalClick, setUser }) => {
               <p>
                 <img
                   src={AVATAR_IMAGE}
-                  className='profile-image'
+                  className="profile-img"
                   alt={AVATAR_ALT_TAG}
                   onClick={onImageClick}
                 />
