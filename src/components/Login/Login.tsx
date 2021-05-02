@@ -11,8 +11,13 @@ import FirebaseContext from '../Firebase/Context';
 import { LoginModel } from '../../models/Login.model';
 import { connect } from 'react-redux';
 import { setUser } from '../../actions/Login.action';
+import { addItemsToCart } from '../../actions/ProductDetails.action';
 
-const Login: FC<LoginModel.IProps> = ({ onCloseLoginModalClick, setUser }) => {
+const Login: FC<LoginModel.IProps> = ({
+  onCloseLoginModalClick,
+  setUser,
+  addItemsToCart,
+}) => {
   const firebase = useContext(FirebaseContext);
   const [errorMessage, setErrorMessage] = useState('');
   const [displayMobile, setdisplayMobile] = useState(true);
@@ -86,33 +91,40 @@ const Login: FC<LoginModel.IProps> = ({ onCloseLoginModalClick, setUser }) => {
     firebase
       .doGoogleSignIn()
       .then((authUser: any) => {
-        console.log({
-          phone: authUser.user.phoneNumber,
-          email: authUser.user.email,
-          image: authUser.user.photoURL,
-          name: authUser.user.displayName,
-        });
-        
-        setUser({
-          phone: authUser.user.phoneNumber,
-          email: authUser.user.email,
-          image: authUser.user.photoURL,
-          name: authUser.user.displayName,
-        });
-        return firebase.user(authUser.user.uid).set({
-          email: authUser.user.email,
-          username: authUser.user.displayName,
-          roles: {},
-        });
+        firebase.db
+          .ref(`users/${authUser.user.uid}`)
+          .once('value', (snap: any) => {
+            const user = snap.val();
+
+            if (user) {
+              setUser(user);
+              if (user.cartItems) {
+                addItemsToCart(user.cartItems);
+              }
+            } else {
+              const newUser = {
+                uid: authUser.user.uid,
+                email: authUser.user.email,
+                name: authUser.user.displayName,
+                phone: authUser.user.phoneNumber,
+                image: authUser.user.photoURL,
+                wishlist: [],
+                orders: [],
+                cartItems: [],
+                addresses: [],
+              };
+              setUser(newUser);
+              firebase.db
+                .ref(`users/${authUser.user.uid}`)
+                .set(newUser)
+                .catch(console.log);
+            }
+          });
       })
       .then(() => {
-        console.log("here");
-        
         onCloseLoginModalClick();
       })
       .catch((error: any) => {
-        console.log(error);
-        
         setErrorMessage(error.message);
       });
   };
@@ -150,7 +162,7 @@ const Login: FC<LoginModel.IProps> = ({ onCloseLoginModalClick, setUser }) => {
               <p>
                 <img
                   src={AVATAR_IMAGE}
-                  className="profile-img"
+                  className='profile-img'
                   alt={AVATAR_ALT_TAG}
                   onClick={onImageClick}
                 />
@@ -261,4 +273,4 @@ const Login: FC<LoginModel.IProps> = ({ onCloseLoginModalClick, setUser }) => {
   );
 };
 
-export default connect(null, { setUser })(Login);
+export default connect(null, { setUser, addItemsToCart })(Login);

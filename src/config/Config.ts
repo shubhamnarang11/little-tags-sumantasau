@@ -8,6 +8,7 @@ export const CONFIG = {
     ADD_DELIVERY_ADDRESS: '/add-delivery-address',
     PRODUCT_DETAILS: '/product-details',
     PRODUCTS: '/products',
+    ORDER_HISTORY: '/order-history',
   },
   CATEGORY_HEADER_NOT_AVAILABLE_ROUTES: [
     '/profile',

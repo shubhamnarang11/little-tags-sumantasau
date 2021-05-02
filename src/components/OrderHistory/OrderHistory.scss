@@ -1,0 +1,41 @@
+$fontsize: 0.525rem;
+$textcolor: #fff;
+$bgcolor-border: #dedede;
+$bgcolor-button: #282828;
+
+* {
+  box-sizing: border-box;
+}
+#order-history-container {
+  padding: 0.938rem;
+  text-align: center;
+  section {
+    text-align: center;
+    .order-info {
+      width: 70%;
+      border: 0.125rem solid $bgcolor-border;
+      text-align: left;
+      display: inline-block;
+      margin: 0.625rem;
+      border-radius: 0.625rem;
+      img {
+        width: 8.5rem;
+        height: 8.5rem;
+        padding: 0.625rem;
+        float: left;
+      }
+      .order-item-info {
+        float: left;
+        width: 55%;
+        margin: 0;
+        padding: 0 0 0 1.25rem;
+        font-size: 0.938rem;
+      }
+      .delivery-info {
+        float: right;
+        width: 25%;
+        font-size: 15px;
+      }
+    }
+  }
+}

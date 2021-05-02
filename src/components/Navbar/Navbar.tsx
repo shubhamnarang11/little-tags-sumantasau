@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { APP_LOGO, MultiLingual } from '../../assets';
@@ -82,7 +82,11 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize, loggedInUser }) => {
     history.push(`${PRODUCTS}?cid=${id}&cname=${name}`);
   };
 
-  console.log(loggedInUser);
+  useEffect(() => {
+    return () => {
+      setSearchTerm('');
+    };
+  }, []);
 
   return (
     <>
@@ -98,6 +102,7 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize, loggedInUser }) => {
             placeholder={SEARCH_PLACEHOLDER}
             onChange={(event) => setSearchTerm(event.target.value)}
             className={searchTerm ? 'plain-border' : 'round-border'}
+            value={searchTerm}
           ></input>
           {searchTerm && (
             <ul className='search-menu'>
@@ -108,7 +113,7 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize, loggedInUser }) => {
                 >
                   <img src={item.image} alt={NO_IMAGE_FOUND}></img>
                   <div>
-                    <h4>{item.name}</h4>
+                    <h4>All {item.name}</h4>
                   </div>
                 </li>
               ))}
@@ -124,15 +129,20 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize, loggedInUser }) => {
             </ul>
           )}
         </div>
-        <div className='shopping-cart'>
-          <img src={MultiLingual} alt={NO_IMAGE_FOUND}></img>
-          <i className='fa fa-heart'></i>
-          <Link to={`${SHOPPING_CART}/cart-items`}>
-            <i className='fa fa-shopping-cart'></i>
-          </Link>
-          {cartSize > 0 && <div id='cart-total'>{cartSize}</div>}
-        </div>
+
         <div className='user-div'>
+          <div className='shopping-cart'>
+            <img src={MultiLingual} alt={NO_IMAGE_FOUND}></img>
+            <i className='fa fa-heart'></i>
+            <Link to={`${SHOPPING_CART}/cart-items`}>
+              <i className='fa fa-shopping-cart'></i>
+            </Link>
+            {cartSize > 0 && (
+              <div id='cart-total'>
+                <Link to={`${SHOPPING_CART}/cart-items`}>{cartSize}</Link>
+              </div>
+            )}
+          </div>
           {loggedInUser && Object.keys(loggedInUser).length > 0 ? (
             <>
               <p onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}>
@@ -142,31 +152,21 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize, loggedInUser }) => {
               {isUserMenuOpen ? (
                 <ul className='user-menu'>
                   {USER_MENU_ITEMS.map((item) => (
-                   <Link to={item.path}> <li>
-                      {item.name}
-                    </li></Link>
+                    <Link to={item.path}>
+                      <li>{item.name}</li>
+                    </Link>
                   ))}
                 </ul>
               ) : null}
             </>
           ) : (
-            <>
-              {showLoginModal && (
-                <Login
-                  onCloseLoginModalClick={() => {
-                    setShowLoginModal(false);
-                  }}
-                />
-              )}
-              <p
-                onClick={() => {
-                  setShowLoginModal(true);
-                }}
-              >
-                {SIGN_IN_CREATE_ACCOUNT}
-              </p>
-              <i className='fa fa-user-circle-o'></i>
-            </>
+            <p
+              onClick={() => {
+                setShowLoginModal(true);
+              }}
+            >
+              {SIGN_IN_CREATE_ACCOUNT}
+            </p>
           )}
         </div>
       </div>
@@ -186,6 +186,13 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize, loggedInUser }) => {
         )}
         <i className='fa fa-shopping-cart shopping-cart'></i>
       </div>
+      {showLoginModal && (
+        <Login
+          onCloseLoginModalClick={() => {
+            setShowLoginModal(false);
+          }}
+        />
+      )}
     </>
   );
 };
