@@ -10,6 +10,7 @@ import {
   Footer,
   ProductDetails,
   Dashboard,
+  OrderHistory,
 } from "./components";
 import { STATIC_DATA } from "./config/StaticData";
 import Products from "./components/Products/Products";
@@ -25,6 +26,7 @@ function App() {
       SHOPPING_CART,
       ADD_DELIVERY_ADDRESS,
       PRODUCTS,
+      ORDER_HISTORY,
     },
     CATEGORY_HEADER_NOT_AVAILABLE_ROUTES,
   } = CONFIG;
@@ -71,6 +73,9 @@ function App() {
           <ProductDetails></ProductDetails>
         </Route>
         <Route path={PRODUCTS} component={Products}></Route>
+        <Route path={ORDER_HISTORY}>
+          <OrderHistory />
+        </Route>
       </Switch>
 
       <Footer />

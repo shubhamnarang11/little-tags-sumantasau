@@ -1,6 +1,7 @@
 $fontsize: 0.525rem;
 $bgcolor-button: #282828;
 $boder-color: #282828;
+$validation-msg: red;
 * {
   box-sizing: border-box;
 }
@@ -45,12 +46,28 @@ $boder-color: #282828;
       padding: 1.25rem 0 0 14rem;
       text-align: left;
     }
+    .validation-msg-left {
+      margin: 0;
+      font-size: 0.9rem;
+      text-align: left;
+      padding: 0.1rem 0 0 14rem;
+      color: $validation-msg;
+      height: 0.938rem;
+    }
   }
   .right {
     float: left;
     text-align: left;
     width: 50%;
     padding: 0.938rem;
+    .validation-msg-right {
+      margin: 0;
+      font-size: 0.9rem;
+      text-align: left;
+      padding: 0.1rem 0 0 0;
+      color: $validation-msg;
+      height: 0.938rem;
+    }
   }
   section {
     text-align: center;

@@ -13,6 +13,7 @@ import ShoppingCartItems from './ShoppingCartItems/ShoppingCartItems';
 import ProductCard from './ProductCard/ProductCard';
 import Login from './Login/Login';
 import HeroContainer from './HeroContainer/HeroContainer';
+import OrderHistory from './OrderHistory/OrderHistory';
 
 export {
   Navbar,
@@ -29,5 +30,6 @@ export {
   ShoppingCartItems,
   ProductCard,
   Login,
-  HeroContainer
+  HeroContainer,
+  OrderHistory
 };

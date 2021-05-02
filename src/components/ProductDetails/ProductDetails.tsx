@@ -197,10 +197,10 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
           </button>
 
           <div className='purchase-buttons'>
-            <button className='add-to-cart' onClick={() => addOrBuyItem()}>
+            <button className='add-to-cart' onClick={() => addOrBuyItem()} disabled={!selectedSize}>
               Add to Cart
             </button>
-            <button className='buy-now' onClick={() => addOrBuyItem(true)}>
+            <button className='buy-now' onClick={() => addOrBuyItem(true)} disabled={!selectedSize}>
               Buy Now
             </button>
           </div>

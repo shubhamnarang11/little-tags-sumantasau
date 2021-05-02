@@ -104,7 +104,10 @@
         }
         &:focus {
           outline: none;
-        }
+        }       
+      }
+      button:disabled {
+        cursor: not-allowed;       
       }
     }
   }
