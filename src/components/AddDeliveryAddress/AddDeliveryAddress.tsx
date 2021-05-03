@@ -1,11 +1,18 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import "./AddDeliveryAddress.scss";
-import { CONFIG } from "../../config/Config";
-import { STATIC_DATA, TEST_DATA } from "../../config/StaticData";
-import useLocalStorage from "../../hooks/useLocalStorage";
+import React, { FC, useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import './AddDeliveryAddress.scss';
+import { CONFIG } from '../../config/Config';
+import { STATIC_DATA, TEST_DATA } from '../../config/StaticData';
+import FirebaseContext from '../Firebase/Context';
+import { v4 } from 'uuid';
+import { connect } from 'react-redux';
+import { AddDeliveryAddressModel } from '../../models/AddDeliveryAddress.model';
+import { setUser } from '../../actions/Login.action';
 
-export default function AddDeliveryAddress() {
+const AddDeliveryAddress: FC<AddDeliveryAddressModel.IProps> = ({
+  loggedInUser,
+  setUser,
+}) => {
   const {
     ENGLISH: {
       DeliveryAddress: {
@@ -44,26 +51,23 @@ export default function AddDeliveryAddress() {
   } = CONFIG;
 
   const [City, setCity] = useState<any>([]);
-  const [DELIVERY_ADDRESS_DATA, setDELIVERY_ADDRESS_DATA] = useLocalStorage(
-    "DELIVERY_ADDRESS_DATA",
-    []
-  );
+  const firebase = useContext(FirebaseContext);
 
-  const [userFirstName, setuserFirstName] = useState("");
-  const [userLastName, setuserLastName] = useState("");
-  const [userAddress1, setuserAddress1] = useState("");
-  const [userAddress2, setuserAddress2] = useState("");
-  const [userStateName, setuserStateName] = useState("");
-  const [userCityName, setuserCityName] = useState("");
-  const [userMobile, setuserMobile] = useState("");
-  const [userPincode, setuserPincode] = useState("");
+  const [userFirstName, setuserFirstName] = useState('');
+  const [userLastName, setuserLastName] = useState('');
+  const [userAddress1, setuserAddress1] = useState('');
+  const [userAddress2, setuserAddress2] = useState('');
+  const [userStateName, setuserStateName] = useState('');
+  const [userCityName, setuserCityName] = useState('');
+  const [userMobile, setuserMobile] = useState('');
+  const [userPincode, setuserPincode] = useState('');
   const [userDefaultAddress, setuserDefaultAddress] = useState(false);
 
-  const [requireduserFirstName, setrequireduserFirstName] = useState("");
-  const [requireduserAddress1, setrequireduserAddress1] = useState("");
-  const [requireduserState, setrequireduserState] = useState("");
-  const [requireduserMobile, setrequireduserMobile] = useState("");
-  const [requireduserPincode, setrequireduserPincode] = useState("");
+  const [requireduserFirstName, setrequireduserFirstName] = useState('');
+  const [requireduserAddress1, setrequireduserAddress1] = useState('');
+  const [requireduserState, setrequireduserState] = useState('');
+  const [requireduserMobile, setrequireduserMobile] = useState('');
+  const [requireduserPincode, setrequireduserPincode] = useState('');
 
   const history = useHistory();
 
@@ -119,22 +123,54 @@ export default function AddDeliveryAddress() {
 
   const onSaveClick = () => {
     if (checkValidation()) {
-      let addressId = DELIVERY_ADDRESS_DATA.length + 1;
-      DELIVERY_ADDRESS_DATA.push({
-        id: addressId,
-        name: userFirstName + " " + userLastName,
-        address: userAddress1 + " " + userAddress2,
+      const newAddress = {
+        id: v4(),
+        name: userFirstName + ' ' + userLastName,
+        address: userAddress1 + ' ' + userAddress2,
         state: userStateName,
         city: userCityName,
         pincode: userPincode,
         mobile: userMobile,
         isDefault: userDefaultAddress,
-      });
-      setDELIVERY_ADDRESS_DATA(DELIVERY_ADDRESS_DATA);
-      window.localStorage.setItem(
-        "DELIVERY_ADDRESS_DATA",
-        JSON.stringify(JSON.stringify(DELIVERY_ADDRESS_DATA))
-      );
+      };
+      if (!loggedInUser.addresses) {
+        const newUser = {
+          ...loggedInUser,
+          addresses: [newAddress],
+        };
+        firebase.db
+          .ref(`users/${loggedInUser.uid}`)
+          .set(newUser)
+          .then(() => setUser(newUser));
+      } else {
+        if (userDefaultAddress) {
+          const oldDefaultAddress = loggedInUser.addresses.find(
+            (addr: any) => addr.isDefault
+          );
+
+          if (oldDefaultAddress) {
+            oldDefaultAddress.isDefault = false;
+          }
+
+          const newUser = {
+            ...loggedInUser,
+            addresses: [...loggedInUser.addresses, newAddress],
+          };
+          firebase.db
+            .ref(`users/${loggedInUser.uid}`)
+            .set(newUser)
+            .then(() => setUser(newUser));
+        } else {
+          const newUser = {
+            ...loggedInUser,
+            addresses: [...loggedInUser.addresses, newAddress],
+          };
+          firebase.db
+            .ref(`users/${loggedInUser.uid}`)
+            .set(newUser)
+            .then(() => setUser(newUser));
+        }
+      }
       history.push(DELIVERY_ADDRESS);
     }
   };
@@ -144,13 +180,13 @@ export default function AddDeliveryAddress() {
   };
 
   return (
-    <div id="add-delivery-address-container">
+    <div id='add-delivery-address-container'>
       <h3>{ADD_DELIVERYADDRESS_HEADING}</h3>
-      <div className="left">
-        <p className="input-heading">{FIRSTNAME_TEXT}</p>
+      <div className='left'>
+        <p className='input-heading'>{FIRSTNAME_TEXT}</p>
         <input
-          type="text"
-          className="input-box"
+          type='text'
+          className='input-box'
           placeholder={FIRSTNAME_PLACEHOLDER}
           value={userFirstName}
           onChange={(event) => {
@@ -158,14 +194,14 @@ export default function AddDeliveryAddress() {
           }}
           required
         />
-        <p className="validation-msg-left">
-          {requireduserFirstName ? requireduserFirstName : ""}
+        <p className='validation-msg-left'>
+          {requireduserFirstName ? requireduserFirstName : ''}
         </p>
 
-        <p className="input-heading">{ADDRESS_LINE1_TEXT}</p>
+        <p className='input-heading'>{ADDRESS_LINE1_TEXT}</p>
         <input
-          type="text"
-          className="input-box"
+          type='text'
+          className='input-box'
           placeholder={ADDRESS_LINE1_PLACEHOLDER}
           value={userAddress1}
           onChange={(event) => {
@@ -173,10 +209,10 @@ export default function AddDeliveryAddress() {
           }}
           required
         />
-        <p className="validation-msg-left">
-          {requireduserAddress1 ? requireduserAddress1 : ""}
+        <p className='validation-msg-left'>
+          {requireduserAddress1 ? requireduserAddress1 : ''}
         </p>
-        <p className="input-heading">{STATE_TEXT}</p>
+        <p className='input-heading'>{STATE_TEXT}</p>
         <select onChange={handleStateSelect}>
           <option>{STATE_PLACEHOLDER}</option>
           {STATE_DATA.sort((a, b) => (a.name > b.name ? 1 : -1)).map(
@@ -185,13 +221,13 @@ export default function AddDeliveryAddress() {
             )
           )}
         </select>
-        <p className="validation-msg-left">
-          {requireduserState ? requireduserState : ""}
+        <p className='validation-msg-left'>
+          {requireduserState ? requireduserState : ''}
         </p>
-        <p className="input-heading">{MOBILE_TEXT}</p>
+        <p className='input-heading'>{MOBILE_TEXT}</p>
         <input
-          type="text"
-          className="input-box"
+          type='text'
+          className='input-box'
           placeholder={MOBILE_PLACEHOLDER}
           value={userMobile}
           onChange={(event) => {
@@ -200,15 +236,15 @@ export default function AddDeliveryAddress() {
           maxLength={10}
           required
         />
-        <p className="validation-msg-left">
-          {requireduserMobile ? requireduserMobile : ""}
+        <p className='validation-msg-left'>
+          {requireduserMobile ? requireduserMobile : ''}
         </p>
       </div>
-      <div className="right">
+      <div className='right'>
         <p>{LASTNAME_TEXT}</p>
         <input
-          type="text"
-          className="input-box"
+          type='text'
+          className='input-box'
           placeholder={LASTNAME_PLACEHOLDER}
           value={userLastName}
           onChange={(event) => {
@@ -216,11 +252,11 @@ export default function AddDeliveryAddress() {
           }}
           required
         />
-        <p className="validation-msg-right"></p>
+        <p className='validation-msg-right'></p>
         <p>{ADDRESS_LINE2_TEXT}</p>
         <input
-          type="text"
-          className="input-box"
+          type='text'
+          className='input-box'
           placeholder={ADDRESS_LINE2_PLACEHOLDER}
           value={userAddress2}
           onChange={(event) => {
@@ -228,7 +264,7 @@ export default function AddDeliveryAddress() {
           }}
           required
         />
-        <p className="validation-msg-right"></p>
+        <p className='validation-msg-right'></p>
         <p>{CITY_TEXT}</p>
         <select onChange={handleCitySelect}>
           <option>{CITY_PLACEHOLDER}</option>
@@ -238,11 +274,11 @@ export default function AddDeliveryAddress() {
             )
           )}
         </select>
-        <p className="validation-msg-right"></p>
+        <p className='validation-msg-right'></p>
         <p>{PINCODE_TEXT}</p>
         <input
-          type="text"
-          className="input-box"
+          type='text'
+          className='input-box'
           placeholder={PINCODE_PLACEHOLDER}
           value={userPincode}
           onChange={(event) => {
@@ -251,13 +287,13 @@ export default function AddDeliveryAddress() {
           maxLength={6}
           required
         />
-        <p className="validation-msg-right">
-          {requireduserPincode ? requireduserPincode : ""}
+        <p className='validation-msg-right'>
+          {requireduserPincode ? requireduserPincode : ''}
         </p>
       </div>
       <section>
         <input
-          type="checkbox"
+          type='checkbox'
           checked={userDefaultAddress}
           onChange={(event) => {
             setuserDefaultAddress(!userDefaultAddress);
@@ -267,19 +303,25 @@ export default function AddDeliveryAddress() {
         <br />
         <span>
           <input
-            type="button"
-            value="Save"
-            className="input-button"
+            type='button'
+            value='Save'
+            className='input-button'
             onClick={onSaveClick}
           />
           <input
-            type="button"
-            value="Cancel"
-            className="input-button"
+            type='button'
+            value='Cancel'
+            className='input-button'
             onClick={onCancelClick}
           />
         </span>
       </section>
     </div>
   );
-}
+};
+
+const mapStateToProps = (state: any) => ({
+  loggedInUser: state.loginState.loggedInUser,
+});
+
+export default connect(mapStateToProps, { setUser })(AddDeliveryAddress);

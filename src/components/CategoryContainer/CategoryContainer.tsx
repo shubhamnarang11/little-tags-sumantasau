@@ -1,14 +1,16 @@
 import React, { FC } from 'react';
-import { STATIC_DATA, TEST_DATA } from '../../config/StaticData';
+import { STATIC_DATA } from '../../config/StaticData';
 import { CategoryContainerModel } from '../../models/CategoryContainer.model';
 import { Carousel } from '../';
 import './CategoryContainer.scss';
 import { Link } from 'react-router-dom';
 import { CONFIG } from '../../config/Config';
+import { connect } from 'react-redux';
 
 const CategoryContainer: FC<CategoryContainerModel.IProps> = ({
   categoryId,
   categoryName,
+  products,
 }) => {
   const {
     ENGLISH: { NO_IMAGE_FOUND },
@@ -18,8 +20,7 @@ const CategoryContainer: FC<CategoryContainerModel.IProps> = ({
   } = CONFIG;
 
   const getCategoryProducts = () => {
-    const { PRODUCTS_DATA } = TEST_DATA;
-    return PRODUCTS_DATA.filter((data) => data.categoryId === categoryId);
+    return products.filter((data: any) => data.categoryId === categoryId);
   };
 
   return (
@@ -34,7 +35,7 @@ const CategoryContainer: FC<CategoryContainerModel.IProps> = ({
           infiniteLoop={false}
           carouselContainerClass='category-container'
         >
-          {getCategoryProducts().map((product) => (
+          {getCategoryProducts().map((product: any) => (
             <Link to={`${PRODUCT_DETAILS}?pid=${product.id}`} key={product.id}>
               <li>
                 <img src={product.images[0]} alt={NO_IMAGE_FOUND}></img>
@@ -49,4 +50,8 @@ const CategoryContainer: FC<CategoryContainerModel.IProps> = ({
   );
 };
 
-export default CategoryContainer;
+const mapStateToProps = (state: any) => ({
+  products: state.dashboardState.products,
+});
+
+export default connect(mapStateToProps)(CategoryContainer);

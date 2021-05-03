@@ -1,16 +1,14 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import "./DeliveryAddress.scss";
-import { STATIC_DATA } from "../../config/StaticData";
-import { CONFIG } from "../../config/Config";
-import useLocalStorage from "../../hooks/useLocalStorage";
+import React, { FC, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import './DeliveryAddress.scss';
+import { STATIC_DATA } from '../../config/StaticData';
+import { CONFIG } from '../../config/Config';
+import { DeliveryAddressModel } from '../../models/DeliveryAddress.model';
+import { connect } from 'react-redux';
 
-export default function DeliveryAddress() {
-  const [DELIVERY_ADDRESS_DATA, setDELIVERY_ADDRESS_DATA] = useLocalStorage(
-    "DELIVERY_ADDRESS_DATA",
-    []
-  );
-
+const DeliveryAddress: FC<DeliveryAddressModel.IProps> = ({
+  userAddresses,
+}) => {
   const {
     ENGLISH: {
       DeliveryAddress: { DELIVERYADDRESS_HEADING, DELIVERYADDRESS_Add },
@@ -21,16 +19,7 @@ export default function DeliveryAddress() {
     ROUTES: { ADD_DELIVERY_ADDRESS },
   } = CONFIG;
 
-  const getDefaultDeliveryAddress = () => {
-    const DeliveryAddress = DELIVERY_ADDRESS_DATA.filter(
-      (data: any) => data.isDefault === true
-    );
-    return DeliveryAddress[0].id;
-  };
-
-  const [DeliveryAddress, setDeliveryAddress] = useState(
-    getDefaultDeliveryAddress
-  );
+  const [DeliveryAddress, setDeliveryAddress] = useState(-1);
 
   const history = useHistory();
 
@@ -39,39 +28,37 @@ export default function DeliveryAddress() {
   };
 
   return (
-    <div id="delivery-address-container">
-      <div className="delivery-address-header">
+    <div id='delivery-address-container'>
+      <div className='delivery-address-header'>
         <h2>{DELIVERYADDRESS_HEADING}</h2>
         <p>
           <input
-            type="button"
+            type='button'
             value={DELIVERYADDRESS_Add}
-            className="input-button"
+            className='input-button'
             onClick={onAddAddressClick}
           />
         </p>
       </div>
-      {DELIVERY_ADDRESS_DATA.length > 0 ? (
+      {userAddresses.length > 0 ? (
         <ul>
-          {DELIVERY_ADDRESS_DATA.map((AddressData: any) => (
+          {userAddresses.map((AddressData: any) => (
             <li>
-              <div className="address-info">
-                <div className="radio-button-container">
+              <div className='address-info'>
+                <div className='radio-button-container'>
                   <input
-                    type="radio"
-                    name="radio-default-selection"
+                    type='radio'
+                    name='radio-default-selection'
                     value={AddressData.id}
                     onClick={() => setDeliveryAddress(AddressData.id)}
-                    checked={DeliveryAddress === AddressData.id}
+                    checked={AddressData.isDefault}
                   ></input>
-                  <label>
-                    {AddressData.isDefault === true ? "Default" : ""}
-                  </label>
+                  <label>{AddressData.isDefault ? 'Default' : ''}</label>
                 </div>
                 <h3>{AddressData.name}</h3>
                 <span>
                   {AddressData.address}, <br />
-                  {AddressData.state}, {AddressData.city} -{" "}
+                  {AddressData.state}, {AddressData.city} -{' '}
                   {AddressData.pincode}
                   <br />
                   {AddressData.mobile}
@@ -85,4 +72,10 @@ export default function DeliveryAddress() {
       )}
     </div>
   );
-}
+};
+
+const mapStateToProps = (state: any) => ({
+  userAddresses: state.loginState.loggedInUser.addresses ?? [],
+});
+
+export default connect(mapStateToProps)(DeliveryAddress);

@@ -3,12 +3,16 @@
   padding: 2%;
   display: flex;
   .images-div {
-    flex-direction: column;
+    width: 24.5%;
+    margin-right: 2rem;
     .carousel-images {
       display: flex;
       justify-content: center;
       div {
         cursor: crosshair;
+        img {
+          height: 25rem;
+        }
       }
     }
 
@@ -42,7 +46,7 @@
       width: 30%;
       margin-top: 2vh;
     }
-    
+
     .price {
       margin-top: 3vh;
       font-size: 1.5rem;
@@ -104,10 +108,10 @@
         }
         &:focus {
           outline: none;
-        }       
+        }
       }
       button:disabled {
-        cursor: not-allowed;       
+        cursor: not-allowed;
       }
     }
   }
