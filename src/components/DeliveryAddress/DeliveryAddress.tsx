@@ -5,7 +5,7 @@ import { STATIC_DATA } from "../../config/StaticData";
 import { CONFIG } from "../../config/Config";
 import useLocalStorage from "../../hooks/useLocalStorage";
 
-export default function DeliveryAddress() {   
+export default function DeliveryAddress() {
   const [DELIVERY_ADDRESS_DATA, setDELIVERY_ADDRESS_DATA] = useLocalStorage(
     "DELIVERY_ADDRESS_DATA",
     []
