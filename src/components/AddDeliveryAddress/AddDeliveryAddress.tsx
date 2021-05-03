@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { FC, useContext, useState } from 'react';
+import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import "./AddDeliveryAddress.scss";
 import { CONFIG } from "../../config/Config";
 import { STATIC_DATA, TEST_DATA } from "../../config/StaticData";
 import useLocalStorage from "../../hooks/useLocalStorage";
+import { DeliveryAddressModel } from '../../models/DeliveryAddress.model';
+import FirebaseContext from '../Firebase/Context';
+import { setUser } from '../../actions/Login.action';
 
-export default function AddDeliveryAddress() {
+const AddDeliveryAddress: FC<DeliveryAddressModel.IProps> = ({ DeliveryAddress, loggedInUser }) => {
+//export default function AddDeliveryAddress() {
   const {
     ENGLISH: {
       DeliveryAddress: {
@@ -48,7 +53,7 @@ export default function AddDeliveryAddress() {
     "DELIVERY_ADDRESS_DATA",
     []
   );
-
+  const firebase = useContext(FirebaseContext);  
   const [userFirstName, setuserFirstName] = useState("");
   const [userLastName, setuserLastName] = useState("");
   const [userAddress1, setuserAddress1] = useState("");
@@ -119,7 +124,33 @@ export default function AddDeliveryAddress() {
 
   const onSaveClick = () => {
     if (checkValidation()) {
-      let addressId = DELIVERY_ADDRESS_DATA.length + 1;
+      let addressId = DeliveryAddress.length + 1;
+
+      const addressdata: DeliveryAddressModel.Address = {
+       id: addressId,
+        name: userFirstName + " " + userLastName,
+        address: userAddress1 + " " + userAddress2,
+        state: userStateName,
+        city: userCityName,
+        pincode: userPincode,
+        mobile: userMobile,
+        isDefault: userDefaultAddress
+      };
+
+      if (loggedInUser && Object.keys(loggedInUser).length > 0) {
+        if (loggedInUser.cartItems) {
+          const newUser = {
+            ...loggedInUser,
+            address: [...loggedInUser.addresses, addressdata],
+          };
+          firebase.db
+            .ref(`users/${loggedInUser.uid}`)
+            .set(newUser)
+            .then(() => setUser(newUser));
+        } 
+      }
+
+      /*let addressId = DELIVERY_ADDRESS_DATA.length + 1;
       DELIVERY_ADDRESS_DATA.push({
         id: addressId,
         name: userFirstName + " " + userLastName,
@@ -134,7 +165,7 @@ export default function AddDeliveryAddress() {
       window.localStorage.setItem(
         "DELIVERY_ADDRESS_DATA",
         JSON.stringify(JSON.stringify(DELIVERY_ADDRESS_DATA))
-      );
+      );*/
       history.push(DELIVERY_ADDRESS);
     }
   };
@@ -283,3 +314,10 @@ export default function AddDeliveryAddress() {
     </div>
   );
 }
+
+const mapStateToProps = (state: any) => ({
+  DeliveryAddress: state.DeliveryAddressState.DeliveryAddress,
+  loggedInUser: state.loginState.loggedInUser,
+});
+
+export default connect(mapStateToProps)(AddDeliveryAddress);
