@@ -1,6 +1,6 @@
-import "./App.scss";
-import { Switch, Route, Redirect } from "react-router-dom";
-import { CONFIG } from "./config/Config";
+import './App.scss';
+import { Switch, Route } from 'react-router-dom';
+import { CONFIG } from './config/Config';
 import {
   CategoryHeader,
   Navbar,
@@ -20,7 +20,6 @@ function App() {
   const {
     ROUTES: {
       DEFAULT,
-      DASHBOARD,
       PROFILE,
       PRODUCT_DETAILS,
       SHOPPING_CART,
@@ -47,19 +46,14 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className='App'>
       <Navbar />
       {isCategoryHeaderAvailable() ? (
         <CategoryHeader categories={getCategories()} />
       ) : null}
 
       <Switch>
-        <Route
-          exact
-          path={DEFAULT}
-          render={() => <Redirect to={DASHBOARD}></Redirect>}
-        ></Route>
-        <Route path={DASHBOARD} component={Dashboard}></Route>
+        <Route exact path={DEFAULT} component={Dashboard}></Route>
         <Route path={PROFILE}>
           <Profile />
         </Route>

@@ -1,40 +1,33 @@
-import React, { useState, useContext, useRef } from "react";
-import "./Login.scss";
+import React, { useState, useContext, useRef, FC } from 'react';
+import './Login.scss';
 import {
   AVATAR_IMAGE,
   google_login,
   facebook_login,
   loginleft,
-} from "../../assets";
-import { STATIC_DATA } from "../../config/StaticData";
-import FirebaseContext from "../Firebase/Context";
+} from '../../assets';
+import { STATIC_DATA } from '../../config/StaticData';
+import FirebaseContext from '../Firebase/Context';
+import { LoginModel } from '../../models/Login.model';
+import { connect } from 'react-redux';
+import { setUser } from '../../actions/Login.action';
+import { addItemsToCart } from '../../actions/ProductDetails.action';
 
-type LoginModalProps = {
-  onCloseLoginModalClick: () => void;
-};
-
-const initLocalStorage = (
-  userMobile: string,
-  userName: string,
-  userImage: string
-) => {
-  window.localStorage.setItem("MOBILE", userMobile);
-  window.localStorage.setItem("NAME", userName);
-  window.localStorage.setItem("IMAGE", userImage);
-};
-
-export default function Login(props: LoginModalProps) {
+const Login: FC<LoginModel.IProps> = ({
+  onCloseLoginModalClick,
+  setUser,
+  addItemsToCart,
+}) => {
   const firebase = useContext(FirebaseContext);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
   const [displayMobile, setdisplayMobile] = useState(true);
   const [displayProfile, setdisplayProfile] = useState(false);
-  const [mobileNo, setmobileNo] = useState("");
+  const [mobileNo, setmobileNo] = useState('');
   const [requiredMobileNo, setrequiredMobileNo] = useState(false);
-  const [mobileOTP, setmobileOTP] = useState("");
+  const [mobileOTP, setmobileOTP] = useState('');
   const [requiredMobileOTP, setrequiredMobileOTP] = useState(false);
-  const [userName, setuserName] = useState("");
+  const [userName, setuserName] = useState('');
   const [requireduserName, setrequireduserName] = useState(false);
-  const [userImage, setuserImage] = useState(AVATAR_IMAGE);
 
   const {
     ENGLISH: {
@@ -53,13 +46,11 @@ export default function Login(props: LoginModalProps) {
         LOGIN_OTP_VALIDATION_TEXT,
         LOGIN_NAME_VALIDATION_TEXT,
       },
-      NO_SUCH_IMAGE,
+      NO_IMAGE_FOUND,
     },
   } = STATIC_DATA;
 
   const inputFile = useRef<HTMLInputElement>(null);
-
-  const { onCloseLoginModalClick } = props;
 
   const handleSendOTP = () => {
     if (mobileNo) {
@@ -83,9 +74,7 @@ export default function Login(props: LoginModalProps) {
   const handleProfileSubmit = () => {
     if (userName) {
       setrequireduserName(false);
-      setuserImage(AVATAR_IMAGE);
-      initLocalStorage(userName, mobileNo, userImage);
-      props.onCloseLoginModalClick();
+      onCloseLoginModalClick();
     } else {
       setErrorMessage(LOGIN_NAME_VALIDATION_TEXT);
       setrequireduserName(true);
@@ -102,19 +91,38 @@ export default function Login(props: LoginModalProps) {
     firebase
       .doGoogleSignIn()
       .then((authUser: any) => {
-        initLocalStorage(
-          mobileNo,
-          authUser.user.displayName,
-          authUser.user.photoURL
-        );
-        return firebase.user(authUser.user.uid).set({
-          email: authUser.user.email,
-          username: authUser.user.displayName,
-          roles: {},
-        });
+        firebase.db
+          .ref(`users/${authUser.user.uid}`)
+          .once('value', (snap: any) => {
+            const user = snap.val();
+
+            if (user) {
+              setUser(user);
+              if (user.cartItems) {
+                addItemsToCart(user.cartItems);
+              }
+            } else {
+              const newUser = {
+                uid: authUser.user.uid,
+                email: authUser.user.email,
+                name: authUser.user.displayName,
+                phone: authUser.user.phoneNumber,
+                image: authUser.user.photoURL,
+                wishlist: [],
+                orders: [],
+                cartItems: [],
+                addresses: [],
+              };
+              setUser(newUser);
+              firebase.db
+                .ref(`users/${authUser.user.uid}`)
+                .set(newUser)
+                .catch(console.log);
+            }
+          });
       })
       .then(() => {
-        props.onCloseLoginModalClick();
+        onCloseLoginModalClick();
       })
       .catch((error: any) => {
         setErrorMessage(error.message);
@@ -125,11 +133,6 @@ export default function Login(props: LoginModalProps) {
     firebase
       .doFacebookSignIn()
       .then((authUser: any) => {
-        initLocalStorage(
-          mobileNo,
-          authUser.user.displayName,
-          authUser.user.photoURL
-        );
         return firebase.user(authUser.user.uid).set({
           email: authUser.user.email,
           username: authUser.user.displayName,
@@ -137,7 +140,7 @@ export default function Login(props: LoginModalProps) {
         });
       })
       .then(() => {
-        props.onCloseLoginModalClick();
+        onCloseLoginModalClick();
       })
       .catch((error: any) => {
         setErrorMessage(error.message);
@@ -146,34 +149,34 @@ export default function Login(props: LoginModalProps) {
   };
 
   return (
-    <div id="login-container-overlay">
-      <div className="login-container">
-        <div className="left-section">
-          <img src={loginleft} alt={NO_SUCH_IMAGE}></img>
+    <div id='login-container-overlay'>
+      <div className='login-container'>
+        <div className='left-section'>
+          <img src={loginleft} alt={NO_IMAGE_FOUND}></img>
         </div>
-        <div className="login-section">
-          <i className="fa fa-times fa-1x" onClick={onCloseLoginModalClick}></i>
+        <div className='login-section'>
+          <i className='fa fa-times fa-1x' onClick={onCloseLoginModalClick}></i>
           <h1>{LOGIN_HEADING}</h1>
           {displayProfile ? (
-            <div className="input-section">
+            <div className='input-section'>
               <p>
                 <img
                   src={AVATAR_IMAGE}
-                  className="profile-img"
+                  className='profile-img'
                   alt={AVATAR_ALT_TAG}
                   onClick={onImageClick}
                 />
                 <input
-                  type="file"
-                  id="file"
+                  type='file'
+                  id='file'
                   ref={inputFile}
-                  className="profile-input-file"
+                  className='profile-input-file'
                 />
               </p>
-              <p className="input-heading">{LOGIN_NAME_TEXT}</p>
+              <p className='input-heading'>{LOGIN_NAME_TEXT}</p>
               <input
-                type="text"
-                className="input-textbox"
+                type='text'
+                className='input-textbox'
                 value={userName}
                 onChange={(event) => {
                   setuserName(event.target.value);
@@ -181,24 +184,24 @@ export default function Login(props: LoginModalProps) {
                 }}
                 required
               ></input>
-              <p className="validation-messge">
-                {requireduserName ? errorMessage : ""}
+              <p className='validation-messge'>
+                {requireduserName ? errorMessage : ''}
               </p>
               <p>
                 <input
-                  type="button"
+                  type='button'
                   value={LOGIN_PROFILE_BUTTON_TEXT}
-                  className="input-button"
+                  className='input-button'
                   onClick={handleProfileSubmit}
                 />
               </p>
             </div>
           ) : displayMobile ? (
-            <div className="input-section">
-              <p className="input-heading">{LOGIN_MOBILE_TEXT}</p>
+            <div className='input-section'>
+              <p className='input-heading'>{LOGIN_MOBILE_TEXT}</p>
               <input
-                type="text"
-                className="input-textbox"
+                type='text'
+                className='input-textbox'
                 value={mobileNo}
                 onChange={(event) => {
                   setmobileNo(event.target.value);
@@ -206,25 +209,25 @@ export default function Login(props: LoginModalProps) {
                 }}
                 required
               ></input>
-              <p className="validation-messge">
-                {requiredMobileNo ? errorMessage : ""}
+              <p className='validation-messge'>
+                {requiredMobileNo ? errorMessage : ''}
               </p>
               <p>
                 <input
-                  type="button"
+                  type='button'
                   value={LOGIN_SENDOTP_BUTTON_TEXT}
-                  className="input-button"
+                  className='input-button'
                   onClick={handleSendOTP}
                 />
               </p>
               <h4>{LOGIN_INFO_TEXT}</h4>
             </div>
           ) : (
-            <div className="input-section">
-              <p className="input-heading">{LOGIN_OTP_TEXT}</p>
+            <div className='input-section'>
+              <p className='input-heading'>{LOGIN_OTP_TEXT}</p>
               <input
-                type="text"
-                className="input-textbox"
+                type='text'
+                className='input-textbox'
                 value={mobileOTP}
                 onChange={(event) => {
                   setmobileOTP(event.target.value);
@@ -232,14 +235,14 @@ export default function Login(props: LoginModalProps) {
                 }}
                 required
               ></input>
-              <p className="validation-messge">
-                {requiredMobileOTP ? errorMessage : ""}
+              <p className='validation-messge'>
+                {requiredMobileOTP ? errorMessage : ''}
               </p>
               <p>
                 <input
-                  type="button"
+                  type='button'
                   value={LOGIN_BUTTON_TEXT}
-                  className="input-button"
+                  className='input-button'
                   onClick={handleLogin}
                 />
               </p>
@@ -247,20 +250,20 @@ export default function Login(props: LoginModalProps) {
             </div>
           )}
 
-          <div className="division">
+          <div className='division'>
             <hr></hr>
             <p>{LOGIN_SIGN_WITH_TEXT}</p>
             <hr></hr>
           </div>
-          <div className="social-login">
+          <div className='social-login'>
             <img
               src={google_login}
-              alt={NO_SUCH_IMAGE}
+              alt={NO_IMAGE_FOUND}
               onClick={handleGoogleSignIn}
             ></img>
             <img
               src={facebook_login}
-              alt={NO_SUCH_IMAGE}
+              alt={NO_IMAGE_FOUND}
               onClick={handleFacebookSignIn}
             ></img>
           </div>
@@ -268,4 +271,6 @@ export default function Login(props: LoginModalProps) {
       </div>
     </div>
   );
-}
+};
+
+export default connect(null, { setUser, addItemsToCart })(Login);

@@ -1,19 +1,24 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Carousel } from '..';
 import { STATIC_DATA, TEST_DATA } from '../../config/StaticData';
-import { addItemsToCart, buyItem } from '../../actions/ProductDetails.action';
+import { addItemToCart, buyItem } from '../../actions/ProductDetails.action';
 import './ProductDetails.scss';
 import { ProductDetailsModel } from '../../models/ProductDetails.model';
 import { ShoppingCartModel } from '../../models/ShoppingCart.model';
 import { useHistory } from 'react-router';
 import { CONFIG } from '../../config/Config';
+import FirebaseContext from '../Firebase/Context';
+import { setUser } from '../../actions/Login.action';
 
 const ProductDetails: FC<ProductDetailsModel.IProps> = ({
-  addItemsToCart,
+  loggedInUser,
+  addItemToCart,
   buyItem,
+  setUser,
 }) => {
   let context: any = null;
+  const firebase = useContext(FirebaseContext);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQuantity, setSelectedQuantity] = useState(1);
@@ -24,7 +29,7 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
   const {
     ENGLISH: {
       ProductDetails: { CATEGORY_PRODUCT_SIZES },
-      NO_SUCH_IMAGE,
+      NO_IMAGE_FOUND,
     },
   } = STATIC_DATA;
   const {
@@ -67,11 +72,34 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
       price: selectedProduct.price,
       image: selectedProduct.images[0],
     };
+
+    if (loggedInUser && Object.keys(loggedInUser).length > 0) {
+      if (loggedInUser.cartItems) {
+        const newUser = {
+          ...loggedInUser,
+          cartItems: [...loggedInUser.cartItems, item],
+        };
+        firebase.db
+          .ref(`users/${loggedInUser.uid}`)
+          .set(newUser)
+          .then(() => setUser(newUser));
+      } else {
+        const newUser = {
+          ...loggedInUser,
+          cartItems: [item],
+        };
+        firebase.db
+          .ref(`users/${loggedInUser.uid}`)
+          .set(newUser)
+          .then(() => setUser(newUser));
+      }
+    }
+
     if (buyNow) {
       buyItem(item);
       history.push(SHOPPING_CART_ITEMS);
     } else {
-      addItemsToCart(item);
+      addItemToCart(item);
     }
   };
 
@@ -123,7 +151,7 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
                   onMouseMove={drawImage}
                   onMouseLeave={() => showZoomedImage(-1)}
                 >
-                  <img src={image} alt={NO_SUCH_IMAGE}></img>
+                  <img src={image} alt={NO_IMAGE_FOUND}></img>
                 </div>
               ))}
             </Carousel>
@@ -133,7 +161,7 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
               <img
                 key={i}
                 src={image}
-                alt={NO_SUCH_IMAGE}
+                alt={NO_IMAGE_FOUND}
                 onClick={() => setSelectedImage(i)}
                 className={selectedImage === i ? 'selected-image' : ''}
               ></img>
@@ -197,10 +225,18 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
           </button>
 
           <div className='purchase-buttons'>
-            <button className='add-to-cart' onClick={() => addOrBuyItem()} disabled={!selectedSize}>
+            <button
+              className='add-to-cart'
+              onClick={() => addOrBuyItem()}
+              disabled={!selectedSize}
+            >
               Add to Cart
             </button>
-            <button className='buy-now' onClick={() => addOrBuyItem(true)} disabled={!selectedSize}>
+            <button
+              className='buy-now'
+              onClick={() => addOrBuyItem(true)}
+              disabled={!selectedSize}
+            >
               Buy Now
             </button>
           </div>
@@ -216,4 +252,10 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
   ) : null;
 };
 
-export default connect(null, { addItemsToCart, buyItem })(ProductDetails);
+const mapStateToProps = (state: any) => ({
+  loggedInUser: state.loginState.loggedInUser,
+});
+
+export default connect(mapStateToProps, { addItemToCart, buyItem, setUser })(
+  ProductDetails
+);

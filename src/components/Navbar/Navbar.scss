@@ -4,8 +4,9 @@
   background-color: #ffffff;
   .app-logo {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     flex: 1;
+    padding-left: 2%;
     img {
       width: 4vw;
     }
@@ -35,6 +36,9 @@
     display: flex;
     flex: 1;
     cursor: pointer;
+    justify-content: flex-end;
+    margin-right: 3%;
+    align-items: center;
     i,
     p {
       align-self: center;
@@ -42,9 +46,14 @@
     p {
       font-size: 1vw;
     }
-    i {
+    i,
+    img {
       font-size: 1.2rem;
-      margin-right: 3%;
+      margin-left: 3%;
+    }
+    img {
+      height: 2rem;
+      border-radius: 50%;
     }
   }
 
@@ -54,9 +63,17 @@
     font-size: 1.2rem;
     align-self: center;
     justify-content: flex-end;
-    margin-right: 5%;
     cursor: pointer;
-    a{
+    align-items: center;
+    margin-right: 12%;
+    img {
+      height: 1rem;
+      margin-right: 8%;
+    }
+    i:first-of-type {
+      margin-right: 8%;
+    }
+    a {
       text-decoration: none;
       color: inherit;
     }
@@ -166,7 +183,8 @@
       height: 3rem;
       margin-right: 0.5rem;
     }
-    h4, p {
+    h4,
+    p {
       margin: 0;
     }
     &:hover {
@@ -176,6 +194,31 @@
   }
 }
 
+.user-menu {
+  background-color: #eaeaea;
+  border-radius: 5px;
+  border-width: thin;
+  z-index: 1;
+  margin-top: 10rem;
+  position: absolute;
+  width: 12%;
+  padding-left: 0.5rem;
+  a {
+    text-decoration: none;
+    color: #282828;
+    li {
+      padding: 0.5rem 0;
+      cursor: pointer;
+      display: flex;
+      font-size: 0.8rem;
+
+      &:hover {
+        background-color: #282828;
+        color: #fff;
+      }
+    }
+  }
+}
 .plain-border {
   border-radius: 15px 15px 0 0;
 }
@@ -183,4 +226,3 @@
 .round-border {
   border-radius: 15px;
 }
-

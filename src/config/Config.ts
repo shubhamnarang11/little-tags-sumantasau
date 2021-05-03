@@ -1,7 +1,6 @@
 export const CONFIG = {
   ROUTES: {
     DEFAULT: '/',
-    DASHBOARD: '/dashboard',
     PROFILE: '/profile',
     SHOPPING_CART: '/shopping-cart',
     SHOPPING_CART_ITEMS: '/shopping-cart/cart-items',

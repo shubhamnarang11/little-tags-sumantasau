@@ -184,6 +184,47 @@ $msg-color: red;
       }
     }
   }
+  .not-login {
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    align-items: center;
+    min-height: inherit;
+    font-size: 1.4rem;
+    button {
+      border: 2px solid #282828;
+      color: #282828;
+      padding: 1% 3%;
+      cursor: pointer;
+      &:hover {
+        background-color: #282828;
+        color: #fff;
+      }
+    }
+  }
+  .no-items {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    div {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      img {
+        width: 50%;
+      }
+    }
+    a {
+      text-decoration: none;
+      border: 2px solid #282828;
+      color: inherit;
+      padding: 1% 3%;
+      &:hover {
+        background-color: #282828;
+        color: #fff;
+      }
+    }
+  }
 }
 /* Use a media query to add a break point at 768px: */
 @media screen and (max-width: 768px) {

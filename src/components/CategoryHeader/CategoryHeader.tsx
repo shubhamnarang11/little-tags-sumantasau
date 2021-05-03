@@ -23,7 +23,7 @@ const CategoryHeader: FC<CategoryHeaderModel.IProps> = () => {
                   (CATEGORIES as { [key: string]: string })[category]
                 ]
               }
-              alt={NO_SUCH_IMAGE}
+              alt={NO_IMAGE_FOUND}
             ></img> */}
               {name}
             </li>

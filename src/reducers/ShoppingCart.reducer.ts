@@ -1,4 +1,9 @@
-import { ADD_TO_CART, BUY_NOW, RESET_BUY_NOW_FLAG } from '../actions/Actions';
+import {
+  ADD_ITEMS_TO_CART,
+  ADD_ITEM_TO_CART,
+  BUY_NOW,
+  RESET_BUY_NOW_FLAG,
+} from '../actions/Actions';
 
 const initialState = {
   cartItems: [],
@@ -10,8 +15,10 @@ const shoppingCartState = (
   action: { type: string; payload: any }
 ) => {
   switch (action.type) {
-    case ADD_TO_CART:
+    case ADD_ITEM_TO_CART:
       return { ...state, cartItems: [...state.cartItems, action.payload] };
+    case ADD_ITEMS_TO_CART:
+      return { ...state, cartItems: [...state.cartItems, ...action.payload] };
     case BUY_NOW:
       return {
         ...state,
