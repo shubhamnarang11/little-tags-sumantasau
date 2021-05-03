@@ -6,6 +6,8 @@ $dot-color: #dedede;
   box-sizing: border-box;
 }
 
+#hero-slideshow{
+
 .w3-animate-fading {
   //animation: fading 10s infinite;
   animation: fading ease 5s;
@@ -38,7 +40,7 @@ $dot-color: #dedede;
 .slideshowDots {
   text-align: center;
   position: absolute;
-  top: 35rem;
+  top: 30rem;
   left: 38rem;
   z-index: 10;
 }
@@ -95,3 +97,20 @@ $dot-color: #dedede;
     }
   }
 }
+}
+
+/* Use a media query to add a break point at 768px: */
+@media screen and (max-width: 768px) {
+  #hero-slideshow {
+    .hero-container {
+      .hero-text {
+          top: 45%;
+          left: 50%;
+          h1 {
+            font-size: 1.5rem;           
+          }
+        }       
+      }
+    }
+  }
+

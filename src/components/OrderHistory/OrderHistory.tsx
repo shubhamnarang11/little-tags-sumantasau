@@ -35,12 +35,16 @@ export default function OrderHistory() {
               </h4>
             </div>
             <div className="delivery-info">
-              <h4>
-                {DEVLIVERED_ON} : {order_item.delivery_date}
-              </h4>
-              <p>
-                {ORDERED_ON} : {order_item.order_date}
-              </p>
+              <div className="delivery-date">
+                <h4>
+                  {DEVLIVERED_ON} : {order_item.delivery_date}
+                </h4>
+              </div>
+              <div className="order-date">
+                <p>
+                  {ORDERED_ON} : {order_item.order_date}
+                </p>
+              </div>
             </div>
           </div>
         ))}
