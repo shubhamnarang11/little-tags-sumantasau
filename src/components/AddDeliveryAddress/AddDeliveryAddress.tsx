@@ -138,7 +138,7 @@ const AddDeliveryAddress: FC<DeliveryAddressModel.IProps> = ({ DeliveryAddress, 
       };
 
       if (loggedInUser && Object.keys(loggedInUser).length > 0) {
-        if (loggedInUser.cartItems) {
+        if (loggedInUser.addresses) {
           const newUser = {
             ...loggedInUser,
             address: [...loggedInUser.addresses, addressdata],
