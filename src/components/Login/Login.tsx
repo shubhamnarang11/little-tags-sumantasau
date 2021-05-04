@@ -1,17 +1,17 @@
-import React, { useState, useContext, useRef, FC } from 'react';
-import './Login.scss';
+import React, { useState, useContext, useRef, FC } from "react";
+import "./Login.scss";
 import {
   AVATAR_IMAGE,
   google_login,
   facebook_login,
   loginleft,
-} from '../../assets';
-import { STATIC_DATA } from '../../config/StaticData';
-import FirebaseContext from '../Firebase/Context';
-import { LoginModel } from '../../models/Login.model';
-import { connect } from 'react-redux';
-import { setUser } from '../../actions/Login.action';
-import { addItemsToCart } from '../../actions/ProductDetails.action';
+} from "../../assets";
+import { STATIC_DATA } from "../../config/StaticData";
+import FirebaseContext from "../Firebase/Context";
+import { LoginModel } from "../../models/Login.model";
+import { connect } from "react-redux";
+import { setUser } from "../../actions/Login.action";
+import { addItemsToCart } from "../../actions/ProductDetails.action";
 
 const Login: FC<LoginModel.IProps> = ({
   onCloseLoginModalClick,
@@ -19,14 +19,14 @@ const Login: FC<LoginModel.IProps> = ({
   addItemsToCart,
 }) => {
   const firebase = useContext(FirebaseContext);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const [displayMobile, setdisplayMobile] = useState(true);
   const [displayProfile, setdisplayProfile] = useState(false);
-  const [mobileNo, setmobileNo] = useState('');
+  const [mobileNo, setmobileNo] = useState("");
   const [requiredMobileNo, setrequiredMobileNo] = useState(false);
-  const [mobileOTP, setmobileOTP] = useState('');
+  const [mobileOTP, setmobileOTP] = useState("");
   const [requiredMobileOTP, setrequiredMobileOTP] = useState(false);
-  const [userName, setuserName] = useState('');
+  const [userName, setuserName] = useState("");
   const [requireduserName, setrequireduserName] = useState(false);
 
   const {
@@ -93,7 +93,7 @@ const Login: FC<LoginModel.IProps> = ({
       .then((authUser: any) => {
         firebase.db
           .ref(`users/${authUser.user.uid}`)
-          .once('value', (snap: any) => {
+          .once("value", (snap: any) => {
             const user = snap.val();
 
             if (user) {
@@ -149,34 +149,34 @@ const Login: FC<LoginModel.IProps> = ({
   };
 
   return (
-    <div id='login-container-overlay'>
-      <div className='login-container'>
-        <div className='left-section'>
+    <div id="login-container-overlay">
+      <div className="login-container">
+        <div className="left-section">
           <img src={loginleft} alt={NO_IMAGE_FOUND}></img>
         </div>
-        <div className='login-section'>
-          <i className='fa fa-times fa-1x' onClick={onCloseLoginModalClick}></i>
+        <div className="login-section">
+          <i className="fa fa-times fa-1x" onClick={onCloseLoginModalClick}></i>
           <h1>{LOGIN_HEADING}</h1>
           {displayProfile ? (
-            <div className='input-section'>
+            <div className="input-section">
               <p>
                 <img
                   src={AVATAR_IMAGE}
-                  className='profile-img'
+                  className="profile-img"
                   alt={AVATAR_ALT_TAG}
                   onClick={onImageClick}
                 />
                 <input
-                  type='file'
-                  id='file'
+                  type="file"
+                  id="file"
                   ref={inputFile}
-                  className='profile-input-file'
+                  className="profile-input-file"
                 />
               </p>
-              <p className='input-heading'>{LOGIN_NAME_TEXT}</p>
+              <p className="input-heading">{LOGIN_NAME_TEXT}</p>
               <input
-                type='text'
-                className='input-textbox'
+                type="text"
+                className="input-textbox"
                 value={userName}
                 onChange={(event) => {
                   setuserName(event.target.value);
@@ -184,24 +184,24 @@ const Login: FC<LoginModel.IProps> = ({
                 }}
                 required
               ></input>
-              <p className='validation-messge'>
-                {requireduserName ? errorMessage : ''}
+              <p className="validation-messge">
+                {requireduserName ? errorMessage : ""}
               </p>
               <p>
                 <input
-                  type='button'
+                  type="button"
                   value={LOGIN_PROFILE_BUTTON_TEXT}
-                  className='input-button'
+                  className="input-button"
                   onClick={handleProfileSubmit}
                 />
               </p>
             </div>
           ) : displayMobile ? (
-            <div className='input-section'>
-              <p className='input-heading'>{LOGIN_MOBILE_TEXT}</p>
+            <div className="input-section">
+              <p className="input-heading">{LOGIN_MOBILE_TEXT}</p>
               <input
-                type='text'
-                className='input-textbox'
+                type="text"
+                className="input-textbox"
                 value={mobileNo}
                 onChange={(event) => {
                   setmobileNo(event.target.value);
@@ -209,25 +209,25 @@ const Login: FC<LoginModel.IProps> = ({
                 }}
                 required
               ></input>
-              <p className='validation-messge'>
-                {requiredMobileNo ? errorMessage : ''}
+              <p className="validation-messge">
+                {requiredMobileNo ? errorMessage : ""}
               </p>
               <p>
                 <input
-                  type='button'
+                  type="button"
                   value={LOGIN_SENDOTP_BUTTON_TEXT}
-                  className='input-button'
+                  className="input-button"
                   onClick={handleSendOTP}
                 />
               </p>
               <h4>{LOGIN_INFO_TEXT}</h4>
             </div>
           ) : (
-            <div className='input-section'>
-              <p className='input-heading'>{LOGIN_OTP_TEXT}</p>
+            <div className="input-section">
+              <p className="input-heading">{LOGIN_OTP_TEXT}</p>
               <input
-                type='text'
-                className='input-textbox'
+                type="text"
+                className="input-textbox"
                 value={mobileOTP}
                 onChange={(event) => {
                   setmobileOTP(event.target.value);
@@ -235,14 +235,14 @@ const Login: FC<LoginModel.IProps> = ({
                 }}
                 required
               ></input>
-              <p className='validation-messge'>
-                {requiredMobileOTP ? errorMessage : ''}
+              <p className="validation-messge">
+                {requiredMobileOTP ? errorMessage : ""}
               </p>
               <p>
                 <input
-                  type='button'
+                  type="button"
                   value={LOGIN_BUTTON_TEXT}
-                  className='input-button'
+                  className="input-button"
                   onClick={handleLogin}
                 />
               </p>
@@ -250,12 +250,12 @@ const Login: FC<LoginModel.IProps> = ({
             </div>
           )}
 
-          <div className='division'>
+          <div className="division">
             <hr></hr>
             <p>{LOGIN_SIGN_WITH_TEXT}</p>
             <hr></hr>
           </div>
-          <div className='social-login'>
+          <div className="social-login">
             <img
               src={google_login}
               alt={NO_IMAGE_FOUND}
