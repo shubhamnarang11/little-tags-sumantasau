@@ -14,6 +14,7 @@ import ProductCard from './ProductCard/ProductCard';
 import Login from './Login/Login';
 import HeroContainer from './HeroContainer/HeroContainer';
 import OrderHistory from './OrderHistory/OrderHistory';
+import OrderPlaced from './OrderPlaced/OrderPlaced';
 
 export {
   Navbar,
@@ -31,5 +32,6 @@ export {
   ProductCard,
   Login,
   HeroContainer,
-  OrderHistory
+  OrderHistory,
+  OrderPlaced,
 };

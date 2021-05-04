@@ -11,10 +11,11 @@ import {
   ProductDetails,
   Dashboard,
   OrderHistory,
-} from "./components";
-import { STATIC_DATA } from "./config/StaticData";
-import Products from "./components/Products/Products";
-import React from "react";
+  OrderPlaced,
+} from './components';
+import { STATIC_DATA } from './config/StaticData';
+import Products from './components/Products/Products';
+import React from 'react';
 
 function App() {
   const {
@@ -26,6 +27,7 @@ function App() {
       ADD_DELIVERY_ADDRESS,
       PRODUCTS,
       ORDER_HISTORY,
+      ORDER_PLACED,
     },
     CATEGORY_HEADER_NOT_AVAILABLE_ROUTES,
   } = CONFIG;
@@ -70,6 +72,7 @@ function App() {
         <Route path={ORDER_HISTORY}>
           <OrderHistory />
         </Route>
+        <Route path={ORDER_PLACED} component={OrderPlaced}></Route>
       </Switch>
 
       <Footer />

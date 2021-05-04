@@ -1,9 +1,10 @@
-import { STATIC_DATA, TEST_DATA } from "../../config/StaticData";
-import "./OrderHistory.scss";
+import { FC } from 'react';
+import { connect } from 'react-redux';
+import { STATIC_DATA, TEST_DATA } from '../../config/StaticData';
+import { OrderHistoryModel } from '../../models/OrderHistory.model';
+import './OrderHistory.scss';
 
-export default function OrderHistory() {
-  const { ORDER_HISTORY_DATA } = TEST_DATA;
-
+const OrderHistory: FC<OrderHistoryModel.IProps> = ({ orders }) => {
   const {
     ENGLISH: {
       OrderHistory: {
@@ -15,26 +16,26 @@ export default function OrderHistory() {
       },
     },
   } = STATIC_DATA;
-
+  
   return (
-    <div id="order-history-container">
+    <div id='order-history-container'>
       <h2>{ORDER_HISTORY_HEADING}</h2>
       <section>
-        {ORDER_HISTORY_DATA.map((order_item) => (
-          <div className="order-info">
-            <img src={order_item.image} alt={order_item.productname} />
-            <div className="order-item-info">
+        {orders.map((order_item: any) => (
+          <div className='order-info'>
+            <img src={order_item.image} alt={order_item.productName} />
+            <div className='order-item-info'>
               <h3>
-                {order_item.productname} ({order_item.category})
+                {order_item.productName}
               </h3>
               <p>
                 {ORDER_QUANTITY} : {order_item.quantity}
               </p>
               <h4>
-                {TOTAL_ORDERED} : &#8377; {order_item.total_price}
+                {TOTAL_ORDERED} : &#8377; {order_item.price}
               </h4>
             </div>
-            <div className="delivery-info">
+            <div className='delivery-info'>
               <h4>
                 {DEVLIVERED_ON} : {order_item.delivery_date}
               </h4>
@@ -47,4 +48,10 @@ export default function OrderHistory() {
       </section>
     </div>
   );
-}
+};
+
+const mapStateToProps = (state: any) => ({
+  orders: state.loginState.loggedInUser.orders ?? [],
+});
+
+export default connect(mapStateToProps)(OrderHistory);

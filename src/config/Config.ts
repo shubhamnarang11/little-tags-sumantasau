@@ -9,6 +9,7 @@ export const CONFIG = {
     PRODUCT_DETAILS: '/product-details',
     PRODUCTS: '/products',
     ORDER_HISTORY: '/order-history',
+    ORDER_PLACED: '/place-order',
   },
   CATEGORY_HEADER_NOT_AVAILABLE_ROUTES: [
     '/profile',

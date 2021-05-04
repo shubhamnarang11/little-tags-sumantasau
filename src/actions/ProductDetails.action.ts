@@ -3,6 +3,8 @@ import {
   ADD_ITEMS_TO_CART,
   ADD_ITEM_TO_CART,
   BUY_NOW,
+  EMPTY_CART,
+  REMOVE_CART_ITEM,
   RESET_BUY_NOW_FLAG,
 } from './Actions';
 
@@ -23,4 +25,13 @@ export const buyItem = (item: ShoppingCartModel.CartItem) => ({
 
 export const resetBuyNowFlag = () => ({
   type: RESET_BUY_NOW_FLAG,
+});
+
+export const removeItemFromCart = (itemId: number) => ({
+  type: REMOVE_CART_ITEM,
+  payload: itemId,
+});
+
+export const emptyCart = () => ({
+  type: EMPTY_CART,
 });

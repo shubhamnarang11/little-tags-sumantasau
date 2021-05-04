@@ -3,6 +3,9 @@ export namespace ShoppingCartModel {
     cartItems: CartItem[];
     loggedInUser: any;
     resetBuyNowFlag: () => void;
+    setUser: (arg: any) => void;
+    removeItemFromCart: (arg: number) => void;
+    emptyCart: () => void;
   }
 
   export interface CartItem {
