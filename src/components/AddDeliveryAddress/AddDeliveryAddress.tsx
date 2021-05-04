@@ -316,7 +316,7 @@ const AddDeliveryAddress: FC<DeliveryAddressModel.IProps> = ({ DeliveryAddress, 
 }
 
 const mapStateToProps = (state: any) => ({
-  DeliveryAddress: state.DeliveryAddressState.DeliveryAddress,
+  //DeliveryAddress: state.deliveryAddressState.DeliveryAddress,
   loggedInUser: state.loginState.loggedInUser,
 });
 
