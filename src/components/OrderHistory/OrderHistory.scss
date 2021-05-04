@@ -30,11 +30,59 @@ $bgcolor-button: #282828;
         margin: 0;
         padding: 0 0 0 1.25rem;
         font-size: 0.938rem;
+        //border : 1px solid;
       }
       .delivery-info {
         float: right;
         width: 25%;
         font-size: 15px;
+        //border : 1px solid;
+      }
+    }
+  }
+}
+
+/* Use a media query to add a break point at 768px: */
+@media screen and (max-width: 768px) {
+  #order-history-container {
+    section {
+      .order-info {
+        width: 100%;
+        .order-item-info {
+          width: 50%;
+        }
+        .delivery-info {
+          width: 30%;
+        }
+      }
+    }
+  }
+}
+
+/* Use a media query to add a break point at 550px: */
+@media screen and (max-width: 550px) {
+  #order-history-container {
+    section {
+      .order-info {
+        img {
+          width: 5.25rem;
+          height: 5.25rem;
+        }
+        .order-item-info {
+          width: 70%;
+        }
+        .delivery-info {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          .delivery-date {
+            width: 50%;
+          }
+          .order-date {
+            width: 50%;
+            text-align: right;
+          }
+        }
       }
     }
   }

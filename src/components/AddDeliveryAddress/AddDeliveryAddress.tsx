@@ -161,7 +161,22 @@ export default function AddDeliveryAddress() {
         <p className="validation-msg-left">
           {requireduserFirstName ? requireduserFirstName : ""}
         </p>
-
+      </div>
+      <div className="right">
+        <p>{LASTNAME_TEXT}</p>
+        <input
+          type="text"
+          className="input-box"
+          placeholder={LASTNAME_PLACEHOLDER}
+          value={userLastName}
+          onChange={(event) => {
+            setuserLastName(event.target.value);
+          }}
+          required
+        />
+        <p className="validation-msg-right"></p>
+      </div>
+      <div className="left">
         <p className="input-heading">{ADDRESS_LINE1_TEXT}</p>
         <input
           type="text"
@@ -176,6 +191,22 @@ export default function AddDeliveryAddress() {
         <p className="validation-msg-left">
           {requireduserAddress1 ? requireduserAddress1 : ""}
         </p>
+      </div>
+      <div className="right">
+        <p>{ADDRESS_LINE2_TEXT}</p>
+        <input
+          type="text"
+          className="input-box"
+          placeholder={ADDRESS_LINE2_PLACEHOLDER}
+          value={userAddress2}
+          onChange={(event) => {
+            setuserAddress2(event.target.value);
+          }}
+          required
+        />
+        <p className="validation-msg-right"></p>
+      </div>
+      <div className="left">
         <p className="input-heading">{STATE_TEXT}</p>
         <select onChange={handleStateSelect}>
           <option>{STATE_PLACEHOLDER}</option>
@@ -188,6 +219,20 @@ export default function AddDeliveryAddress() {
         <p className="validation-msg-left">
           {requireduserState ? requireduserState : ""}
         </p>
+      </div>
+      <div className="right">
+        <p>{CITY_TEXT}</p>
+        <select onChange={handleCitySelect}>
+          <option>{CITY_PLACEHOLDER}</option>
+          {City.sort((a: any, b: any) => (a.name > b.name ? 1 : -1)).map(
+            (city: any, i: number) => (
+              <option value={city.id}>{city.name}</option>
+            )
+          )}
+        </select>
+        <p className="validation-msg-right"></p>
+      </div>
+      <div className="left">
         <p className="input-heading">{MOBILE_TEXT}</p>
         <input
           type="text"
@@ -205,40 +250,6 @@ export default function AddDeliveryAddress() {
         </p>
       </div>
       <div className="right">
-        <p>{LASTNAME_TEXT}</p>
-        <input
-          type="text"
-          className="input-box"
-          placeholder={LASTNAME_PLACEHOLDER}
-          value={userLastName}
-          onChange={(event) => {
-            setuserLastName(event.target.value);
-          }}
-          required
-        />
-        <p className="validation-msg-right"></p>
-        <p>{ADDRESS_LINE2_TEXT}</p>
-        <input
-          type="text"
-          className="input-box"
-          placeholder={ADDRESS_LINE2_PLACEHOLDER}
-          value={userAddress2}
-          onChange={(event) => {
-            setuserAddress2(event.target.value);
-          }}
-          required
-        />
-        <p className="validation-msg-right"></p>
-        <p>{CITY_TEXT}</p>
-        <select onChange={handleCitySelect}>
-          <option>{CITY_PLACEHOLDER}</option>
-          {City.sort((a: any, b: any) => (a.name > b.name ? 1 : -1)).map(
-            (city: any, i: number) => (
-              <option value={city.id}>{city.name}</option>
-            )
-          )}
-        </select>
-        <p className="validation-msg-right"></p>
         <p>{PINCODE_TEXT}</p>
         <input
           type="text"
@@ -255,6 +266,7 @@ export default function AddDeliveryAddress() {
           {requireduserPincode ? requireduserPincode : ""}
         </p>
       </div>
+
       <section>
         <input
           type="checkbox"

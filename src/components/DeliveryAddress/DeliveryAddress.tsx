@@ -25,7 +25,7 @@ export default function DeliveryAddress() {
     const DeliveryAddress = DELIVERY_ADDRESS_DATA.filter(
       (data: any) => data.isDefault === true
     );
-    return DeliveryAddress[0].id;
+    return DeliveryAddress.length > 0 ? DeliveryAddress[0].id : 0;
   };
 
   const [DeliveryAddress, setDeliveryAddress] = useState(
@@ -41,15 +41,17 @@ export default function DeliveryAddress() {
   return (
     <div id="delivery-address-container">
       <div className="delivery-address-header">
-        <h2>{DELIVERYADDRESS_HEADING}</h2>
-        <p>
+        <div className="address-heading">
+          <h2>{DELIVERYADDRESS_HEADING}</h2>
+        </div>
+        <div className="add-address-button">
           <input
             type="button"
             value={DELIVERYADDRESS_Add}
             className="input-button"
             onClick={onAddAddressClick}
           />
-        </p>
+        </div>
       </div>
       {DELIVERY_ADDRESS_DATA.length > 0 ? (
         <ul>
