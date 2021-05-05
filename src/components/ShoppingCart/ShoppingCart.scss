@@ -89,10 +89,11 @@ $msg-color: red;
               display: flex;
               background-color: $bgcolor-selection;
               width: 6.5rem;
-              padding: 0.413rem 0.313rem 0.313rem 0.813rem;
               border-radius: 0.438rem;
               overflow: hidden;
               font-weight: 500;
+              justify-content: center;
+              align-items: center;
 
               select {
                 background-color: transparent;

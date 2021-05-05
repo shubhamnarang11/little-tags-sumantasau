@@ -13,8 +13,6 @@ export const CONFIG = {
   },
   CATEGORY_HEADER_NOT_AVAILABLE_ROUTES: [
     '/profile',
-    '/shopping-cart/cart-items',
-    '/shopping-cart/delivery-address',
     '/add-delivery-address',
   ],
 };
