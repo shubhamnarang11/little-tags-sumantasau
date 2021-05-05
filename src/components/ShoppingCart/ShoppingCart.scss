@@ -274,6 +274,15 @@ $msg-color: red;
         text-align: center;
       }
     }
+    .scroll-bar {
+      max-height: 20rem;
+    }
+    .quantity-selection {
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
 
