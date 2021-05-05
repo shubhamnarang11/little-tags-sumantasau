@@ -122,3 +122,14 @@ $validation-msg: red;
     }
   }
 }
+
+/* Use a media query to add a break point at 768px: */
+@media screen and (max-width: 768px) {
+  #login-container-overlay {
+    .login-container {
+      .left-section {
+        display: none;
+      }
+    }
+  }
+}
