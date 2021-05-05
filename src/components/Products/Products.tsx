@@ -8,7 +8,7 @@ import './Products.scss';
 
 const Products: FC<ProductsModel.IProps> = ({ allProducts }) => {
   const [products, setProducts] = useState<any>([]);
-  const [category, setCategory] = useState('Hi');
+  const [category, setCategory] = useState('');
 
   const {
     ROUTES: { PRODUCT_DETAILS },
@@ -26,8 +26,6 @@ const Products: FC<ProductsModel.IProps> = ({ allProducts }) => {
       setCategory(categoryName);
     }
     if (categoryId && categoryId !== -1) {
-      console.log(categoryId);
-
       const products = allProducts.filter(
         (product: any) => product.categoryId === categoryId
       );

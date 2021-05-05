@@ -3,12 +3,17 @@ import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { APP_LOGO, MultiLingual } from '../../assets';
 import { CONFIG } from '../../config/Config';
-import { STATIC_DATA, TEST_DATA } from '../../config/StaticData';
+import { STATIC_DATA } from '../../config/StaticData';
 import { NavbarModel } from '../../models/Navbar.model';
 import './Navbar.scss';
 import { Login } from '../../components/';
 
-const Navbar: FC<NavbarModel.IProps> = ({ cartSize, loggedInUser }) => {
+const Navbar: FC<NavbarModel.IProps> = ({
+  cartSize,
+  loggedInUser,
+  products,
+  showSideMenu,
+}) => {
   const {
     ENGLISH: {
       Navbar: { SEARCH_PLACEHOLDER, SIGN_IN_CREATE_ACCOUNT, USER_MENU_ITEMS },
@@ -18,7 +23,6 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize, loggedInUser }) => {
   const {
     ROUTES: { DEFAULT, SHOPPING_CART, PRODUCT_DETAILS, PRODUCTS },
   } = CONFIG;
-  const { PRODUCTS_DATA } = TEST_DATA;
   const history = useHistory();
 
   const [isSearchBarForMobileOpen, setIsSearchBarForMobileOpen] = useState(
@@ -32,19 +36,21 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize, loggedInUser }) => {
     setIsSearchBarForMobileOpen(!isSearchBarForMobileOpen);
   };
   const getSearchedCategories = () => {
-    const categories = PRODUCTS_DATA.filter((data) =>
-      data.category.toLowerCase().includes(searchTerm.toLowerCase())
-    ).map(({ categoryId, category, images }) => {
-      return {
-        id: categoryId,
-        name: category,
-        image: images[0],
-        redirect: redirectToCategory,
-      };
-    });
+    const categories = products
+      .filter((data: any) =>
+        data.category.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+      .map((product: any) => {
+        return {
+          id: product.categoryId,
+          name: product.category,
+          image: product.images[0],
+          redirect: redirectToCategory,
+        };
+      });
 
     const filteredCategories: any = [];
-    categories.forEach((data) => {
+    categories.forEach((data: any) => {
       const selectedCat = filteredCategories.findIndex(
         (fil: any) => fil.id === data.id
       );
@@ -57,19 +63,21 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize, loggedInUser }) => {
   };
 
   const getSearchedItems = () => {
-    const products = PRODUCTS_DATA.filter((data) =>
-      data.name.toLowerCase().includes(searchTerm.toLowerCase())
-    ).map(({ id, name, category, images }) => {
-      return {
-        id,
-        name,
-        category,
-        image: images[0],
-        redirect: redirectToProductDescription,
-      };
-    });
+    const filteredProducts = products
+      .filter((data: any) =>
+        data.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+      .map((product: any) => {
+        return {
+          id: product.id,
+          name: product.name,
+          category: product.category,
+          image: product.images[0],
+          redirect: redirectToProductDescription,
+        };
+      });
 
-    return products;
+    return filteredProducts;
   };
 
   const redirectToProductDescription = (id: number) => {
@@ -117,7 +125,7 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize, loggedInUser }) => {
                   </div>
                 </li>
               ))}
-              {getSearchedItems().map((item) => (
+              {getSearchedItems().map((item: any) => (
                 <li key={item.id} onClick={() => item.redirect(item.id)}>
                   <img src={item.image} alt={NO_IMAGE_FOUND}></img>
                   <div>
@@ -171,20 +179,55 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize, loggedInUser }) => {
         </div>
       </div>
       <div id='navbar-mobile-div'>
-        <i className='fa fa-bars bars'></i>
+        <i className='fa fa-bars bars' onClick={() => showSideMenu(true)}></i>
         <div className='app-logo'>
-          <img src={APP_LOGO} alt={NO_IMAGE_FOUND}></img>
+          <Link to={DEFAULT}>
+            <img src={APP_LOGO} alt={NO_IMAGE_FOUND}></img>
+          </Link>
         </div>
         {isSearchBarForMobileOpen ? (
           <div className='search-bar'>
-            <div>
-              <input type='text' placeholder={SEARCH_PLACEHOLDER}></input>
+            <div id='main'>
+              <input
+                type='text'
+                placeholder={SEARCH_PLACEHOLDER}
+                onChange={(event) => setSearchTerm(event.target.value)}
+                className={searchTerm ? 'plain-border' : 'round-border'}
+                value={searchTerm}
+              ></input>
+              {searchTerm && (
+                <ul className='search-menu'>
+                  {getSearchedCategories().map((item: any) => (
+                    <li
+                      key={item.id}
+                      onClick={() => item.redirect(item.id, item.name)}
+                    >
+                      <img src={item.image} alt={NO_IMAGE_FOUND}></img>
+                      <div>
+                        <h6>All {item.name}</h6>
+                      </div>
+                    </li>
+                  ))}
+                  {getSearchedItems().map((item: any) => (
+                    <li key={item.id} onClick={() => item.redirect(item.id)}>
+                      <img src={item.image} alt={NO_IMAGE_FOUND}></img>
+                      <div>
+                        <h6>{item.name}</h6>
+                        <p>{item.category}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
         ) : (
           <i className='fa fa-search search-bar' onClick={handleSearchBar}></i>
         )}
-        <i className='fa fa-shopping-cart shopping-cart'></i>
+        <Link to={`${SHOPPING_CART}/cart-items`} className='shopping-cart'>
+          <i className='fa fa-shopping-cart'></i>
+          {cartSize > 0 && <div id='cart-total'>{cartSize}</div>}
+        </Link>
       </div>
       {showLoginModal && (
         <Login
@@ -200,6 +243,7 @@ const Navbar: FC<NavbarModel.IProps> = ({ cartSize, loggedInUser }) => {
 const mapStateToProps = (state: any) => ({
   cartSize: state.shoppingCartState.cartItems.length,
   loggedInUser: state.loginState.loggedInUser,
+  products: state.dashboardState.products,
 });
 
 export default connect(mapStateToProps)(Navbar);

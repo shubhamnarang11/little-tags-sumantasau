@@ -25,9 +25,12 @@
         }
         .product-name {
           font-size: 0.8rem;
-          // max-width: 7rem;
+          max-width: 12.5rem;
           height: 3vh;
           text-align: center;
+        }
+        .price {
+          margin-top: 2rem;
         }
       }
     }

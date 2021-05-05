@@ -20,7 +20,9 @@ const CategoryContainer: FC<CategoryContainerModel.IProps> = ({
   } = CONFIG;
 
   const getCategoryProducts = () => {
-    return products.filter((data: any) => data.categoryId === categoryId);
+    return products
+      .filter((data: any) => data.categoryId === categoryId)
+      .slice(0, 8);
   };
 
   return (
@@ -40,7 +42,7 @@ const CategoryContainer: FC<CategoryContainerModel.IProps> = ({
               <li>
                 <img src={product.images[0]} alt={NO_IMAGE_FOUND}></img>
                 <p className='product-name'>{product.name}</p>
-                <p>Rs. {product.price}</p>
+                <p className='price'>Rs. {product.price}</p>
               </li>
             </Link>
           ))}

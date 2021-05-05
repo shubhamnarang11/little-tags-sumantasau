@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import './App.scss';
 import { Switch, Route } from 'react-router-dom';
 import { CONFIG } from './config/Config';
@@ -12,10 +13,11 @@ import {
   Dashboard,
   OrderHistory,
   OrderPlaced,
+  SideMenu,
+  Login,
 } from './components';
 import { STATIC_DATA } from './config/StaticData';
 import Products from './components/Products/Products';
-import React from 'react';
 
 function App() {
   const {
@@ -36,7 +38,8 @@ function App() {
       App: { CATEGORIES },
     },
   } = STATIC_DATA;
-
+  const [isSideMenu, setIsSideMenu] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const getCategories = () => {
     return Object.keys(CATEGORIES);
   };
@@ -47,35 +50,55 @@ function App() {
     );
   };
 
+  const toggleSideMenu = (value: boolean, showLogin?: boolean) => {
+    setIsSideMenu(value);
+
+    if (showLogin) {
+      setShowLoginModal(showLogin);
+    }
+  };
+
   return (
     <div className='App'>
-      <Navbar />
-      {isCategoryHeaderAvailable() ? (
-        <CategoryHeader categories={getCategories()} />
-      ) : null}
-
-      <Switch>
-        <Route exact path={DEFAULT} component={Dashboard}></Route>
-        <Route path={PROFILE}>
-          <Profile />
-        </Route>
-        <Route path={SHOPPING_CART}>
-          <ShoppingCart />
-        </Route>
-        <Route path={ADD_DELIVERY_ADDRESS}>
-          <AddDeliveryAddress />
-        </Route>
-        <Route path={PRODUCT_DETAILS}>
-          <ProductDetails></ProductDetails>
-        </Route>
-        <Route path={PRODUCTS} component={Products}></Route>
-        <Route path={ORDER_HISTORY}>
-          <OrderHistory />
-        </Route>
-        <Route path={ORDER_PLACED} component={OrderPlaced}></Route>
-      </Switch>
-
-      <Footer />
+      {isSideMenu ? (
+        <SideMenu closeSideMenu={toggleSideMenu}></SideMenu>
+      ) : (
+        <>
+          {' '}
+          <Navbar showSideMenu={toggleSideMenu} />
+          {isCategoryHeaderAvailable() ? (
+            <CategoryHeader categories={getCategories()} />
+          ) : null}
+          <Switch>
+            <Route exact path={DEFAULT} component={Dashboard}></Route>
+            <Route path={PROFILE}>
+              <Profile />
+            </Route>
+            <Route path={SHOPPING_CART}>
+              <ShoppingCart />
+            </Route>
+            <Route path={ADD_DELIVERY_ADDRESS}>
+              <AddDeliveryAddress />
+            </Route>
+            <Route path={PRODUCT_DETAILS}>
+              <ProductDetails></ProductDetails>
+            </Route>
+            <Route path={PRODUCTS} component={Products}></Route>
+            <Route path={ORDER_HISTORY}>
+              <OrderHistory />
+            </Route>
+            <Route path={ORDER_PLACED} component={OrderPlaced}></Route>
+          </Switch>
+          <Footer />
+          {showLoginModal && (
+            <Login
+              onCloseLoginModalClick={() => {
+                setShowLoginModal(false);
+              }}
+            />
+          )}
+        </>
+      )}
     </div>
   );
 }

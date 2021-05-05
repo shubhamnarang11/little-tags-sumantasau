@@ -8,17 +8,15 @@ import { connect } from 'react-redux';
 import { getProducts } from '../../actions/Dashboard.action';
 import { DashboardModel } from '../../models/Dashboard.model';
 
-const Dashboard: FC<DashboardModel.IProps> = ({ products, getProducts }) => {
+const Dashboard: FC<DashboardModel.IProps> = ({ getProducts }) => {
   const firebase = useContext(FirebaseContext);
   const { CATEGORIES_DATA } = TEST_DATA;
   useEffect(() => {
     firebase.db.ref(`products/`).once('value', (snap: any) => {
-      console.log(snap.val());
-
       getProducts(snap.val());
     });
+    // eslint-disable-next-line
   }, []);
-  console.log(products);
 
   return (
     <div id='dashboard-div'>
@@ -34,8 +32,4 @@ const Dashboard: FC<DashboardModel.IProps> = ({ products, getProducts }) => {
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  products: state.dashboardState.products,
-});
-
-export default connect(mapStateToProps, { getProducts })(Dashboard);
+export default connect(null, { getProducts })(Dashboard);

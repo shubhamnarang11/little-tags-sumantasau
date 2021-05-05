@@ -1,6 +1,8 @@
 export namespace NavbarModel {
   export interface IProps {
-    cartSize: number;  
-    loggedInUser: any;  
+    products: any;
+    cartSize: number;
+    loggedInUser: any;
+    showSideMenu: (arg: boolean) => void;
   }
 }

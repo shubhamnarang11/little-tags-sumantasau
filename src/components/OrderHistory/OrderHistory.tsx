@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { connect } from 'react-redux';
-import { STATIC_DATA, TEST_DATA } from '../../config/StaticData';
+import { STATIC_DATA } from '../../config/StaticData';
 import { OrderHistoryModel } from '../../models/OrderHistory.model';
 import './OrderHistory.scss';
 
