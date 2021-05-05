@@ -1,3 +1,7 @@
+$bgcolor: #282828;
+$fontsize: 0.525rem;
+$textcolor: #fff;
+$bgcolor-selection: #dedede;
 * {
   box-sizing: border-box;
 }
@@ -5,9 +9,8 @@
   margin: 1.25rem;
   padding: 0.625rem;
   border-radius: 0.125rem;
-  background-color: #ffffff;
-  box-shadow: 0.3125rem 0.625rem 0.5rem 0.625rem #888888;
-  min-height: 18.75rem;
+  background-color: $textcolor; 
+  min-height: 25.75rem;
 }
 .profile-left {
   padding: 1.25rem;
@@ -19,7 +22,7 @@
   width: 12.5rem;
   height: 12.5rem;
   border: 0.0625rem solid;
-  box-shadow: 0.3125rem 0.3125rem 0.5rem 0.3125rem #888888;
+  //box-shadow: 0.3125rem 0.3125rem 0.5rem 0.3125rem #888888;
   position: relative;
 }
 .profile-main {
@@ -29,7 +32,7 @@
 }
 .profile-form-field-name {
   font-size: 1rem;
-  color: #151e42;
+  //color: #151e42;
   padding: 0.625rem;
   text-align: left;
 }
@@ -40,7 +43,7 @@
 .profile-form-field-textbox {
   padding: 0.3125rem;
   border-radius: 0.3125rem;
-  border: solid 0.0625rem #e4e8ee;
+  border: solid 0.0625rem $bgcolor-selection;
   font-size: 1rem;
 }
 .profile-right {
@@ -51,20 +54,16 @@
 }
 .profile-form-field-button {
   padding: 0.625rem;
-  border-radius: 0.3125rem;
-  box-shadow: 0 1.25rem 1.25rem -1rem rgba(89, 77, 223, 0.5);
-  background-color: #6e59ce;
+  border-radius: 0.3125rem;  
+  background-color: $bgcolor;
   font-size: 1rem;
   font-weight: normal;
-  color: #fff;
-  cursor: pointer;
-  opacity: 0.6;
+  color: $textcolor;
+  cursor: pointer;  
   transition: 0.3s;
   border: none;
 }
-.profile-form-field-button:hover {
-  opacity: 1;
-}
+
 
 .profile-form-field-button[disabled] {
   opacity: 0.6;
