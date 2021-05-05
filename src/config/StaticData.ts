@@ -90,7 +90,7 @@ export const STATIC_DATA = {
       ORDER_HISTORY_HEADING: 'ORDER HISTORY',
       ORDER_QUANTITY: 'Ordered Quantity',
       TOTAL_ORDERED: 'Total Ordered',
-      DEVLIVERED_ON: 'Delivered on',
+      DEVLIVERED_ON: 'Delivers on',
       ORDERED_ON: 'Ordered on',
     },
     App: {
@@ -119,7 +119,7 @@ export const STATIC_DATA = {
     SideMenu: {
       HELLO: 'Hello',
       GUEST: 'Guest',
-      LANGUAGE: 'Language',
+      LANGUAGE: 'Choose Language',
       USER_MENU_ITEMS: [
         { name: 'My Orders', path: '/order-history' },
         { name: 'My Wishlist', path: '/wishlist' },

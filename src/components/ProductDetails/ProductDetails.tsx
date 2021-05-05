@@ -120,8 +120,8 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
     if (context) {
       context.drawImage(
         image,
-        event.pageX,
-        event.pageY - 120,
+        event.pageX - 100,
+        event.pageY,
         80,
         80,
         0,
@@ -171,7 +171,7 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
         <div className='content-div'>
           <p className='product-name'>{selectedProduct.name}</p>
           <div className='rating'>
-            {selectedProduct.rating}
+            {selectedProduct.rating || 4.5}
             <i className='fa fa-star'></i>
           </div>
           <span className='horizontal-line' />

@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 
 const DeliveryAddress: FC<DeliveryAddressModel.IProps> = ({
   userAddresses,
+  setAddress,
 }) => {
   const {
     ENGLISH: {
@@ -19,7 +20,7 @@ const DeliveryAddress: FC<DeliveryAddressModel.IProps> = ({
     ROUTES: { ADD_DELIVERY_ADDRESS },
   } = CONFIG;
 
-  const [DeliveryAddress, setDeliveryAddress] = useState(-1);
+  const [selectedAddress, setSelectedAddress] = useState(-1);
 
   const history = useHistory();
 
@@ -27,13 +28,19 @@ const DeliveryAddress: FC<DeliveryAddressModel.IProps> = ({
     history.push(ADD_DELIVERY_ADDRESS);
   };
 
+  const selectAddress = (addr: any) => {
+    setSelectedAddress(addr.id);
+    setAddress(
+      `${addr.address}\n${addr.city}, ${addr.state} - ${addr.pincode}\nMobile - ${addr.mobile}`
+    );
+  };
   return (
-    <div id="delivery-address-container">
-      <div className="delivery-address-header">
-        <div className="address-heading">
+    <div id='delivery-address-container'>
+      <div className='delivery-address-header'>
+        <div className='address-heading'>
           <h2>{DELIVERYADDRESS_HEADING}</h2>
         </div>
-        <div className="add-address-button">
+        <div className='add-address-button'>
           <input
             type='button'
             value={DELIVERYADDRESS_Add}
@@ -52,8 +59,12 @@ const DeliveryAddress: FC<DeliveryAddressModel.IProps> = ({
                     type='radio'
                     name='radio-default-selection'
                     value={AddressData.id}
-                    onClick={() => setDeliveryAddress(AddressData.id)}
-                    checked={AddressData.isDefault}
+                    onClick={() => selectAddress(AddressData)}
+                    checked={
+                      selectedAddress === -1
+                        ? AddressData.isDefault
+                        : selectedAddress === AddressData.id
+                    }
                   ></input>
                   <label>{AddressData.isDefault ? 'Default' : ''}</label>
                 </div>

@@ -17,7 +17,7 @@ const ProductCard: FC<ProductCardModel.IProps> = ({
     <div className='product-card-div'>
       <img src={image} alt={NO_IMAGE_FOUND}></img>
       <p>{name}</p>
-      <p>Rs. {price}</p>
+      <p className='price'>Rs. {price}</p>
       <div>
         {STAR_RATING.map((rat) =>
           rat < rating ? (

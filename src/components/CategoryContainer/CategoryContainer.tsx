@@ -19,25 +19,47 @@ const CategoryContainer: FC<CategoryContainerModel.IProps> = ({
     ROUTES: { PRODUCT_DETAILS },
   } = CONFIG;
 
-  const getCategoryProducts = () => {
+  const getCategoryProducts = (noOfItems: number) => {
     return products
       .filter((data: any) => data.categoryId === categoryId)
-      .slice(0, 8);
+      .slice(0, noOfItems);
   };
 
   return (
-    <div className='category-container-div'>
-      <div className='header'>
-        <p>{categoryName}</p>
+    <>
+      <div className='category-container-web-div'>
+        <div className='header'>
+          <p>{categoryName}</p>
+        </div>
+        <span className='bottom-border'></span>
+        <ul className='products'>
+          <Carousel
+            show={6}
+            infiniteLoop={false}
+            carouselContainerClass='category-container'
+          >
+            {getCategoryProducts(8).map((product: any) => (
+              <Link
+                to={`${PRODUCT_DETAILS}?pid=${product.id}`}
+                key={product.id}
+              >
+                <li>
+                  <img src={product.images[0]} alt={NO_IMAGE_FOUND}></img>
+                  <p className='product-name'>{product.name}</p>
+                  <p className='price'>Rs. {product.price}</p>
+                </li>
+              </Link>
+            ))}
+          </Carousel>
+        </ul>
       </div>
-      <span className='bottom-border'></span>
-      <ul className='products'>
-        <Carousel
-          show={6}
-          infiniteLoop={false}
-          carouselContainerClass='category-container'
-        >
-          {getCategoryProducts().map((product: any) => (
+      <div className='category-container-mobile-div'>
+        <div className='header'>
+          <p>{categoryName}</p>
+        </div>
+        <span className='bottom-border'></span>
+        <ul className='products'>
+          {getCategoryProducts(4).map((product: any) => (
             <Link to={`${PRODUCT_DETAILS}?pid=${product.id}`} key={product.id}>
               <li>
                 <img src={product.images[0]} alt={NO_IMAGE_FOUND}></img>
@@ -46,9 +68,9 @@ const CategoryContainer: FC<CategoryContainerModel.IProps> = ({
               </li>
             </Link>
           ))}
-        </Carousel>
-      </ul>
-    </div>
+        </ul>
+      </div>
+    </>
   );
 };
 

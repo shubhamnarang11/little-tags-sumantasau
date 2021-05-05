@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { APP_LOGO, MultiLingual } from '../../assets';
@@ -7,12 +7,17 @@ import { STATIC_DATA } from '../../config/StaticData';
 import { NavbarModel } from '../../models/Navbar.model';
 import './Navbar.scss';
 import { Login } from '../../components/';
+import { setUser } from '../../actions/Login.action';
+import { addItemsToCart } from '../../actions/ProductDetails.action';
+import FirebaseContext from '../Firebase/Context';
 
 const Navbar: FC<NavbarModel.IProps> = ({
   cartSize,
   loggedInUser,
   products,
   showSideMenu,
+  setUser,
+  addItemsToCart,
 }) => {
   const {
     ENGLISH: {
@@ -24,7 +29,7 @@ const Navbar: FC<NavbarModel.IProps> = ({
     ROUTES: { DEFAULT, SHOPPING_CART, PRODUCT_DETAILS, PRODUCTS },
   } = CONFIG;
   const history = useHistory();
-
+  const firebase = useContext(FirebaseContext);
   const [isSearchBarForMobileOpen, setIsSearchBarForMobileOpen] = useState(
     false
   );
@@ -91,10 +96,27 @@ const Navbar: FC<NavbarModel.IProps> = ({
   };
 
   useEffect(() => {
+    if (!loggedInUser || Object.keys(loggedInUser).length === 0) {
+      const userId = localStorage.getItem('userId');
+
+      if (userId) {
+        firebase.db.ref(`users/${userId}`).once('value', (snap: any) => {
+          const user = snap.val();
+
+          if (user) {
+            setUser(user);
+            if (user.cartItems) {
+              addItemsToCart(user.cartItems);
+            }
+          }
+        });
+      }
+    }
     return () => {
       setSearchTerm('');
     };
-  }, []);
+  // eslint-disable-next-line
+  }, [loggedInUser]);
 
   return (
     <>
@@ -246,4 +268,4 @@ const mapStateToProps = (state: any) => ({
   products: state.dashboardState.products,
 });
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, { setUser, addItemsToCart })(Navbar);

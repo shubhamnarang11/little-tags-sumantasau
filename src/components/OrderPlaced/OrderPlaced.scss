@@ -20,3 +20,11 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) { 
+  .order-placed-div {
+    .heading {
+      text-align: center;
+    }
+  }
+}
