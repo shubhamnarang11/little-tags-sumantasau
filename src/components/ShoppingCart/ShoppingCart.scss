@@ -7,9 +7,17 @@ $msg-color: red;
 * {
   box-sizing: border-box;
 }
+
+::-webkit-scrollbar {
+  width: 0.188rem; /* width of the entire scrollbar */
+}
+::-webkit-scrollbar-thumb {
+  background-color: $bgcolor; /* color of the scroll thumb */
+}
+
 #cart-container {
   min-height: 35.75rem;
-  display : flex;
+  display: flex;
   flex-direction: row;
   .heading-bar {
     background-color: $bgcolor;
@@ -40,6 +48,11 @@ $msg-color: red;
           padding: 0 1.875rem;
         }
       }
+      &.scroll-bar {
+        overflow-y: auto;
+        height: 37.5rem;
+      }
+
       div {
         &.item-image {
           float: left;
@@ -47,6 +60,7 @@ $msg-color: red;
           width: 20%;
           padding: 1.25rem 0;
           min-height: 11rem;
+
           img {
             width: 8.25rem;
             height: 8.25rem;
@@ -58,6 +72,7 @@ $msg-color: red;
           text-align: left;
           width: 60%;
           min-height: 11rem;
+
           p {
             color: $bgcolor-button;
             font-size: 0.75rem;
@@ -67,14 +82,16 @@ $msg-color: red;
           }
           div {
             display: flex;
+
             span {
               display: flex;
               background-color: $bgcolor-selection;
-              width: 5.5rem;
-              padding: 0.313rem;
+              width: 6.5rem;
+              padding: 0.413rem 0.313rem 0.313rem 0.813rem;
               border-radius: 0.438rem;
               overflow: hidden;
               font-weight: 500;
+
               select {
                 background-color: transparent;
                 border: 0;
@@ -271,15 +288,16 @@ $msg-color: red;
           &.item-info {
             width: 45%;
             font-size: 70%;
+
             div {
               span {
                 width: 4.5rem;
-                padding: 0.313rem 0.313rem 0.313rem 0.313rem;
+                padding: 0.313rem 0.213rem;
                 border-radius: 0.438rem;
                 height: 1.875rem;
                 select {
                   padding-left: 0.5rem;
-                  font-size: 0.688;
+                  font-size: 0.588rem;
                   height: 1.25rem;
                 }
               }
@@ -292,6 +310,7 @@ $msg-color: red;
           }
           &.item-price {
             width: 28%;
+            padding: 0.938rem 0.863rem;
           }
         }
       }

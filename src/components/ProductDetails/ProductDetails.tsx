@@ -229,14 +229,14 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
             <button
               className='add-to-cart'
               onClick={() => addOrBuyItem()}
-              disabled={!selectedSize}
+              disabled={getAvailableProductSizes().length > 0 && !selectedSize}
             >
               Add to Cart
             </button>
             <button
               className='buy-now'
               onClick={() => addOrBuyItem(true)}
-              disabled={!selectedSize}
+              disabled={getAvailableProductSizes().length > 0 && !selectedSize}
             >
               Buy Now
             </button>
