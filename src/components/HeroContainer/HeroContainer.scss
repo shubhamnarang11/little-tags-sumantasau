@@ -6,111 +6,150 @@ $dot-color: #dedede;
   box-sizing: border-box;
 }
 
-#hero-slideshow{
-
-.w3-animate-fading {
-  //animation: fading 10s infinite;
-  animation: fading ease 5s;
-  -webkit-animation: fading ease 5s;
-  -moz-animation: fading ease 5s;
-  -o-animation: fading ease 5s;
-  -ms-animation: fading ease 5s;
-}
-@keyframes fading {
-  0% {
-    opacity: 0;
+#hero-slideshow {
+  .w3-animate-fading {
+    //animation: fading 10s infinite;
+    animation: fading ease 5s;
+    -webkit-animation: fading ease 5s;
+    -moz-animation: fading ease 5s;
+    -o-animation: fading ease 5s;
+    -ms-animation: fading ease 5s;
   }
-  50% {
-    opacity: 1;
+  @keyframes fading {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
   }
-  100% {
-    opacity: 0;
+
+  .slideshow {
+    margin: 0 auto;
+    overflow: hidden;
   }
-}
-
-.slideshow {
-  margin: 0 auto;
-  overflow: hidden;
-}
-.slideshowSlider {
-  white-space: nowrap;
-  transition: ease 1000ms;
-}
-
-.slideshowDots {
-  text-align: center;
-  position: absolute;
-  top: 30rem;
-  left: 38rem;
-  z-index: 10;
-}
-.slideshowDot {
-  display: inline-block;
-  width: 1.875rem;
-  cursor: pointer;
-  margin: 0.938rem 0.438rem 0;
-  color: $dot-color;
-  border-bottom-style: solid;
-  border-bottom-width: 0.156rem;
-}
-.slideshowDot.active {
-  color: $textcolor;
-}
-
-.hero-container {
-  width: 100%;
-  position: relative;
-  display: inline-block;
-  text-align: center;
-  padding: 0 0 0 0;
-  margin: 0;
-  background-color: $bgcolor;
-  .hero-image {
-    width: 100%;
-    //height: 750px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    padding: 0 0 0 0;
-    margin: 0;
+  .slideshowSlider {
+    white-space: nowrap;
+    transition: ease 1000ms;
   }
-  .hero-text {
+
+  .slideshowDots {
     text-align: center;
     position: absolute;
-    top: 45%;
-    left: 15%;
-    transform: translate(-50%, -50%);
-    h1 {
-      font-size: 2.5rem;
-      font-weight: normal;
+    //top: 30rem;
+    //left: 38rem;
+    top: 70%;
+    left: 40%;
+    z-index: 10;
+  }
+  .slideshowDot {
+    display: inline-block;
+    width: 1.875rem;
+    cursor: pointer;
+    margin: 0.938rem 0.438rem 0;
+    color: $dot-color;
+    border-bottom-style: solid;
+    border-bottom-width: 0.156rem;
+  }
+  .slideshowDot.active {
+    color: $textcolor;
+  }
+
+  .hero-container {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    padding: 0 0 0 0;
+    margin: 0;
+    background-color: $bgcolor;
+    .hero-image {
+      width: 100%;
+      //height: 750px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+      padding: 0 0 0 0;
+      margin: 0;
     }
-    a {
-      text-decoration: none;
-    }
-    p {
-      color: $textcolor;
-      padding-bottom: 0.313rem;
-      border-bottom-style: solid;
-      border-bottom-width: 0.188rem;
-      width: fit-content;
+    .hero-text {
+      text-align: center;
+      position: absolute;
+      top: 45%;
+      left: 15%;
+      transform: translate(-50%, -50%);
+      h1 {
+        font-size: 2.5rem;
+        font-weight: normal;
+      }
+      a {
+        text-decoration: none;
+      }
+      p {
+        color: $textcolor;
+        padding-bottom: 0.313rem;
+        border-bottom-style: solid;
+        border-bottom-width: 0.188rem;
+        width: fit-content;
+      }
     }
   }
-}
 }
 
 /* Use a media query to add a break point at 768px: */
 @media screen and (max-width: 768px) {
   #hero-slideshow {
-    .hero-container {
-      .hero-text {
+    .slideshowSlider {
+      .hero-container {
+        .hero-text {
           top: 45%;
-          left: 50%;
+          left: 20%;
           h1 {
-            font-size: 1.5rem;           
+            font-size: 1.8rem;
           }
-        }       
+        }
+      }
+    }
+    .slideshowDots {
+      top: 30%;
+      left: 40%;
+    }
+  }
+}
+
+/* Use a media query to add a break point at 768px: */
+@media screen and (max-width: 550px) {
+  #hero-slideshow {
+    .slideshowSlider {
+      .hero-container {
+        .hero-text {
+          left: 18%;
+          h1 {
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+    .slideshowDots {
+      top: 28%;
+      left: 40%;
+
+      .slideshowDot {
+        width: 0.875rem;
       }
     }
   }
-
+}
+/* Use a media query to add a break point at 768px: */
+@media screen and (max-width: 450px) {
+  #hero-slideshow {
+    .slideshowDots {
+      top: 20%;
+      left: 40%;
+    }
+  }
+}
