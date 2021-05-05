@@ -9,6 +9,8 @@ $msg-color: red;
 }
 #cart-container {
   min-height: 35.75rem;
+  display : flex;
+  flex-direction: row;
   .heading-bar {
     background-color: $bgcolor;
     padding: 0.188rem 0.313rem;
@@ -102,7 +104,6 @@ $msg-color: red;
     text-align: left;
     width: 30%;
     padding: 5.375rem 0.625rem 0 0.625rem;
-
     div {
       &.summery-info {
         background-color: $bgcolor-selection;
@@ -229,10 +230,73 @@ $msg-color: red;
 /* Use a media query to add a break point at 768px: */
 @media screen and (max-width: 768px) {
   #cart-container {
+    display: flex;
+    flex-direction: column;
     .left {
       width: 100%;
+      div {
+        div {
+          &.item-image {
+            width: 28%;
+          }
+          &.item-info {
+            width: 52%;
+          }
+        }
+      }
     }
-    .rigth {
+    .right {
+      width: 100%;
+    }
+  }
+}
+
+/* Use a media query to add a break point at 500px: */
+@media screen and (max-width: 550px) {
+  #cart-container {
+    display: flex;
+    flex-direction: column;
+    .left {
+      width: 100%;
+      div {
+        div {
+          &.item-image {
+            width: 27%;
+            img {
+              width: 5.25rem;
+              height: 5.25rem;
+              position: relative;
+            }
+          }
+          &.item-info {
+            width: 45%;
+            font-size: 70%;
+            div {
+              span {
+                width: 4.5rem;
+                padding: 0.313rem 0.313rem 0.313rem 0.313rem;
+                border-radius: 0.438rem;
+                height: 1.875rem;
+                select {
+                  padding-left: 0.5rem;
+                  font-size: 0.688;
+                  height: 1.25rem;
+                }
+              }
+            }
+            div {
+              p {
+                padding: 0 0 0 0.8rem;
+              }
+            }
+          }
+          &.item-price {
+            width: 28%;
+          }
+        }
+      }
+    }
+    .right {
       width: 100%;
     }
   }

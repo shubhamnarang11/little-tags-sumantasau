@@ -37,7 +37,7 @@ export default function HeroContainer() {
   }, [index]);
   //style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
   return (
-    <div className="slideshow w3-animate-fading">
+    <div className="slideshow w3-animate-fading" id="hero-slideshow">
       <div className="slideshowSlider">
         {HERO_DATA.filter((data) => data.id === index + 1).map((hero, idex) => (
           <div className="hero-container" key={idex}>

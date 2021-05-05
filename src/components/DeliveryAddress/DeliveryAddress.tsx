@@ -28,17 +28,19 @@ const DeliveryAddress: FC<DeliveryAddressModel.IProps> = ({
   };
 
   return (
-    <div id='delivery-address-container'>
-      <div className='delivery-address-header'>
-        <h2>{DELIVERYADDRESS_HEADING}</h2>
-        <p>
+    <div id="delivery-address-container">
+      <div className="delivery-address-header">
+        <div className="address-heading">
+          <h2>{DELIVERYADDRESS_HEADING}</h2>
+        </div>
+        <div className="add-address-button">
           <input
             type='button'
             value={DELIVERYADDRESS_Add}
             className='input-button'
             onClick={onAddAddressClick}
           />
-        </p>
+        </div>
       </div>
       {userAddresses.length > 0 ? (
         <ul>
