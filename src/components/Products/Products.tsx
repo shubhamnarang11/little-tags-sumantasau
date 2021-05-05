@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ProductCard } from '..';
 import { CONFIG } from '../../config/Config';
-import { TEST_DATA } from '../../config/StaticData';
+import { ProductsModel } from '../../models/Products.model';
 import './Products.scss';
 
-export default function Products() {
-  const { PRODUCTS_DATA } = TEST_DATA;
+const Products: FC<ProductsModel.IProps> = ({ allProducts }) => {
   const [products, setProducts] = useState<any>([]);
   const [category, setCategory] = useState('Hi');
 
@@ -28,8 +28,8 @@ export default function Products() {
     if (categoryId && categoryId !== -1) {
       console.log(categoryId);
 
-      const products = PRODUCTS_DATA.filter(
-        (product) => product.categoryId === categoryId
+      const products = allProducts.filter(
+        (product: any) => product.categoryId === categoryId
       );
 
       if (products && products.length > 0) {
@@ -37,7 +37,7 @@ export default function Products() {
       }
     }
     // eslint-disable-next-line
-  }, [PRODUCTS_DATA, window.location.search]);
+  }, [allProducts, window.location.search]);
 
   return (
     <div className='products-div'>
@@ -58,4 +58,10 @@ export default function Products() {
       </div>
     </div>
   );
-}
+};
+
+const mapStateToProps = (state: any) => ({
+  allProducts: state.dashboardState.products,
+});
+
+export default connect(mapStateToProps)(Products);

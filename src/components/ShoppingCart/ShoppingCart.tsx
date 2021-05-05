@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import './ShoppingCart.scss';
 import { STATIC_DATA } from '../../config/StaticData';
@@ -7,13 +7,22 @@ import { connect } from 'react-redux';
 import { Login, ShoppingCartItems } from '..';
 import { CONFIG } from '../../config/Config';
 import DeliveryAddress from '../DeliveryAddress/DeliveryAddress';
-import { resetBuyNowFlag } from '../../actions/ProductDetails.action';
+import {
+  resetBuyNowFlag,
+  removeItemFromCart,
+  emptyCart,
+} from '../../actions/ProductDetails.action';
 import { EmptyCart } from '../../assets';
+import FirebaseContext from '../Firebase/Context';
+import { setUser } from '../../actions/Login.action';
 
 const ShoppingCart: FC<ShoppingCartModel.IProps> = ({
   loggedInUser,
   cartItems,
   resetBuyNowFlag,
+  setUser,
+  removeItemFromCart,
+  emptyCart,
 }) => {
   const {
     ENGLISH: {
@@ -35,7 +44,7 @@ const ShoppingCart: FC<ShoppingCartModel.IProps> = ({
     },
   } = STATIC_DATA;
   const {
-    ROUTES: { SHOPPING_CART_ITEMS, DELIVERY_ADDRESS },
+    ROUTES: { SHOPPING_CART_ITEMS, DELIVERY_ADDRESS, ORDER_PLACED },
   } = CONFIG;
 
   const totalProductPrice = cartItems.reduce(
@@ -55,8 +64,52 @@ const ShoppingCart: FC<ShoppingCartModel.IProps> = ({
 
   const history = useHistory();
 
+  const firebase = useContext(FirebaseContext);
+
   const onCheckoutClick = () => {
-    history.push(DELIVERY_ADDRESS);
+    if (window.location.pathname === DELIVERY_ADDRESS) {
+      const items = loggedInUser.cartItems.map((item: any) => {
+        const today = new Date();
+        item['order_date'] = today.toLocaleDateString();
+        item['delivery_date'] = new Date(
+          today.setDate(today.getDate() + 2)
+        ).toLocaleDateString();
+
+        return item;
+      });
+      if (loggedInUser.orders) {
+        loggedInUser.orders = [...items, ...loggedInUser.orders];
+      } else {
+        loggedInUser.orders = items;
+      }
+      delete loggedInUser.cartItems;
+
+      firebase.db
+        .ref(`users/${loggedInUser.uid}`)
+        .set(loggedInUser)
+        .then(() => {
+          emptyCart();
+          setUser(loggedInUser);
+          history.push(ORDER_PLACED);
+        });
+    } else {
+      history.push(DELIVERY_ADDRESS);
+    }
+  };
+  const removeCartItem = (itemId: number) => {
+    let { cartItems } = loggedInUser;
+
+    loggedInUser.cartItems = cartItems.filter(
+      (item: any) => item.productId !== itemId
+    );
+
+    firebase.db
+      .ref(`users/${loggedInUser.uid}`)
+      .set(loggedInUser)
+      .then(() => {
+        removeItemFromCart(itemId);
+        setUser(loggedInUser);
+      });
   };
 
   useEffect(() => {
@@ -78,6 +131,7 @@ const ShoppingCart: FC<ShoppingCartModel.IProps> = ({
                     <ShoppingCartItems
                       {...props}
                       cartItems={cartItems}
+                      removeCartItem={removeCartItem}
                     ></ShoppingCartItems>
                   )}
                 />
@@ -171,4 +225,10 @@ const mapStateToProps = (state: any) => ({
       ]
     : state.shoppingCartState.cartItems,
 });
-export default connect(mapStateToProps, { resetBuyNowFlag })(ShoppingCart);
+
+export default connect(mapStateToProps, {
+  resetBuyNowFlag,
+  setUser,
+  removeItemFromCart,
+  emptyCart,
+})(ShoppingCart);

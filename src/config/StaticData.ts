@@ -6,7 +6,7 @@ export const STATIC_DATA = {
       SIGN_IN_CREATE_ACCOUNT: 'Sign In',
       USER_MENU_ITEMS: [
         { name: 'My Account', path: '/profile' },
-        { name: 'My Orders', path: '/orders' },
+        { name: 'My Orders', path: '/order-history' },
         { name: 'Logout', path: '/logout' },
       ],
     },
@@ -110,6 +110,11 @@ export const STATIC_DATA = {
         4: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
         5: [],
       },
+    },
+    OrderPlaced: {
+      SUCCESS: 'Yay! Your order has been placed.',
+      ORDER_HISTORY: 'You can check your order history for further details.',
+      CONTINUE_SHOPPING: 'Continue Shopping',
     },
     NO_IMAGE_FOUND: 'No Image Found',
     TAX_PERCENTAGE: 12.5,

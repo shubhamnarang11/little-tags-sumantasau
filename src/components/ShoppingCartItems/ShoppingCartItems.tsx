@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { STATIC_DATA } from '../../config/StaticData';
 import { ShoppingCartItemsModel } from '../../models/ShoppingCartItems.model';
 
-const ShoppingCartItems: FC<ShoppingCartItemsModel.IProps> = ({ cartItems }) => {
+const ShoppingCartItems: FC<ShoppingCartItemsModel.IProps> = ({ cartItems, removeCartItem }) => {
   const {
     ENGLISH: {
       ShoppingCart: {
@@ -17,10 +17,6 @@ const ShoppingCartItems: FC<ShoppingCartItemsModel.IProps> = ({ cartItems }) => 
     (acc, item) => acc + item.quantity,
     0
   );
-
-  const handleRemoveItem = () => {
-
-  };
 
   return (
     <div>
@@ -49,7 +45,7 @@ const ShoppingCartItems: FC<ShoppingCartItemsModel.IProps> = ({ cartItems }) => 
                 ))}
               </select>             
             </span>
-            <p onClick={handleRemoveItem}>Remove</p>
+            <p onClick={() => removeCartItem(item.productId)}>Remove</p>
             </div>
           </div>
           <div className='item-price'>&#8377; {item.price}</div>

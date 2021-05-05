@@ -12,6 +12,7 @@ import FirebaseContext from '../Firebase/Context';
 import { setUser } from '../../actions/Login.action';
 
 const ProductDetails: FC<ProductDetailsModel.IProps> = ({
+  products,
   loggedInUser,
   addItemToCart,
   buyItem,
@@ -41,13 +42,13 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
       window.location.search.substring(1).split('=')[1]
     );
     if (productId && productId !== -1) {
-      const product = PRODUCTS_DATA.find((product) => product.id === productId);
+      const product = products.find((product: any) => product.id === productId);
 
       if (product && Object.keys(product).length > 0) {
         setSelectedProduct(product);
       }
     }
-  }, [PRODUCTS_DATA]);
+  }, [products]);
 
   const selectSize = (size: string) => {
     setSelectedSize(size);
@@ -253,6 +254,7 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
 };
 
 const mapStateToProps = (state: any) => ({
+  products: state.dashboardState.products,
   loggedInUser: state.loginState.loggedInUser,
 });
 
