@@ -7,12 +7,13 @@ $bgcolor-button: #282828;
   box-sizing: border-box;
 }
 #order-history-container {
-  padding: 0.938rem;
+  padding: 1rem;
   text-align: center;
   min-height: 25.75rem;
   section {
     text-align: center;
     .order-info {
+      background-color: #fff;
       width: 70%;
       border: 0.125rem solid $bgcolor-border;
       text-align: left;
@@ -31,13 +32,18 @@ $bgcolor-button: #282828;
         margin: 0;
         padding: 0 0 0 1.25rem;
         font-size: 0.938rem;
-        //border : 1px solid;
       }
       .delivery-info {
         float: right;
         width: 25%;
         font-size: 15px;
-        //border : 1px solid;
+      }
+    }
+    .address-div {
+      display: flex;
+      align-items: baseline;
+      p {
+        margin-left: 0.5rem;
       }
     }
   }

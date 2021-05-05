@@ -46,9 +46,10 @@ const ShoppingCart: FC<ShoppingCartModel.IProps> = ({
   const {
     ROUTES: { SHOPPING_CART_ITEMS, DELIVERY_ADDRESS, ORDER_PLACED },
   } = CONFIG;
+  const [selectedAddress, setSelectedAddress] = useState('');
 
   const totalProductPrice = cartItems.reduce(
-    (acc, item) => acc + item.price,
+    (acc, item) => acc + item.price * item.quantity,
     0
   );
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -74,7 +75,7 @@ const ShoppingCart: FC<ShoppingCartModel.IProps> = ({
         item['delivery_date'] = new Date(
           today.setDate(today.getDate() + 2)
         ).toLocaleDateString();
-
+        item['address'] = selectedAddress;
         return item;
       });
       if (loggedInUser.orders) {
@@ -111,6 +112,9 @@ const ShoppingCart: FC<ShoppingCartModel.IProps> = ({
         setUser(loggedInUser);
       });
   };
+  const setAddress = (addr: string) => {
+    setSelectedAddress(addr);
+  };
 
   useEffect(() => {
     return () => {
@@ -120,8 +124,8 @@ const ShoppingCart: FC<ShoppingCartModel.IProps> = ({
 
   return (
     <div id='cart-container'>
-      {cartItems.length > 0 ? (
-        loggedInUser && Object.keys(loggedInUser).length > 0 ? (
+      {loggedInUser && Object.keys(loggedInUser).length > 0 ? (
+        cartItems.length > 0 ? (
           <>
             <div className='left'>
               <Switch>
@@ -135,7 +139,12 @@ const ShoppingCart: FC<ShoppingCartModel.IProps> = ({
                     ></ShoppingCartItems>
                   )}
                 />
-                <Route path={DELIVERY_ADDRESS} component={DeliveryAddress} />
+                <Route
+                  path={DELIVERY_ADDRESS}
+                  render={(props) => (
+                    <DeliveryAddress setAddress={setAddress}></DeliveryAddress>
+                  )}
+                />
               </Switch>
             </div>
             <div className='right'>
@@ -182,33 +191,33 @@ const ShoppingCart: FC<ShoppingCartModel.IProps> = ({
             </div>
           </>
         ) : (
-          <>
-            <div className='not-login'>
-              <p>{LOGIN_MESSAGE}</p>
-              <button
-                onClick={() => {
-                  setShowLoginModal(true);
-                }}
-              >
-                {LOGIN_BUTTON}
-              </button>
+          <div className='no-items'>
+            <div>
+              <img src={EmptyCart} alt={NO_IMAGE_FOUND}></img>
             </div>
-            {showLoginModal && (
-              <Login
-                onCloseLoginModalClick={() => {
-                  setShowLoginModal(false);
-                }}
-              />
-            )}
-          </>
+            <Link to='/'>{CONTINUE_SHOPPING}</Link>
+          </div>
         )
       ) : (
-        <div className='no-items'>
-          <div>
-            <img src={EmptyCart} alt={NO_IMAGE_FOUND}></img>
+        <>
+          <div className='not-login'>
+            <p>{LOGIN_MESSAGE}</p>
+            <button
+              onClick={() => {
+                setShowLoginModal(true);
+              }}
+            >
+              {LOGIN_BUTTON}
+            </button>
           </div>
-          <Link to='/'>{CONTINUE_SHOPPING}</Link>
-        </div>
+          {showLoginModal && (
+            <Login
+              onCloseLoginModalClick={() => {
+                setShowLoginModal(false);
+              }}
+            />
+          )}
+        </>
       )}
     </div>
   );

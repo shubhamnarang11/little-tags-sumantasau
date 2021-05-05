@@ -19,6 +19,8 @@ $msg-color: red;
   min-height: 35.75rem;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  background-color: #fff;
   .heading-bar {
     background-color: $bgcolor;
     padding: 0.188rem 0.313rem;
@@ -224,6 +226,7 @@ $msg-color: red;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    align-items: center;
     div {
       width: 100%;
       display: flex;
@@ -264,6 +267,11 @@ $msg-color: red;
     }
     .right {
       width: 100%;
+    }
+    .not-login {
+      p {
+        text-align: center;
+      }
     }
   }
 }
@@ -317,6 +325,12 @@ $msg-color: red;
     }
     .right {
       width: 100%;
+    }
+
+    .not-login {
+      p {
+        text-align: center;
+      }
     }
   }
 }

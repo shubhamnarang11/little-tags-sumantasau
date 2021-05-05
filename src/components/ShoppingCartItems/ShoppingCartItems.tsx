@@ -48,7 +48,7 @@ const ShoppingCartItems: FC<ShoppingCartItemsModel.IProps> = ({
                   Qty :{" "}
                   <select value={item.quantity}>
                     {[...Array(item.totalQuantity).keys()].map((quantity) => (
-                      <option value={quantity}>{quantity}</option>
+                      <option value={quantity + 1}>{quantity + 1}</option>
                     ))}
                   </select>
                 </span>

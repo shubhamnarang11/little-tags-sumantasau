@@ -120,9 +120,9 @@ const Carousel: FC<CarouselModel.IProps> = ({
       <div className='carousel-wrapper'>
         {/* You can alwas change the content of the button to other things */}
         {(isRepeating || currentIndex > 0) && (
-          <button onClick={prev} className='left-arrow'>
-            &lt;
-          </button>
+          <div className='left-arrow'>
+            <button onClick={prev}>&lt;</button>
+          </div>
         )}
         <div
           className='carousel-content-wrapper'
@@ -144,9 +144,9 @@ const Carousel: FC<CarouselModel.IProps> = ({
         </div>
         {/* You can alwas change the content of the button to other things */}
         {(isRepeating || currentIndex < length - show) && (
-          <button onClick={next} className='right-arrow'>
-            &gt;
-          </button>
+          <div className='right-arrow'>
+            <button onClick={next}>&gt;</button>
+          </div>
         )}
       </div>
     </div>

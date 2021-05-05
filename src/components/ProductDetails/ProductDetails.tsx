@@ -1,7 +1,7 @@
 import React, { FC, useContext, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Carousel } from '..';
-import { STATIC_DATA, TEST_DATA } from '../../config/StaticData';
+import { STATIC_DATA } from '../../config/StaticData';
 import { addItemToCart, buyItem } from '../../actions/ProductDetails.action';
 import './ProductDetails.scss';
 import { ProductDetailsModel } from '../../models/ProductDetails.model';
@@ -26,7 +26,6 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
   const [selectedImage, setSelectedImage] = useState(0);
   const [isImageZoomed, setIsImageZoomed] = useState(-1);
 
-  const { PRODUCTS_DATA } = TEST_DATA;
   const {
     ENGLISH: {
       ProductDetails: { CATEGORY_PRODUCT_SIZES },
@@ -121,8 +120,8 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
     if (context) {
       context.drawImage(
         image,
-        event.pageX - 150,
-        event.pageY - 150,
+        event.pageX - 100,
+        event.pageY,
         80,
         80,
         0,
@@ -172,7 +171,7 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
         <div className='content-div'>
           <p className='product-name'>{selectedProduct.name}</p>
           <div className='rating'>
-            {selectedProduct.rating}
+            {selectedProduct.rating || 4.5}
             <i className='fa fa-star'></i>
           </div>
           <span className='horizontal-line' />

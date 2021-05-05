@@ -1,0 +1,54 @@
+.sidemenu-div {
+  background-color: #fff;
+  height: 100vh;
+  .header {
+    background-color: #282828;
+    display: flex;
+    color: #fff;
+    align-items: center;
+    padding: 0 1rem;
+    i:last-of-type {
+      font-size: 1.4rem;
+    }
+    i.user {
+      font-size: 2rem;
+    }
+    p {
+      font-size: 1.5rem;
+      margin-left: 1rem;
+      flex: 1;
+    }
+    img {
+      height: 2.5rem;
+      border-radius: 50%;
+    }
+  }
+  .category-div {
+    margin: 0;
+    ul {
+      padding: 0 1rem;
+      li {
+        font-size: 1.2rem;
+        color: #282828;
+        padding: 0.8rem 0;
+      }
+    }
+  }
+
+  .login-div {
+    ul {
+      padding: 0 1rem;
+      li {
+        font-size: 1.2rem;
+        color: #282828;
+        padding: 0.8rem 0;
+      }
+    }
+  }
+
+  .language-div {
+      padding: 0 1rem;
+      font-size: 1.2rem;
+      color: #282828;
+  }
+}

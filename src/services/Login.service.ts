@@ -1,7 +1,5 @@
-function setLoggedInUser(userData: any) {
-    console.log(userData);
-    
-  localStorage.setItem('user', JSON.stringify(userData));
+function setLoggedInUser(userId: string) {
+  localStorage.setItem('userId', userId);
   return Promise.resolve();
 }
 
