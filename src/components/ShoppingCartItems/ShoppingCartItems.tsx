@@ -1,8 +1,11 @@
-import { FC } from 'react';
-import { STATIC_DATA } from '../../config/StaticData';
-import { ShoppingCartItemsModel } from '../../models/ShoppingCartItems.model';
+import { FC } from "react";
+import { STATIC_DATA } from "../../config/StaticData";
+import { ShoppingCartItemsModel } from "../../models/ShoppingCartItems.model";
 
-const ShoppingCartItems: FC<ShoppingCartItemsModel.IProps> = ({ cartItems, removeCartItem }) => {
+const ShoppingCartItems: FC<ShoppingCartItemsModel.IProps> = ({
+  cartItems,
+  removeCartItem,
+}) => {
   const {
     ENGLISH: {
       ShoppingCart: {
@@ -21,37 +24,42 @@ const ShoppingCartItems: FC<ShoppingCartItemsModel.IProps> = ({ cartItems, remov
   return (
     <div>
       <h2>{SHOPPINGCART_HEADING}</h2>
-      <div className='heading-bar'>
-        <div className='heading-item'>
+      <div className="heading-bar">
+        <div className="heading-item">
           {SHOPPINGCART_ITEM_HEADING}({totalCartItems})
         </div>
-        <div className='heading-price'>{SHOPPINGCART_PRICE_HEADING}</div>
+        <div className="heading-price">{SHOPPINGCART_PRICE_HEADING}</div>
       </div>
-
-      {cartItems.map((item) => (
-        <div className='cart-item' key={item.productId}>
-          <div className='item-image'>
-            <img src={item.image} alt={item.productName} />
-          </div>
-          <div className='item-info'>
-            <h3>{item.productName}</h3>
-            {item.quantity> 0 ? <p>In Stock</p> : <p className="out-stock">Out of Stock</p>} 
-            <div className="quantity-remove">     
-            <span className='quantity-selection'>
-              Qty :
-              <select value={item.quantity}>
-                {[...Array(item.totalQuantity).keys()].map((quantity) => (
-                  <option value={quantity + 1}>{quantity + 1}</option>
-                ))}
-              </select>             
-            </span>
-            <p onClick={() => removeCartItem(item.productId)}>Remove</p>
+      <div className="scroll-bar">
+        {cartItems.map((item) => (
+          <div className="cart-item" key={item.productId}>
+            <div className="item-image">
+              <img src={item.image} alt={item.productName} />
             </div>
+            <div className="item-info">
+              <h3>{item.productName}</h3>
+              {item.quantity > 0 ? (
+                <p>In Stock</p>
+              ) : (
+                <p className="out-stock">Out of Stock</p>
+              )}
+              <div className="quantity-remove">
+                <span className="quantity-selection">
+                  Qty :{" "}
+                  <select value={item.quantity}>
+                    {[...Array(item.totalQuantity).keys()].map((quantity) => (
+                      <option value={quantity + 1}>{quantity + 1}</option>
+                    ))}
+                  </select>
+                </span>
+                <p onClick={() => removeCartItem(item.productId)}>Remove</p>
+              </div>
+            </div>
+            <div className="item-price">&#8377; {item.price}</div>
+            <hr />
           </div>
-          <div className='item-price'>&#8377; {item.price}</div>
-          <hr />
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
