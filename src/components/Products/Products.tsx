@@ -46,6 +46,7 @@ const Products: FC<ProductsModel.IProps> = ({ allProducts }) => {
         {products.map((product: any) => (
           <Link to={`${PRODUCT_DETAILS}?pid=${product.id}`} key={product.id}>
             <ProductCard
+              id={product.id}
               name={product.name}
               image={product.images[0]}
               price={product.price}

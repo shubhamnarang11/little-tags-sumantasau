@@ -46,6 +46,27 @@ $bgcolor-button: #282828;
         margin-left: 0.5rem;
       }
     }
+
+    .rating-div {
+      margin-top: 2rem;
+      p{
+        font-size: 1rem;
+        font-weight: bold;
+      }
+      i{
+        color: #eaeaea;
+        cursor: pointer;
+        margin-right: 0.3rem;
+        font-size: 1.2rem;
+        &:hover {
+          color: gold;
+          transform: scale(1.2);
+        }
+        &.checked {
+          color: gold;
+        }
+      }
+    }
   }
 }
 
