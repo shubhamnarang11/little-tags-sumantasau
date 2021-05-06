@@ -1,11 +1,16 @@
-import { FC, useContext, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { setUser } from '../../actions/Login.action';
 import { STATIC_DATA } from '../../config/StaticData';
 import { OrderHistoryModel } from '../../models/OrderHistory.model';
 import FirebaseContext from '../Firebase/Context';
 import './OrderHistory.scss';
 
-const OrderHistory: FC<OrderHistoryModel.IProps> = ({ orders }) => {
+const OrderHistory: FC<OrderHistoryModel.IProps> = ({
+  orders,
+  loggedInUser,
+  setUser,
+}) => {
   let count = 0;
   const {
     ENGLISH: {
@@ -23,17 +28,27 @@ const OrderHistory: FC<OrderHistoryModel.IProps> = ({ orders }) => {
   const [selectedProduct, setSelectedProduct] = useState<any>([]);
   const firebase = useContext(FirebaseContext);
 
-  const addRating = (rating: number, productId: number) => {
+  const addRating = (rating: number, productId: number, orderIndex: number) => {
     count = 0;
     firebase.db.ref(`ratings`).on('value', (snap: any) => {
       if (count === 0) {
+        const selectedOrder = orders[orderIndex];
         let productRatings = snap.val();
         setProduct(productId);
         setRating(rating, productId);
         if (productRatings && productRatings[productId]) {
           count = 1;
+          const index = productRatings[productId].indexOf(selectedOrder.rating);
+          if (index > -1) {
+            productRatings[productId].splice(index, 1);
+          }
           productRatings[productId] = [...productRatings[productId], rating];
           firebase.db.ref(`ratings`).set(productRatings).catch(console.log);
+          firebase.db
+            .ref(`users/${loggedInUser.uid}/orders/${orderIndex}`)
+            .set({ ...selectedOrder, rating });
+          orders[orderIndex]['rating'] = rating;
+          setUser({ ...loggedInUser, orders });
         } else {
           count = 1;
           productRatings = {
@@ -41,6 +56,11 @@ const OrderHistory: FC<OrderHistoryModel.IProps> = ({ orders }) => {
             [productId]: [rating],
           };
           firebase.db.ref(`ratings`).set(productRatings).catch(console.log);
+          firebase.db
+            .ref(`users/${loggedInUser.uid}/orders/${orderIndex}`)
+            .set({ ...selectedOrder, rating });
+
+          setUser({ ...loggedInUser, orders });
         }
       }
     });
@@ -75,11 +95,28 @@ const OrderHistory: FC<OrderHistoryModel.IProps> = ({ orders }) => {
     }
   };
 
+  useEffect(() => {
+    if (orders.length > 0) {
+      const products: any = [];
+      const ratings: any = [];
+      orders.forEach((order: any) => {
+        if (order.rating) {
+          products.push(order.productId);
+          ratings.push(order.rating);
+        }
+      });
+
+      setSelectedProduct(products);
+      setSelectedRating(ratings);
+    }
+    // eslint-disable-next-line
+  }, [orders]);
+
   return (
     <div id='order-history-container'>
       <h2>{ORDER_HISTORY_HEADING}</h2>
       <section>
-        {orders.map((order_item: any) => (
+        {orders.map((order_item: any, index: number) => (
           <div className='order-info'>
             <img src={order_item.image} alt={order_item.productName} />
             <div className='order-item-info'>
@@ -112,13 +149,17 @@ const OrderHistory: FC<OrderHistoryModel.IProps> = ({ orders }) => {
                     <i
                       key={rat}
                       className='fa fa-star checked'
-                      onClick={() => addRating(rat, order_item.productId)}
+                      onClick={() =>
+                        addRating(rat, order_item.productId, index)
+                      }
                     ></i>
                   ) : (
                     <i
                       key={rat}
                       className='fa fa-star-o'
-                      onClick={() => addRating(rat, order_item.productId)}
+                      onClick={() =>
+                        addRating(rat, order_item.productId, index)
+                      }
                     ></i>
                   )
                 )}
@@ -133,6 +174,7 @@ const OrderHistory: FC<OrderHistoryModel.IProps> = ({ orders }) => {
 
 const mapStateToProps = (state: any) => ({
   orders: state.loginState.loggedInUser.orders ?? [],
+  loggedInUser: state.loginState.loggedInUser,
 });
 
-export default connect(mapStateToProps)(OrderHistory);
+export default connect(mapStateToProps, { setUser })(OrderHistory);
