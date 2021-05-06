@@ -95,7 +95,7 @@ function App() {
             </Route>
           </Switch>
 
-          <Footer />
+          <Footer/>
           {showLoginModal && (
             <Login
               onCloseLoginModalClick={() => {

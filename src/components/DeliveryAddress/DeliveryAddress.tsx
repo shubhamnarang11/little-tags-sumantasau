@@ -7,11 +7,12 @@ import { DeliveryAddressModel } from '../../models/DeliveryAddress.model';
 import { connect } from 'react-redux';
 
 const DeliveryAddress: FC<DeliveryAddressModel.IProps> = ({
+  language,
   userAddresses,
   setAddress,
 }) => {
   const {
-    ENGLISH: {
+    [language]: {
       DeliveryAddress: { DELIVERYADDRESS_HEADING, DELIVERYADDRESS_Add },
     },
   } = STATIC_DATA;
@@ -89,6 +90,7 @@ const DeliveryAddress: FC<DeliveryAddressModel.IProps> = ({
 
 const mapStateToProps = (state: any) => ({
   userAddresses: state.loginState.loggedInUser.addresses ?? [],
+  language: state.dashboardState.language
 });
 
 export default connect(mapStateToProps)(DeliveryAddress);

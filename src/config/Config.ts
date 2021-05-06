@@ -12,8 +12,6 @@ export const CONFIG = {
     ORDER_PLACED: '/place-order',
     LOGOUT: '/logout',
   },
-  CATEGORY_HEADER_NOT_AVAILABLE_ROUTES: [
-    '/profile',
-    '/add-delivery-address',
-  ],
+  CATEGORY_HEADER_NOT_AVAILABLE_ROUTES: ['/profile', '/add-delivery-address'],
+  LANGUAGES: ['English', 'Spanish'],
 };

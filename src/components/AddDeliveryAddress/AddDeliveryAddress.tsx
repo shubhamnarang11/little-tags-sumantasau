@@ -10,11 +10,12 @@ import { AddDeliveryAddressModel } from "../../models/AddDeliveryAddress.model";
 import { setUser } from "../../actions/Login.action";
 
 const AddDeliveryAddress: FC<AddDeliveryAddressModel.IProps> = ({
+  language,
   loggedInUser,
   setUser,
 }) => {
   const {
-    ENGLISH: {
+    [language]: {
       DeliveryAddress: {
         ADD_DELIVERYADDRESS_HEADING,
         FIRSTNAME_TEXT,
@@ -339,6 +340,7 @@ const AddDeliveryAddress: FC<AddDeliveryAddressModel.IProps> = ({
 
 const mapStateToProps = (state: any) => ({
   loggedInUser: state.loginState.loggedInUser,
+  language: state.dashboardState.language
 });
 
 export default connect(mapStateToProps, { setUser })(AddDeliveryAddress);

@@ -19,6 +19,7 @@ declare global {
   }
 }
 const Login: FC<LoginModel.IProps> = ({
+  language,
   onCloseLoginModalClick,
   setUser,
   addItemsToCart,
@@ -37,7 +38,7 @@ const Login: FC<LoginModel.IProps> = ({
   const [imageFileURL, setImageFileURL] = useState('');
 
   const {
-    ENGLISH: {
+    [language]: {
       UserProfile: { AVATAR_ALT_TAG },
       Login: {
         LOGIN_HEADING,
@@ -285,7 +286,6 @@ const Login: FC<LoginModel.IProps> = ({
                 <p className='validation-messge'>
                   {requiredMobileNo ? errorMessage : ''}
                 </p>
-                <div id='recaptcha-container'></div>
                 <p>
                   <input
                     type='button'
@@ -294,6 +294,7 @@ const Login: FC<LoginModel.IProps> = ({
                     onClick={handleSendOTP}
                   />
                 </p>
+                <div id='recaptcha-container'></div>
                 <h4>{LOGIN_INFO_TEXT}</h4>
               </div>
             ) : (
@@ -348,4 +349,7 @@ const Login: FC<LoginModel.IProps> = ({
   );
 };
 
-export default connect(null, { setUser, addItemsToCart })(Login);
+const mapStateToProps = (state: any) => ({
+  language: state.dashboardState.language,
+});
+export default connect(mapStateToProps, { setUser, addItemsToCart })(Login);
