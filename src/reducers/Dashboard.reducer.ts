@@ -1,7 +1,8 @@
-import { GET_PRODUCTS } from '../actions/Actions';
+import { GET_PRODUCTS, SET_LANGUAGE } from '../actions/Actions';
 
 const initialState = {
   products: [],
+  language: 'ENGLISH',
 };
 
 const dashboardState = (
@@ -11,7 +12,8 @@ const dashboardState = (
   switch (action.type) {
     case GET_PRODUCTS:
       return { ...state, products: action.payload };
-
+    case SET_LANGUAGE:
+      return { ...state, language: action.payload };
     default:
       return state;
   }

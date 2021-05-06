@@ -10,23 +10,27 @@ import { Login } from '../../components/';
 import { setUser } from '../../actions/Login.action';
 import { addItemsToCart } from '../../actions/ProductDetails.action';
 import FirebaseContext from '../Firebase/Context';
+import { setLanguage } from '../../actions/Dashboard.action';
 
 const Navbar: FC<NavbarModel.IProps> = ({
+  language,
   cartSize,
   loggedInUser,
   products,
   showSideMenu,
   setUser,
   addItemsToCart,
+  setLanguage,
 }) => {
   const {
-    ENGLISH: {
+    [language]: {
       Navbar: { SEARCH_PLACEHOLDER, SIGN_IN_CREATE_ACCOUNT, USER_MENU_ITEMS },
       NO_IMAGE_FOUND,
     },
   } = STATIC_DATA;
   const {
     ROUTES: { DEFAULT, SHOPPING_CART, PRODUCT_DETAILS, PRODUCTS },
+    LANGUAGES,
   } = CONFIG;
   const history = useHistory();
   const firebase = useContext(FirebaseContext);
@@ -36,6 +40,7 @@ const Navbar: FC<NavbarModel.IProps> = ({
   const [searchTerm, setSearchTerm] = useState('');
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
 
   const handleSearchBar = () => {
     setIsSearchBarForMobileOpen(!isSearchBarForMobileOpen);
@@ -115,7 +120,7 @@ const Navbar: FC<NavbarModel.IProps> = ({
     return () => {
       setSearchTerm('');
     };
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [loggedInUser]);
 
   return (
@@ -162,8 +167,25 @@ const Navbar: FC<NavbarModel.IProps> = ({
 
         <div className='user-div'>
           <div className='shopping-cart'>
-            <img src={MultiLingual} alt={NO_IMAGE_FOUND}></img>
-            <i className='fa fa-heart'></i>
+            <img
+              src={MultiLingual}
+              alt={NO_IMAGE_FOUND}
+              onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
+            ></img>
+            {isLanguageMenuOpen ? (
+              <ul className='language-menu'>
+                {LANGUAGES.map((item) => (
+                  <li
+                    onClick={() => {
+                      setLanguage(item.toUpperCase());
+                      setIsLanguageMenuOpen(!isLanguageMenuOpen);
+                    }}
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
             <Link to={`${SHOPPING_CART}/cart-items`}>
               <i className='fa fa-shopping-cart'></i>
             </Link>
@@ -178,12 +200,32 @@ const Navbar: FC<NavbarModel.IProps> = ({
               <p onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}>
                 {loggedInUser.name}
               </p>
-              <img src={loggedInUser.image} alt={NO_IMAGE_FOUND}></img>
+              <img
+                src={loggedInUser.image}
+                alt={NO_IMAGE_FOUND}
+                onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+              ></img>
               {isUserMenuOpen ? (
                 <ul className='user-menu'>
                   {USER_MENU_ITEMS.map((item) => (
                     <Link to={item.path}>
-                      <li>{item.name}</li>
+                      <li
+                        onClick={() => {
+                          if (
+                            item.name === 'Logout' ||
+                            item.name === 'Cerrar sesión'
+                          ) {
+                            localStorage.clear();
+                            if (window.location.pathname === '/') {
+                              window.location.reload();
+                            }
+                            history.push('/');
+                          }
+                          setIsUserMenuOpen(!isUserMenuOpen);
+                        }}
+                      >
+                        {item.name}
+                      </li>
                     </Link>
                   ))}
                 </ul>
@@ -266,6 +308,11 @@ const mapStateToProps = (state: any) => ({
   cartSize: state.shoppingCartState.cartItems.length,
   loggedInUser: state.loginState.loggedInUser,
   products: state.dashboardState.products,
+  language: state.dashboardState.language,
 });
 
-export default connect(mapStateToProps, { setUser, addItemsToCart })(Navbar);
+export default connect(mapStateToProps, {
+  setUser,
+  addItemsToCart,
+  setLanguage,
+})(Navbar);

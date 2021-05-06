@@ -8,3 +8,4 @@ export const SET_LOGGED_IN_USER = 'SET_LOGGED_IN_USER';
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
 export const EMPTY_CART = 'EMPTY_CART';
+export const SET_LANGUAGE = 'SET_LANGUAGE';

@@ -14,7 +14,7 @@ const SideMenu: FC<SideMenuModel.IProps> = ({
     ENGLISH: {
       HOME,
       NO_IMAGE_FOUND,
-      SideMenu: { HELLO, GUEST, USER_MENU_ITEMS, LANGUAGE },
+      SideMenu: { HELLO, GUEST, USER_MENU_ITEMS },
       Navbar: { SIGN_IN_CREATE_ACCOUNT },
     },
   } = STATIC_DATA;
@@ -79,16 +79,12 @@ const SideMenu: FC<SideMenuModel.IProps> = ({
           <p onClick={showLogin}>{SIGN_IN_CREATE_ACCOUNT}</p>
         </div>
       )}
-      <hr />
-      <div className='language-div'>
-        <p>{LANGUAGE}</p>
-      </div>
     </div>
   );
 };
 
 const mapStateToProps = (state: any) => ({
-  loggedInUser: state.loginState.loggedInUser,
+  loggedInUser: state.loginState.loggedInUser
 });
 
 export default connect(mapStateToProps)(SideMenu);

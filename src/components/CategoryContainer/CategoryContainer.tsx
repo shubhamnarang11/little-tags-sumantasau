@@ -8,12 +8,13 @@ import { CONFIG } from '../../config/Config';
 import { connect } from 'react-redux';
 
 const CategoryContainer: FC<CategoryContainerModel.IProps> = ({
+  language,
   categoryId,
   categoryName,
   products,
 }) => {
   const {
-    ENGLISH: { NO_IMAGE_FOUND },
+    [language]: { NO_IMAGE_FOUND },
   } = STATIC_DATA;
   const {
     ROUTES: { PRODUCT_DETAILS },
@@ -76,6 +77,7 @@ const CategoryContainer: FC<CategoryContainerModel.IProps> = ({
 
 const mapStateToProps = (state: any) => ({
   products: state.dashboardState.products,
+  language: state.dashboardState.language
 });
 
 export default connect(mapStateToProps)(CategoryContainer);
