@@ -63,7 +63,6 @@ const Login: FC<LoginModel.IProps> = ({
   const handleSendOTP = () => {
     if (mobileNo) {
       const recaptchaVerifier = firebase.getRecaptcha();
-      console.log(recaptchaVerifier);
 
       firebase.auth
         .signInWithPhoneNumber(mobileNo, recaptchaVerifier)
@@ -106,7 +105,6 @@ const Login: FC<LoginModel.IProps> = ({
 
   const handleProfileSubmit = () => {
     if (userName && imageFileURL) {
-      console.log(imageFile, userName);
       const uploadTask = firebase.storage
         .ref(`/images/${displayProfile}`)
         .put(imageFile);
@@ -294,8 +292,8 @@ const Login: FC<LoginModel.IProps> = ({
                     onClick={handleSendOTP}
                   />
                 </p>
-                <div id='recaptcha-container'></div>
-                <h4>{LOGIN_INFO_TEXT}</h4>
+                <div id='recaptcha-container'>
+                </div>
               </div>
             ) : (
               <div className='input-section'>
