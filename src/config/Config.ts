@@ -10,6 +10,7 @@ export const CONFIG = {
     PRODUCTS: '/products',
     ORDER_HISTORY: '/order-history',
     ORDER_PLACED: '/place-order',
+    LOGOUT: '/logout',
   },
   CATEGORY_HEADER_NOT_AVAILABLE_ROUTES: [
     '/profile',

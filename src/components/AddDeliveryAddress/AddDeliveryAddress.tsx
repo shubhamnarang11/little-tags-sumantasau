@@ -290,7 +290,7 @@ const AddDeliveryAddress: FC<AddDeliveryAddressModel.IProps> = ({
         </p>
       </div>
       <div className="right">
-        <p>{PINCODE_TEXT}</p>
+        <p className='required-field'>{PINCODE_TEXT}</p>
         <input
           type="text"
           className="input-box"

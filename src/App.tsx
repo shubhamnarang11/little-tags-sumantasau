@@ -15,6 +15,7 @@ import {
   OrderPlaced,
   SideMenu,
   Login,
+  Logout,
 } from './components';
 import { STATIC_DATA } from './config/StaticData';
 import Products from './components/Products/Products';
@@ -30,6 +31,7 @@ function App() {
       PRODUCTS,
       ORDER_HISTORY,
       ORDER_PLACED,
+      LOGOUT,
     },
     CATEGORY_HEADER_NOT_AVAILABLE_ROUTES,
   } = CONFIG;
@@ -88,7 +90,11 @@ function App() {
               <OrderHistory />
             </Route>
             <Route path={ORDER_PLACED} component={OrderPlaced}></Route>
+            <Route path={LOGOUT}>
+              <Logout></Logout>
+            </Route>
           </Switch>
+
           <Footer />
           {showLoginModal && (
             <Login

@@ -43,7 +43,11 @@ $validation-msg: red;
     .input-heading {
       margin: 0;
       padding: 0.125rem 0 0 14.5rem;
-      text-align: left;      
+      text-align: left;  
+      &.input-heading:after{
+        content:" *";
+        color: $validation-msg;
+      }    
     }
     .validation-msg-left {
       margin: 0;
@@ -66,6 +70,10 @@ $validation-msg: red;
       padding: 0.1rem 0 0 0;
       color: $validation-msg;
       height: 0.938rem;
+    }
+    .required-field:after{
+      content:" *";
+      color: $validation-msg;
     }
   }
   section {
