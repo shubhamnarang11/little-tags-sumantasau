@@ -25,6 +25,7 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
   const [isImageZoomed, setIsImageZoomed] = useState(-1);
+  const [selectedProductRating, setSelectedProductRating] = useState(5);
 
   const {
     ENGLISH: {
@@ -41,12 +42,23 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
       window.location.search.substring(1).split('=')[1]
     );
     if (productId && productId !== -1) {
+      firebase.db.ref(`ratings/${productId}`).once('value', (snap: any) => {
+        const ratings = snap.val();
+        let rating = 5;
+        if (ratings) {
+          rating =
+            ratings.reduce((a: number, b: number) => a + b, 0) / ratings.length;
+        }
+
+        setSelectedProductRating(rating);
+      });
       const product = products.find((product: any) => product.id === productId);
 
       if (product && Object.keys(product).length > 0) {
         setSelectedProduct(product);
       }
     }
+  // eslint-disable-next-line
   }, [products]);
 
   const selectSize = (size: string) => {
@@ -171,7 +183,7 @@ const ProductDetails: FC<ProductDetailsModel.IProps> = ({
         <div className='content-div'>
           <p className='product-name'>{selectedProduct.name}</p>
           <div className='rating'>
-            {selectedProduct.rating || 4.5}
+            {selectedProductRating}
             <i className='fa fa-star'></i>
           </div>
           <span className='horizontal-line' />
