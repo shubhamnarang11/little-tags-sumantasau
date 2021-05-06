@@ -16,6 +16,7 @@ import HeroContainer from './HeroContainer/HeroContainer';
 import OrderHistory from './OrderHistory/OrderHistory';
 import OrderPlaced from './OrderPlaced/OrderPlaced';
 import SideMenu from './SideMenu/SideMenu';
+import Logout from './Logout/Logout';
 
 export {
   Navbar,
@@ -36,4 +37,5 @@ export {
   OrderHistory,
   OrderPlaced,
   SideMenu,
+  Logout,
 };

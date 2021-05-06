@@ -165,14 +165,14 @@
     }
 
     #cart-total {
-      font-size: 12px;
+      font-size: 10px;
       background: #ff0000;
       color: #fff;
       padding: 1px 4px;
       border-radius: 50%;
-      position: absolute;
-      top: 0.8rem;
-      right: 0.2rem;
+      position: absolute;     
+      top: 1.8rem;
+      right: 1rem;
     }
     i {
       align-self: center;
@@ -253,4 +253,19 @@
 
 .round-border {
   border-radius: 15px;
+}
+
+@media only screen and (max-width:450px) {
+  #navbar-mobile-div {
+  #cart-total {
+    font-size: 10px;
+    background: #ff0000;
+    color: #fff;
+    padding: 1px 4px;
+    border-radius: 50%;
+    position: absolute;     
+    top: 1rem;
+    right: 0.25rem;
+  }
+}
 }

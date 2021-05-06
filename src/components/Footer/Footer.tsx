@@ -1,5 +1,7 @@
 import "./Footer.scss";
 import { STATIC_DATA, TEST_DATA } from "../../config/StaticData";
+import { Link } from "react-router-dom";
+import { CONFIG } from "../../config/Config";
 
 export default function Footer() {
   const {
@@ -16,6 +18,10 @@ export default function Footer() {
 
   const { CATEGORIES_DATA } = TEST_DATA;
 
+  const {
+    ROUTES: { PRODUCTS },
+  } = CONFIG;
+
   return (
     <div id="footer-container">
       <div className="left">
@@ -26,11 +32,16 @@ export default function Footer() {
         <h2>{FOOTER_CATEGORY_HEADING}</h2>
         <ul>
           {CATEGORIES_DATA.map((category) => (
-            <li key={category.id}>{category.name} </li>
+            <Link
+              to={`${PRODUCTS}?cid=${category.id}&cname=${category.name}`}
+              key={category.id}
+            >
+              <li key={category.id}>{category.name} </li>
+            </Link>
           ))}
         </ul>
       </div>
-      <div className="rigth">
+      <div className="right">
         <h2>{FOOTER_SUBSCRIPTION_HEADING}</h2>
         <span>
           <input type="text" className="subscriptio-textbox" />{" "}
