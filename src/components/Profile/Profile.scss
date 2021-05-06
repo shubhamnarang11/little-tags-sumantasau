@@ -20,10 +20,9 @@ $bgcolor-selection: #dedede;
 }
 .profile-image {
   width: 12.5rem;
-  height: 12.5rem;
-  border: 0.0625rem solid;
-  //box-shadow: 0.3125rem 0.3125rem 0.5rem 0.3125rem #888888;
+  height: 12.5rem;  
   position: relative;
+  border-radius: 50%;  
 }
 .profile-main {
   padding: 1.563rem 0 0.625rem 0;
@@ -31,8 +30,7 @@ $bgcolor-selection: #dedede;
   width: 50%; /* The width is 50%, by default */
 }
 .profile-form-field-name {
-  font-size: 1rem;
-  //color: #151e42;
+  font-size: 1rem; 
   padding: 0.625rem;
   text-align: left;
 }

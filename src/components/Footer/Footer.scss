@@ -37,13 +37,17 @@ $bgcolor-button: #ff9f00;
     ul {
       text-align: left;
       list-style: none;
+      a {
+        color: $textcolor;
+        text-decoration: none;
+      }
       li {
         cursor: pointer;
         font-size: $fontsize-p;
       }
     }
   }
-  .rigth {
+  .right {
     padding: 1.25rem 1.25rem 1.25rem 3.75rem;
     float: left;
     text-align: left;
@@ -86,8 +90,25 @@ $bgcolor-button: #ff9f00;
     .middle {
       width: 100%;
     }
-    .rigth {
+    .right {
       width: 100%;
+    }
+  }
+}
+
+/* Use a media query to add a break point at 768px: */
+@media screen and (max-width: 400px) {
+  #footer-container {
+    .right {
+      span {
+        input {
+          &.subscription-button {
+            border: 1px solid;
+
+            margin-top: 0.375rem;
+          }
+        }
+      }
     }
   }
 }

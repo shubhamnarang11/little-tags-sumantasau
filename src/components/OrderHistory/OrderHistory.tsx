@@ -29,9 +29,12 @@ const OrderHistory: FC<OrderHistoryModel.IProps> = ({ orders }) => {
               <p>
                 {ORDER_QUANTITY} : {order_item.quantity}
               </p>
-              <div className='address-div'>
+              {/*<div className='address-div'>
                 Address: <p>{order_item.address}</p>
-              </div>
+        </div>*/}
+              <p>
+              Address : {order_item.address}
+              </p>
               <h4>
                 {TOTAL_ORDERED} : &#8377; {order_item.price}
               </h4>
